@@ -1,0 +1,174 @@
+body{
+    background-image: url(img/ciprian-pardau-j8fVoo3i8xk-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #005f96!important;
+    background-blend-mode: multiply;
+    font-family: 'MavenPro-Medium';
+
+}
+
+#btnafiliar{
+  padding: 1em;
+  margin: 2em;
+}
+
+#divafiliar{
+  height: 500px;
+}
+@media (max-width: 991px) {
+    body{
+        background-image: url(img/ciprian-pardau-j8fVoo3i8xk-unsplash.jpg);
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-color: #005f96!important;
+
+        font-family: 'MavenPro-Medium';
+    }
+
+
+    #divafiliar{
+      height: 250px;
+    }
+}
+
+h1{
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+h1,h5{
+  padding: 0.7em;
+  color: white;
+}
+.card
+{
+  background-color: rgb(235, 235, 235)!important;  
+}
+
+@font-face{
+    font-family: 'Baloo-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(fonts/Baloo-Regular.ttf);
+}
+@font-face{
+  font-family: 'MavenPro-Medium';
+  font-style: normal;
+    font-weight: normal;
+    src: url(fonts/MavenPro-Medium.ttf);
+  }
+  @font-face{
+    font-family: 'Ubuntu-Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: url(fonts/Ubuntu-Bold.ttf);
+}
+@font-face{
+    font-family: 'Ubuntu-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(fonts/Ubuntu-Regular.ttf);
+}
+@font-face{
+    font-family: 'Candara';
+    font-style: normal;
+    font-weight: normal;
+    src: url(fonts/Candara.ttf);
+}
+@font-face{
+  font-family: 'Candara_Bold';
+  font-style: normal;
+    font-weight: normal;
+    src: url(fonts/Candara.ttf);
+  }
+  /* ------------------------------- Efecto Fadein -------------------------- */
+
+  .fade-in {
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  
+.changebackground{
+
+  height: 300px;
+  background-image: url("img/high-angle-woman-helping-fit-man-at-gym.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: efectocambio ease 30s infinite!important;
+  -webkit-animation: efectocambio ease 30s infinite!important;
+  -moz-animation: efectocambio ease 30s infinite!important;
+  -o-animation: efectocambio ease 30s infinite!important;
+  -ms-animation: efectocambio ease 30s infinite!important;
+
+}
+
+/* .changebackground:hover{
+  animation-play-state: paused!important;
+} */
+/* ------------------- Efecto de imagenes -------------------------- */
+
+@keyframes efectocambio{
+
+  0% {  background-image: url("img/full-shot-people-running-together.jpg");}
+  12% {  background-image: url("img/full-shot-people-running-together.jpg");}
+
+  12% {  background-image: url("img/high-angle-woman-helping-fit-man-at-gym.jpg");}
+  45% {  background-image: url("img/high-angle-woman-helping-fit-man-at-gym.jpg");}
+
+  45% {  background-image: url("img/woman-at-running-starting-line-side-view.jpg");}
+  90% {  background-image: url("img/woman-at-running-starting-line-side-view.jpg");}
+  
+  90% {  background-image: url("img/full-shot-people-running-together.jpg");}
+  100% {  background-image: url("img/full-shot-people-running-together.jpg");}
+}
+
+@-webkit-keyframes efectocambio{
+  0% {  background-image: url("img/full-shot-people-running-together.jpg");}
+  15% {  background-image: url("img/full-shot-people-running-together.jpg");}
+
+  15% {  background-image: url("img/high-angle-woman-helping-fit-man-at-gym.jpg");}
+  42% {  background-image: url("img/high-angle-woman-helping-fit-man-at-gym.jpg");}
+
+  42% {  background-image: url("img/woman-at-running-starting-line-side-view.jpg");}
+  85% {  background-image: url("img/woman-at-running-starting-line-side-view.jpg");}
+  
+  85% {  background-image: url("img/full-shot-people-running-together.jpg");}
+  100% {  background-image: url("img/full-shot-people-running-together.jpg");}
+}
+
+hr{
+  border-top: 3px solid #f6c417!important;
+    margin: 0em;
+    padding: 0em;
+}
+
+  .credits{
+      font-size: 0.5em;
+  }
+
+  #carrusel{
+    z-index: -100;
+  }

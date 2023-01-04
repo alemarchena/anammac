@@ -1,0 +1,173 @@
+/* body
+{
+    background-color: rgb(214, 214, 214);
+    color: #202020;
+} */
+
+body
+{
+    background-image: url(../../../img/ciprian-pardau-j8fVoo3i8xk-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #005f96!important;
+    background-blend-mode: multiply;
+    color: rgb(231, 231, 231);
+
+    font-family: 'MavenPro-Medium';
+
+}
+
+
+@font-face{
+  font-family: 'Baloo-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/Baloo-Regular.ttf);
+}
+@font-face{
+font-family: 'MavenPro-Medium';
+font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/MavenPro-Medium.ttf);
+}
+@font-face{
+  font-family: 'Ubuntu-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/Ubuntu-Bold.ttf);
+}
+@font-face{
+  font-family: 'Ubuntu-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/Ubuntu-Regular.ttf);
+}
+@font-face{
+  font-family: 'Candara';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/Candara.ttf);
+}
+@font-face{
+font-family: 'Candara_Bold';
+font-style: normal;
+  font-weight: normal;
+  src: url(../../../fonts/Candara.ttf);
+}
+
+.fade-in {
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+
+  .aceptado{
+
+    color: green;
+    font-weight: bold;
+
+    animation: efectorotar ease 2s infinite!important;
+    -webkit-animation: efectorotar ease 2s infinite!important;
+    -moz-animation: efectorotar ease 2s infinite!important;
+    -o-animation: efectorotar ease 2s infinite!important;
+    -ms-animation: efectorotar ease 2s infinite!important;
+
+}
+
+.btn-flotante {
+	font-size: 16px; /* Cambiar el tamaño de la tipografia */
+	text-transform: uppercase; /* Texto en mayusculas */
+	font-weight: bold; /* Fuente en negrita o bold */
+	color: #ffffff; /* Color del texto */
+	border-radius: 5px; /* Borde del boton */
+	letter-spacing: 2px; /* Espacio entre letras */
+	background-color: #E91E63; /* Color de fondo */
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	transition: all 300ms ease 0ms;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	z-index: 99;
+}
+.btn-flotante:hover {
+	background-color: #2c2fa5; /* Color de fondo al pasar el cursor */
+	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+	transform: translateY(-7px);
+}
+@media only screen and (max-width: 600px) {
+ 	.btn-flotante {
+		padding: 12px 20px;
+		bottom: 20px;
+		right: 20px;
+	}
+}
+
+@keyframes efectorotar{
+
+  0% {color:green;}
+  50%{color:rgb(6, 105, 6);}
+  100% {color:greenred;}
+}
+
+@-webkit-keyframes efectorotar{
+  0% {color:green;}
+  50%{color:rgb(6, 105, 6);}
+  100% {color:green;}
+}
+
+.mensajero
+{
+    color: rgb(189, 189, 189);
+    font-size: 1.1em;
+}
+
+.textooscuro
+{
+  color: #141414;
+}
+#espera{visibility: hidden;}
+
+#divCalendario{
+    display: block;
+}
+#divfecha{
+    display: none;
+    padding: 2em
+}
+
+@media (min-width: 1px) and (max-width:991px) {
+    #divCalendario{
+        display: none;
+    }
+    #divfecha{
+        display: block;
+        padding: 2em
+    }
+}

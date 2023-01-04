@@ -1,0 +1,50 @@
+body
+{
+    background-image: url(../img/ciprian-pardau-j8fVoo3i8xk-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #005f96!important;
+    background-blend-mode: multiply;
+    color: rgb(231, 231, 231);
+
+    font-family: 'MavenPro-Medium';
+
+}
+
+
+@font-face{
+    font-family: 'Baloo-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/Baloo-Regular.ttf);
+}
+@font-face{
+  font-family: 'MavenPro-Medium';
+  font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/MavenPro-Medium.ttf);
+  }
+  @font-face{
+    font-family: 'Ubuntu-Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/Ubuntu-Bold.ttf);
+}
+@font-face{
+    font-family: 'Ubuntu-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/Ubuntu-Regular.ttf);
+}
+@font-face{
+    font-family: 'Candara';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/Candara.ttf);
+}
+@font-face{
+  font-family: 'Candara_Bold';
+  font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/Candara.ttf);
+  }

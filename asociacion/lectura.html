@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura</title>
+
+</head>
+<body>
+    <button onclick="CopyPaste()">Copy Paste</button>
+</body>
+</html>
+
+
+<script>
+
+function CopyPaste()
+{
+    
+    fetch('lectura.php?1',{method:'POST',headers:{'Content-Type':'application/Json'}})
+    .then(response=>
+    {
+        if(response.status==200)
+        {
+            return response.json();
+        }
+    })
+    .then(data=>
+    {
+
+        console.log(data);
+
+       
+     })
+    .catch(function(error)
+    {
+        console.log(error);
+    });
+}
+</script>
+
