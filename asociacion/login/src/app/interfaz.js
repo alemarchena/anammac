@@ -4,13 +4,18 @@ export class UI{
 
     DetenerCarrusel(){
         const myCarouselElement = document.querySelector('#carrusel')
-        const carousel = new bootstrap.Carousel(myCarouselElement, {
-        interval: false,
-        touch:true,//admite interacciones de dedo en dispositivos moviles
-        ride:false,//cicla automaticamente
-        wrap: false//permite loopear el slider
-        })
-    }
+        try {
+            
+        } catch (error) {
+            
+            const carousel = new bootstrap.Carousel(myCarouselElement, {
+                interval: false,
+                touch:true,//admite interacciones de dedo en dispositivos moviles
+                ride:false,//cicla automaticamente
+                wrap: false//permite loopear el slider
+            })  
+        }
+}
     
     VerificaLimitesCarrusel(cuenta,movimiento){
         const carrusel =document.querySelectorAll('.carousel-item');

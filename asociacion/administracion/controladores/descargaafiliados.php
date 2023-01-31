@@ -80,12 +80,12 @@ $fechaestimada = date('Y-m-d', time());
 		$sql = "Select " .$tablaafi. ".*," 
 		.$tablaest. ".idestado," .$tablaest. ".nombreestado," 
 		.$tablasan. ".idsangre," .$tablasan. ".nombresangre,"
-		.$tablaesp. ".codigoespecialidad," .$tablaesp. ".nombreespecialidad,"
-		.$tablacat. ".*,"
-		.$tablatal. ".codigotalla," .$tablatal. ".nombretalla from $tablacat,(((( " .$tablaafi. " LEFT JOIN " .$tablaest. " ON " .$tablaafi. ".codigoestado = " .$tablaest. ".idestado ) LEFT JOIN " 
-		.$tablasan. " ON " .$tablaafi. ".codigosangre       = " .$tablasan. ".idsangre ) LEFT JOIN " 
-		.$tablaesp. " ON " .$tablaafi. ".codigoespecialidad = " .$tablaesp. ".codigoespecialidad ) LEFT JOIN "
-		.$tablatal. " ON " .$tablaafi. ".codigotalla        = " .$tablatal. ".codigotalla ) where 1";
+		.$tablaesp. ".codigoespecialidad," 	.$tablaesp. ".nombreespecialidad,"
+		.$tablatal. ".codigotalla," 		.$tablatal. ".nombretalla from " 		.$tablaafi. " 
+		LEFT JOIN " .$tablaest. " ON " 		.$tablaafi. ".codigoestado = " 			.$tablaest. ".idestado  
+		LEFT JOIN " .$tablasan. " ON " 		.$tablaafi. ".codigosangre = " 			.$tablasan. ".idsangre  
+		LEFT JOIN " .$tablaesp. " ON " 		.$tablaafi. ".codigoespecialidad = " 	.$tablaesp. ".codigoespecialidad 
+		LEFT JOIN " .$tablatal. " ON " 		.$tablaafi. ".codigotalla        = " 	.$tablatal. ".codigotalla where 1";
 		
 
 		$resultado = $mysqli->query($sql);

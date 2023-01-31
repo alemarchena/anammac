@@ -29,7 +29,7 @@
 
 
     $contador = 0;
-    $criteriowhere = '(';
+    $criteriowhere = '';
 
     if(count($paqueteJson) ==0)
     {
@@ -42,36 +42,8 @@
 
             $contador = $contador + 1;
 
-            if($palabra != "-x*#*x/") //busqueda por solo aprobados o solo desaprobados
+            if($palabra == "-x*#*x/") //No trae ninguna palabra y busca por aprobados o desaprobados o recientes
             {
-
-                if($donde == 1)
-                {
-                    $criteriowhere = ' ( aprobado = 1 ) and (';
-                }
-                
-                if($donde == 2)
-                {
-                    $criteriowhere = ' ( aprobado = 0 ) and (';
-                }
-                
-                if($donde == 3)
-                {
-                    $criteriowhere = " ( fechapago != '0000-00-00' ) and (";
-                }
-
-                if($contador==1)
-                {
-                    $sql = $basesql . " where ( nombreestado like '%$palabra%' or $criteriowhere nombres like '%".$palabra."%' or apellidos like '%".$palabra."%' or usuario like '%$palabra%' or whatsapp like '%$palabra%' or email like '%$palabra%'  or numeroafiliado like '%$palabra%') ";
-                }else{
-                    $sql = $sql . " and ( nombreestado like '%$palabra%' or nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or whatsapp like '%$palabra%' or email like '%$palabra%' or numeroafiliado like '%$palabra%') ";
-                }
-
-                $sql = $sql . " ) GROUP by apellidos order by apellidos asc; ";
-
-            }else
-            {
-
                 if($donde == 1)
                 {
                     $criteriowhere = ' aprobado = 1 ';
@@ -84,14 +56,39 @@
                 
                 if($donde == 3)
                 {
-                    $criteriowhere = " fechapago != '0000-00-00' ";
+                    $criteriowhere = ' ( fechapago != "0000-00-00" and aprobado = 0 ) ';
                 }
+            }else
+            {
 
-                $sql = $basesql . " where " .$criteriowhere;
+                if($contador==1)
+                {
+                    $criteriowhere = " ( nombreestado like '%$palabra%' or nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or whatsapp like '%$palabra%' or email like '%$palabra%' or numeroafiliado like '%$palabra%') ";
+
+                    if($donde == 1)
+                    {
+                        $criteriowhere = $criteriowhere . ' and aprobado = 1 ';
+                    }
+                    
+                    if($donde == 2)
+                    {
+                        $criteriowhere = $criteriowhere . ' and aprobado = 0 ';
+                    }
+                    
+                    if($donde == 3)
+                    {
+                        $criteriowhere = $criteriowhere . ' and ( fechapago != "0000-00-00" and aprobado = 0 ) ';
+                    }
+                }else
+                {
+                    $criteriowhere = $criteriowhere . " and ( nombreestado like '%$palabra%' or nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or whatsapp like '%$palabra%' or email like '%$palabra%' or numeroafiliado like '%$palabra%') ";
+                }
             }
         }
     }
    
+    $sql = $basesql . " where " . $criteriowhere . " GROUP by apellidos order by apellidos asc; ";
+
     // var_dump($sql);
 
     $resultado = $mysqli->query($sql);

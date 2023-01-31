@@ -1,5 +1,5 @@
-import {LlenarTabla,Limpiar} from './tabla.js?a=12'
-import {ShowMessage} from './showmessage.js?a=12'
+import {LlenarTabla,Limpiar} from './tabla.js?a=23'
+import {ShowMessage} from './showmessage.js?a=23'
 
 const buscado           = document.getElementById('buscado');
 const espera            = document.getElementById("espera");
@@ -74,57 +74,65 @@ const Listar = ((valor)=>{
         }
         paqueteJsonBuscarprocesadas =JSON.stringify( arreglopalabrasprocesadas );
 
-
-        fetch("./controladores/buscar.php?a=3",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
+        fetch("./controladores/buscar.php?a=23",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
         .then(response => response.json())
         .then(data => 
         {
-            let cantidad =  data.length;
-            totalencontrado.innerHTML = cantidad + " registros encontrados";
-
-            if(cantidad > 0)
+            if(data!="consultavacia")
             {
-                for(let a = 0 ;a<cantidad;a++) //llenar la lista
+                let cantidad =  data.length;
+                totalencontrado.innerHTML = cantidad + " registros encontrados";
+
+                if(cantidad > 0)
                 {
-                    let toPropuestas = new Object();
-                    toPropuestas.idafiliacion       = data[a].idafiliacion;
-                    toPropuestas.numeroafiliado     = data[a].numeroafiliado;
-                    toPropuestas.usuario            = data[a].usuario;
-                    toPropuestas.nombres            = data[a].nombres;
-                    toPropuestas.apellidos          = data[a].apellidos;
-                    toPropuestas.genero             = data[a].genero;
-                    toPropuestas.fechanacimiento    = data[a].fechanacimiento;
-                    toPropuestas.email              = data[a].email;
-                    toPropuestas.codigoestado       = data[a].codigoestado;
-                    toPropuestas.nombreestado       = data[a].nombreestado;
-                    toPropuestas.direccion          = data[a].direccion;
+                    for(let a = 0 ;a<cantidad;a++) //llenar la lista
+                    {
+                        let toPropuestas = new Object();
+                        toPropuestas.idafiliacion       = data[a].idafiliacion;
+                        toPropuestas.numeroafiliado     = data[a].numeroafiliado;
+                        toPropuestas.usuario            = data[a].usuario;
+                        toPropuestas.nombres            = data[a].nombres;
+                        toPropuestas.apellidos          = data[a].apellidos;
+                        toPropuestas.genero             = data[a].genero;
+                        toPropuestas.fechanacimiento    = data[a].fechanacimiento;
+                        toPropuestas.email              = data[a].email;
+                        toPropuestas.codigoestado       = data[a].codigoestado;
+                        toPropuestas.nombreestado       = data[a].nombreestado;
+                        toPropuestas.direccion          = data[a].direccion;
 
-                    let linkeadowhatsapp        =data[a].whatsapp;
-                    linkeadowhatsapp=linkeadowhatsapp.trim().replace('+', '');
-                    linkeadowhatsapp=linkeadowhatsapp.trim().replace('-', '');
-                    linkeadowhatsapp=linkeadowhatsapp.trim().replace('(', '');
-                    linkeadowhatsapp=linkeadowhatsapp.trim().replace(')', '');
-                    toPropuestas.whatsapp   = linkeadowhatsapp;
-                    
-                    toPropuestas.nombresangre           = data[a].nombresangre;
-                    toPropuestas.nombreespecialidad     = data[a].nombreespecialidad;
-                    toPropuestas.enfermedadcronica      = data[a].enfermedadcronica;
-                    toPropuestas.nombretalla            = data[a].nombretalla;
-                    toPropuestas.fotoatleta             = data[a].fotoatleta;
-                    toPropuestas.fotodocumento          = data[a].fotodocumento;
-                    toPropuestas.fotopago               = data[a].fotopago;
-                    toPropuestas.fechapago              = data[a].fechapago;
-                    toPropuestas.fechainscripcion       = data[a].fechainscripcion;
-                    toPropuestas.aprobado               = data[a].aprobado;
-                    toPropuestas.desactivado            = data[a].desactivado;
+                        let linkeadowhatsapp        =data[a].whatsapp;
+                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('+', '');
+                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('-', '');
+                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('(', '');
+                        linkeadowhatsapp=linkeadowhatsapp.trim().replace(')', '');
+                        toPropuestas.whatsapp   = linkeadowhatsapp;
+                        
+                        toPropuestas.nombresangre           = data[a].nombresangre;
+                        toPropuestas.nombreespecialidad     = data[a].nombreespecialidad;
+                        toPropuestas.enfermedadcronica      = data[a].enfermedadcronica;
+                        toPropuestas.nombretalla            = data[a].nombretalla;
+                        toPropuestas.fotoatleta             = data[a].fotoatleta;
+                        toPropuestas.fotodocumento          = data[a].fotodocumento;
+                        toPropuestas.fotopago               = data[a].fotopago;
+                        toPropuestas.fechapago              = data[a].fechapago;
+                        toPropuestas.fechapagoanterior      = data[a].fechapagoanterior;
+                        toPropuestas.fechainscripcion       = data[a].fechainscripcion;
+                        toPropuestas.aprobado               = data[a].aprobado;
+                        toPropuestas.desactivado            = data[a].desactivado;
 
-                    arreglo.push(toPropuestas);
+                        arreglo.push(toPropuestas);
+                    }
                 }
-            }
-            espera.style.visibility = "hidden";
+                espera.style.visibility = "hidden";
 
-            
-            LlenarTabla(arreglo);
+                
+                LlenarTabla(arreglo);
+            }else{
+                
+                ShowMessage("No hay datos que coincidan con la búsqueda.","success",3000);
+                espera.style.visibility = "hidden";
+            }
+
         })
         .catch(function(error){
             ShowMessage("Hubo un error al consultar a la base de datos.","error",3000);

@@ -1,13 +1,13 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=50'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=50'
-import {ShowMessage} from './showmessage.js?a=50'
-import {LoggMenu} from './logincheck.js?a=50'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=50'
-// import {ListaEstados} from './estados.js?a=50'
-// import {ListaSangres} from './sangres.js?a=50'
-// import {ListaEspecialidades} from './especialidades.js?a=50'
-// import {ListaTallas} from './tallas.js?a=50'
-import {ConvierteaDMA} from './clases.js?a=50'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=53'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=53'
+import {ShowMessage} from './showmessage.js?a=53'
+import {LoggMenu} from './logincheck.js?a=53'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=53'
+import {ListaEstados} from './estados.js?a=53'
+import {ListaSangres} from './sangres.js?a=53'
+import {ListaEspecialidades} from './especialidades.js?a=53'
+import {ListaTallas} from './tallas.js?a=53'
+import {ConvierteaDMA} from './clases.js?a=53'
 
 let imagenlogueado  = document.querySelector("#imagenlogueado");
 
@@ -29,7 +29,7 @@ export function Ingresa(tipo,id,email,usuario)
     });
 
     let datosconsulta = {tipo:tipo,idafiliacion:id,email:email,usuario:usuario}
-    fetch('./controladores/consultaafiliado.php?a=50',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
+    fetch('./controladores/consultaafiliado.php?a=53',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
     .then(response=>
     {
         if(response.status==200)
@@ -106,7 +106,7 @@ function GuardarDatos(email)
     codigoespecialidad:0,enfermedadcronica:'',codigotalla:0,fotoatleta:'',fotodocumento:'',fotopago:'',
     aprobado:0,desactivado  : 0}
 
-    fetch("./controladores/guardarafiliacion.php?a=50",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarafiliacion.php?a=53",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
     .then(response =>{
         return response.json();
     }).then(data => {

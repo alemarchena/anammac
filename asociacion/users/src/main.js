@@ -13,16 +13,16 @@ document.addEventListener("keydown", function(event){
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 import {auth} from './app/firebase.js'
-import {logincheck} from './app/logincheck.js?a=50'
-import './app/signupForm.js?a=50'
-import './app/logout.js?a=50'
-import './app/signinform.js?a=50'
-import './app/googlelogin.js?a=50'
-import './app/verclave.js?a=50'
-import './app/resetpassword.js?a=50'
-import './app/redireccion.js?a=50'
-import './app/aviso.js?a=50'
-import './app/ira.js?a=50'
+import {logincheck} from './app/logincheck.js?a=53'
+import './app/signupForm.js?a=53'
+import './app/logout.js?a=53'
+import './app/signinform.js?a=53'
+import './app/googlelogin.js?a=53'
+import './app/verclave.js?a=53'
+import './app/resetpassword.js?a=53'
+import './app/redireccion.js?a=53'
+import './app/aviso.js?a=53'
+import './app/ira.js?a=53'
 
 
 onAuthStateChanged(auth,async (user) => {

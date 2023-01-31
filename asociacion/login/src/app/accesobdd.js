@@ -1,12 +1,11 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=9'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=9'
-import {ShowMessage} from './showmessage.js?a=9'
-import {LoggMenu} from './logincheck.js?a=9'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=9'
-import {Salir} from './logout.js?a=9'
-import './actualizador.js?a=9'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=13'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=13'
+import {ShowMessage} from './showmessage.js?a=13'
+import {LoggMenu} from './logincheck.js?a=13'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=13'
+import {Salir} from './logout.js?a=13'
+import './actualizador.js?a=13'
 
-let imagenlogueado  = document.querySelector("#imagenlogueado");
 const espera  = document.querySelector("#espera");
 
 
@@ -22,6 +21,10 @@ export const LeerDatosUsuarioBDD = ((email)=>{
 
 export function Ingresa(tipo,id,email,usuario)
 {
+    document.cookie.split(";").forEach(function(c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    
     espera.style.visibility = "visible";
 
     let datosconsulta = {tipo:tipo,id:id,email:email,usuario:usuario}

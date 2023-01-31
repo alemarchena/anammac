@@ -1,8 +1,6 @@
-import {Info} from './formulario.js';
-
 let contenidoCredencial = document.querySelector('#contentcre');
 
-export const Credencial = ((info)=>{
+export const Credencial = (()=>{
 
    while(contenidoCredencial.firstChild){
       contenidoCredencial.removeChild(contenidoCredencial.firstChild);
@@ -20,7 +18,7 @@ let paquete = [];
 
 export const Redirigir = ( async (info)=>{
     
-   let direccion = '/asociacion/administracion/panel.php?a=8';
+   let direccion = '/asociacion/administracion/panel.php?a=13';
 
    let item = new Object();
    item.idusuario=info.idusuario;
@@ -32,7 +30,7 @@ export const Redirigir = ( async (info)=>{
 
    paquete.push(item);
 
-   fetch('./controladores/puente.php?a=8',
+   fetch('./controladores/puente.php?a=13',
    {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
    .then((response)=>{
       if(response.status==200){

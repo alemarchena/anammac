@@ -14,7 +14,6 @@ export const logincheck = user =>
         {
             MostarImagenLogin(user.photoURL);
         }
-        console.log(user.email);
         Loguear(user.email);
         LeerDatosUsuarioBDD(user.email);
 

@@ -10,23 +10,23 @@ document.addEventListener("keydown", function(event){
 }, false);
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
-import {auth} from './app/firebase.js?a=9'
+import {auth} from './app/firebase.js?a=13'
 
-import {logincheck} from './app/logincheck.js?a=9'
+import {logincheck} from './app/logincheck.js?a=13'
 
-import './app/signupForm.js?a=9'
-import './app/logout.js?a=9'
+import './app/signupForm.js?a=13'
+import './app/logout.js?a=13'
 
-import './app/signinform.js?a=9';
-import './app/signincode.js?a=9'
-import './app/googlelogin.js?a=9'
+import './app/signinform.js?a=13';
+import './app/signincode.js?a=13'
+import './app/googlelogin.js?a=13'
 
-import './app/interfaz.js?a=9'
-import './app/teclado.js?a=9'
-import './app/verclave.js?a=9'
-import './app/resetpassword.js?a=9'
-import './app/redireccion.js?a=9'
-import './app/credencial.js?a=9'
+import './app/interfaz.js?a=13'
+import './app/teclado.js?a=13'
+import './app/verclave.js?a=13'
+import './app/resetpassword.js?a=13'
+import './app/redireccion.js?a=13'
+import './app/credencial.js?a=13'
 
 onAuthStateChanged(auth,async (user) => {
     logincheck(user);

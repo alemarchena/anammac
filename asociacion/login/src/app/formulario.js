@@ -1,6 +1,6 @@
 import './actualizador.js';
-import {Credencial,Redirigir} from './credencial.js?a=8'
-import {Delegado,RedirigirDelegado} from './delegado.js?a=8'
+import {Credencial,Redirigir} from './credencial.js?a=13'
+import {Delegado,RedirigirDelegado} from './delegado.js?a=13'
 //--------------------------- Datos -------------------------------
 
 class Datos{
@@ -50,7 +50,7 @@ export const LlenarFormulario=((f)=>{
     if(Info.email != undefined)
     {
         if(f.esadministrador==1)
-            Credencial(Info);
+            Credencial();
         
         if(f.estaautorizado==1)
             Delegado(Info);

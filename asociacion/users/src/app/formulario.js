@@ -1,5 +1,5 @@
 import {SelectOption} from './select.js';
-import {Credencial,ConstruyePaquete} from './credencial.js?a=42'
+import {Credencial,ConstruyePaquete} from './credencial.js?a=53'
 // import {EliminaBotonCredencial} from './archivosimagen.js'
 //--------------------------- Datos -------------------------------
 
@@ -149,7 +149,7 @@ const DeshabilitaNombreApellido = (()=>{
 });
 
 
-function Limpiarpantallas(){
+export function Limpiarpantallas(){
     const contehtml = document.querySelector('#contentcre') ;
     while(contehtml.firstChild){
         contehtml.removeChild(contehtml.firstChild);

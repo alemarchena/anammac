@@ -1,4 +1,4 @@
-import {Ver,Aprobacion,Bloqueo,Ocultar,CreacionAprobacion,Generar} from './funcionalidadtabla.js'
+import {Ver,Aprobacion,Bloqueo,Ocultar,CreacionAprobacion,Generar} from './funcionalidadtabla.js?a=23'
 
 let  rebu = document.getElementById('resultadobusqueda');
 
@@ -130,7 +130,7 @@ export const LlenarTabla = ((arreglo) =>{
         }
 
         botonaprobar.onclick = (e)=>{e.preventDefault();
-          console.log(arreglo[i].numeroafiliado);
+          
           if(arreglo[i].numeroafiliado != '')
           {
             Aprobacion(e.target.id,arreglo,arreglo[i].aprobado);

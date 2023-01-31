@@ -1,6 +1,6 @@
-import { ABDD,EBDD } from "./actualizador.js?a=13";
-import {ShowMessage} from './showmessage.js?a=13'
-import {GetRandomString} from './randomstring.js?a=13'
+import { ABDD,EBDD } from "./actualizador.js?a=23";
+import {ShowMessage} from './showmessage.js?a=23'
+import {GetRandomString} from './randomstring.js?a=23'
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');
@@ -179,11 +179,11 @@ export const Aprobacion = ( async (id,arreglo,estado)=>{
     for (let i = 0; i < arreglo.length; i++) {
         if(arreglo[i].idafiliacion == idpuro)
         {
+            // await ABDD('fechapago','0000-00-00','texto',idpuro);
+                        
+            //Cambia el estado
             estado == 1 ? estado = 0 : estado = 1;
-
             await ABDD('aprobado',estado,'numero',idpuro);
-            await ABDD('fechapago','0000-00-00','texto',idpuro);
-            
             arreglo[i].aprobado = estado;
 
             const boton = document.getElementById("Aprobar"+arreglo[i].idafiliacion);
@@ -238,7 +238,6 @@ export const Generar = ( async (id,arreglo)=>{
         }
     }
 });
-
 
 export const EliminarPermisoDelegado = (async (id,arreglo)=>{
     idpuro = id.replace('Eliminar','');
