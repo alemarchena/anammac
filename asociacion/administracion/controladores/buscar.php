@@ -87,7 +87,7 @@
         }
     }
    
-    $sql = $basesql . " where " . $criteriowhere . " GROUP by apellidos order by apellidos asc; ";
+    $sql = $basesql . " where " . $criteriowhere . " order by apellidos asc; ";
 
     // var_dump($sql);
 

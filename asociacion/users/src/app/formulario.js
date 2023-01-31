@@ -1,5 +1,5 @@
 import {SelectOption} from './select.js';
-import {Credencial,ConstruyePaquete} from './credencial.js?a=53'
+import {Credencial,ConstruyePaquete} from './credencial.js?a=58'
 // import {EliminaBotonCredencial} from './archivosimagen.js'
 //--------------------------- Datos -------------------------------
 

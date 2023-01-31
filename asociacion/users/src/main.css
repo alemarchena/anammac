@@ -90,8 +90,8 @@ font-style: normal;
 
   .aceptado{
 
-    color: green;
-    font-weight: bold;
+    color: yellow;
+    /* font-weight: bold; */
 
     animation: efectorotar ease 2s infinite!important;
     -webkit-animation: efectorotar ease 2s infinite!important;
@@ -131,15 +131,15 @@ font-style: normal;
 
 @keyframes efectorotar{
 
-  0% {color:green;}
-  50%{color:rgb(6, 105, 6);}
-  100% {color:greenred;}
+  0% {color:yellow;}
+  50%{color:red;}
+  100% {color:yellow;}
 }
 
 @-webkit-keyframes efectorotar{
-  0% {color:green;}
-  50%{color:rgb(6, 105, 6);}
-  100% {color:green;}
+  0% {color:yellow;}
+  50%{color:red;}
+  100% {color:yellow;}
 }
 
 .mensajero

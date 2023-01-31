@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=24  ;</script>
+    <script>var version=25  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=23">
-    <link rel="stylesheet" href="./main.css?a=23">
+    <link rel="stylesheet" href="./estilos.css?a=25">
+    <link rel="stylesheet" href="./main.css?a=25">
 
-    <script src="./main.js?a=23" type="module"></script>
-    <script src="./funciones.js?a=23"></script>
+    <script src="./main.js?a=25" type="module"></script>
+    <script src="./funciones.js?a=25"></script>
     
   </head>
   <body>

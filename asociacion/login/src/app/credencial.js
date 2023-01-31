@@ -18,7 +18,7 @@ let paquete = [];
 
 export const Redirigir = ( async (info)=>{
     
-   let direccion = '/asociacion/administracion/panel.php?a=13';
+   let direccion = '/asociacion/administracion/panel.php?a=14';
 
    let item = new Object();
    item.idusuario=info.idusuario;
@@ -30,7 +30,7 @@ export const Redirigir = ( async (info)=>{
 
    paquete.push(item);
 
-   fetch('./controladores/puente.php?a=13',
+   fetch('./controladores/puente.php?a=14',
    {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
    .then((response)=>{
       if(response.status==200){

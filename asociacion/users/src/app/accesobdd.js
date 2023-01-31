@@ -1,13 +1,13 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=53'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=53'
-import {ShowMessage} from './showmessage.js?a=53'
-import {LoggMenu} from './logincheck.js?a=53'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=53'
-import {ListaEstados} from './estados.js?a=53'
-import {ListaSangres} from './sangres.js?a=53'
-import {ListaEspecialidades} from './especialidades.js?a=53'
-import {ListaTallas} from './tallas.js?a=53'
-import {ConvierteaDMA} from './clases.js?a=53'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=58'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=58'
+import {ShowMessage} from './showmessage.js?a=58'
+import {LoggMenu} from './logincheck.js?a=58'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=58'
+import {ListaEstados} from './estados.js?a=58'
+import {ListaSangres} from './sangres.js?a=58'
+import {ListaEspecialidades} from './especialidades.js?a=58'
+import {ListaTallas} from './tallas.js?a=58'
+import {ConvierteaDMA} from './clases.js?a=58'
 
 let imagenlogueado  = document.querySelector("#imagenlogueado");
 
@@ -29,7 +29,7 @@ export function Ingresa(tipo,id,email,usuario)
     });
 
     let datosconsulta = {tipo:tipo,idafiliacion:id,email:email,usuario:usuario}
-    fetch('./controladores/consultaafiliado.php?a=53',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
+    fetch('./controladores/consultaafiliado.php?a=58',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
     .then(response=>
     {
         if(response.status==200)
@@ -106,7 +106,7 @@ function GuardarDatos(email)
     codigoespecialidad:0,enfermedadcronica:'',codigotalla:0,fotoatleta:'',fotodocumento:'',fotopago:'',
     aprobado:0,desactivado  : 0}
 
-    fetch("./controladores/guardarafiliacion.php?a=53",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarafiliacion.php?a=58",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
     .then(response =>{
         return response.json();
     }).then(data => {
@@ -132,6 +132,8 @@ function GuardarDatos(email)
 const idafiliacion = document.getElementById('idafiliacion');
 const calendario = document.getElementById('calendario');
 const fechanacimientotexto= document.getElementById('fechanacimientotexto');
+const mensajecambios = document.getElementById("mensajecambios");
+const crearcredencial= document.getElementById("crearcredencial");
 
 //Actualiza los datos del alumno en la base de datos
 export const ABDD = ((campo,valor,tipodato)=>{
@@ -152,6 +154,9 @@ export const ABDD = ((campo,valor,tipodato)=>{
         console.log(error); 
         ShowMessage("Error al guardar en la base de datos","error",3000);
     });
+
+    mensajecambios.innerHTML = "Elija SALIR e INGRESO, para actualizar CREDENCIAL";
+    crearcredencial.style.display = "none";
 })
 
 
