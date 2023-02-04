@@ -7,18 +7,24 @@ export const Credencial = (()=>{
    }
 
     const boton =`
-         <a id="vercredencial" class="btn btn-success mt-3" href="#">Ingreso autorizado</a>
+         <a id="vercredencial" class="btn btn-success mt-3" href="#">Panel afiliados</a>
       `;
 
-      const htmlcredencial = contenidoCredencial.innerHTML ;
-      contenidoCredencial.innerHTML = boton + htmlcredencial;
+   const botoneventos =`
+      <a id="vereventos" class="btn btn-success mt-3" href="#">Administrar eventos</a>
+   `;
+
+   const htmlcredencial = contenidoCredencial.innerHTML ;
+
+   contenidoCredencial.innerHTML = boton + botoneventos + htmlcredencial;
+     
 })
 
 let paquete = [];
 
 export const Redirigir = ( async (info)=>{
     
-   let direccion = '/asociacion/administracion/panel.php?a=14';
+   let direccion = '/asociacion/administracion/panel.php?a=17';
 
    let item = new Object();
    item.idusuario=info.idusuario;
@@ -30,7 +36,35 @@ export const Redirigir = ( async (info)=>{
 
    paquete.push(item);
 
-   fetch('./controladores/puente.php?a=14',
+   fetch('./controladores/puente.php?a=17',
+   {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
+   .then((response)=>{
+      if(response.status==200){
+            window.open(direccion,'_self');
+      }
+   })
+   .catch((e)=>{      
+      console.log(e);
+   })
+   
+});
+
+export const RedirigirEventos = ( async (info)=>{
+    
+   let direccion = '/asociacion/eventos/panel.php?a=17';
+   // let direccion = '/anammac/asociacion/eventos/panel.php?a=17';
+
+   let item = new Object();
+   item.idusuario=info.idusuario;
+   item.usuario=info.usuario;
+   item.email=info.email;
+   item.estaautorizado=info.estaautorizado;
+   item.esadministrador=info.esadministrador;
+   item.idestado=info.idestado;
+
+   paquete.push(item);
+
+   fetch('./controladores/puente.php?a=17',
    {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
    .then((response)=>{
       if(response.status==200){

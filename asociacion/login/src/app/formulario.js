@@ -1,6 +1,6 @@
 import './actualizador.js';
-import {Credencial,Redirigir} from './credencial.js?a=14'
-import {Delegado,RedirigirDelegado} from './delegado.js?a=14'
+import {Credencial,Redirigir,RedirigirEventos} from './credencial.js?a=17'
+import {Delegado,RedirigirDelegado} from './delegado.js?a=17'
 //--------------------------- Datos -------------------------------
 
 class Datos{
@@ -80,7 +80,13 @@ document.addEventListener('click',((e)=>{
         if(e.target.id == 'vercredencial')
         {
             Redirigir(Info);
-        } 
+        }
+        
+        if(e.target.id == 'vereventos')
+        {
+            RedirigirEventos(Info);
+        }
+         
         if(e.target.id == 'verdelegado')
         {
             RedirigirDelegado(Info);

@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=25  ;</script>
+    <script>var version=26  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=25">
-    <link rel="stylesheet" href="./main.css?a=25">
+    <link rel="stylesheet" href="./estilos.css?a=26">
+    <link rel="stylesheet" href="./main.css?a=26">
 
-    <script src="./main.js?a=25" type="module"></script>
-    <script src="./funciones.js?a=25"></script>
+    <script src="./main.js?a=26" type="module"></script>
+    <script src="./funciones.js?a=26"></script>
     
   </head>
   <body>
@@ -73,7 +73,7 @@ session_destroy();
           </div>
           <br>
 
-          <div id="carrusel" class="carousel slide" data-bs-ride="carousel">
+            <div id="carrusel" class="carousel slide" data-bs-ride="carousel">
             
                 <div class="carousel-inner">
                   
@@ -234,80 +234,79 @@ session_destroy();
                             <p id="totalencontrado"></p>
                         </div>
                         <!-- ---------------- Tabla con resultados de la busqueda ---------------------- -->
-                    <div id="resultadobusqueda"></div>
+                        <div id="resultadobusqueda"></div>
 
-                </div>
-                
-                <!-- --------------------- Creacion de administradores o delegados  --------------------------- -->
-                <div class="carousel-item">
-
-                    <div class="d-flex justify-content-center">
-                        <h5>Indique si es Administrador o Delegado</h5>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 offset-md-4">
-                            <div class="form-check">
-                                <!-- <input class="form-check-input" type="checkbox" name="opadministrador" id="opadministrador"> -->
-                                <!-- <label class="form-check-label" for="opadministrador">
-                                    Administrador : puede aceptar o bloquear cuentas
-                                </label> -->
-                                </div>
+                
+                    <!-- --------------------- Creacion de administradores o delegados  --------------------------- -->
+                    <div class="carousel-item">
+
+                        <div class="d-flex justify-content-center">
+                            <h5>Indique si es Administrador o Delegado</h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4 offset-md-4">
                                 <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="opdelegado" id="opdelegado" checked>
-                                <label class="form-check-label" for="opdelegado">
-                                    Delegado : solo puede crear usuarios sin datos
-                                </label>
+                                    <!-- <input class="form-check-input" type="checkbox" name="opadministrador" id="opadministrador"> -->
+                                    <!-- <label class="form-check-label" for="opadministrador">
+                                        Administrador : puede aceptar o bloquear cuentas
+                                    </label> -->
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="opdelegado" id="opdelegado" checked>
+                                    <label class="form-check-label" for="opdelegado">
+                                        Delegado : solo puede crear usuarios sin datos
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
+                                <select  class="form-select" aria-label="Default select example" id="codigoestado" name="codigoestado" ></select>
+                            </div>
+                            <div class="col-sm-10 col-md-2">
+                                <a id="verafiliadosxestado" href="#" class="btn btn-info"><span class="material-icons">visibility</span></a>
                             </div>
                         </div>
 
-                    </div>
-                    <hr>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
-                            <select  class="form-select" aria-label="Default select example" id="codigoestado" name="codigoestado" ></select>
+                        <div class="row">
+                            <div class="col-sm-10 col-md-4 offset-md-2" style="text-align: center;">
+                                <label for="usuariodelegado" class="col-form-label">usuario al cual dará acceso</label>
+                                <input type="text" class="form-control" id="usuariodelegado" style="text-align: center;">
+                            </div>
+                            <div class="col-sm-10 col-md-4" style="text-align: center;">
+                                <label for="emaildelegado" class="col-form-label">email al cual dará acceso</label>
+                                <input type="text" class="form-control" id="emaildelegado" style="text-align: center;">
+                            </div>
+                            <div class="col-sm-10 col-md-2">
+                                <a id="guardarafiliadosxestado" href="#" class="btn btn-info">Guardar<span class="material-icons">save</span></a>
+                            </div>
                         </div>
-                        <div class="col-sm-10 col-md-2">
-                            <a id="verafiliadosxestado" href="#" class="btn btn-info"><span class="material-icons">visibility</span></a>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-10 col-md-4 offset-md-2" style="text-align: center;">
-                            <label for="usuariodelegado" class="col-form-label">usuario al cual dará acceso</label>
-                            <input type="text" class="form-control" id="usuariodelegado" style="text-align: center;">
-                        </div>
-                        <div class="col-sm-10 col-md-4" style="text-align: center;">
-                            <label for="emaildelegado" class="col-form-label">email al cual dará acceso</label>
-                            <input type="text" class="form-control" id="emaildelegado" style="text-align: center;">
-                        </div>
-                        <div class="col-sm-10 col-md-2">
-                            <a id="guardarafiliadosxestado" href="#" class="btn btn-info">Guardar<span class="material-icons">save</span></a>
-                        </div>
+                        <div id="resultadobusquedausuarios"></div>
+
                     </div>
 
-                    <div id="resultadobusquedausuarios"></div>
-
-                  </div>
-
-
-                <!-- -------------------- email, direccion y whatsapp  ---------------------- -->
-                <div class="carousel-item">
-                  <!-- <div class="d-flex justify-content-center">
-                    
-                        <label for="fechaestimada" style="text-align:center;">Fecha de cálculo para categorizar:</label>
-                        <input id="fechaestimada" type="date">
+                    <!-- -------------------- email, direccion y whatsapp  ---------------------- -->
+                    <div class="carousel-item">
+                    <!-- <div class="d-flex justify-content-center">
+                        
+                            <label for="fechaestimada" style="text-align:center;">Fecha de cálculo para categorizar:</label>
+                            <input id="fechaestimada" type="date">
+                        </div>
+                        <br> -->
+                    <div class="d-flex justify-content-center">
+                            <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=26" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
                     </div>
-                    <br> -->
-                  <div class="d-flex justify-content-center">
-                        <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=25" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
-                  </div>
+                    </div>
+                
                 </div>
                 
-                
-              </div>
-          </div>
+            </div>
           <br>
           <p id="mensaje" class="mensajero" > </p>
             <!-- <button id="enviar" type="submit" class="btn btn-info text-dark mt-5" style="display: none; align-self: center;">Guardar</button> -->

@@ -1,4 +1,3 @@
-
 document.oncontextmenu = () => { return false;}
 
 document.addEventListener("keydown", function(event){
@@ -10,6 +9,9 @@ document.addEventListener("keydown", function(event){
     }
 }, false);
 
-import './app/redireccion.js?a=16'
-
+import './app/interfaz.js?a=14'
+import './app/redireccion.js?a=14'
+import './app/funcionalidadtabla.js?a=14'
+import './app/pruebas.js?a=14'
+import './app/actualizador.js?a=14'
 

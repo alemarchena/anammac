@@ -5,12 +5,12 @@ const logo = document.getElementById('logo');
 
 atletas.addEventListener('click',()=>{
     
-    location.assign("users/src/index.html?a=14");
+    location.assign("users/src/index.html?a=16");
 })
 
 administradores.addEventListener('click',()=>{
     
-    location.assign("login/src/index.html?a=14");
+    location.assign("login/src/index.html?a=16");
 })
 
 logo.addEventListener('click',()=>{

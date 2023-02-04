@@ -1,6 +1,8 @@
-import { ABDD,EBDD } from "./actualizador.js?a=26";
-import {ShowMessage} from './showmessage.js?a=26'
-import {GetRandomString} from './randomstring.js?a=26'
+import { ABDD } from "./actualizador.js?a=14";
+import {ShowMessage} from './showmessage.js?a=14'
+import {GetRandomString} from './randomstring.js?a=14'
+
+
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');
@@ -239,15 +241,7 @@ export const Generar = ( async (id,arreglo)=>{
     }
 });
 
-export const EliminarPermisoDelegado = (async (id,arreglo)=>{
-    idpuro = id.replace('Eliminar','');
-    for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idusuario == idpuro)
-        {
-            await EBDD('apt_usuarios','idusuario',arreglo[i].idusuario,'numero');
-        }
-    }
-});
+
 
 function AsignaNuevaClave(nuevaClave,idafiliacion){
     let usu = document.getElementById("celda" + idafiliacion);
