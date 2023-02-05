@@ -34,6 +34,10 @@ const costomenores          = document.getElementById('costomenores');
 const edadmaximamenor       = document.getElementById('edadmaximamenor');
 const costopruebacombinada  = document.getElementById('costopruebacombinada');
 
+const costopruebabasedolar       = document.getElementById('costopruebabasedolar');
+const costopruebaextradolar      = document.getElementById('costopruebaextradolar');
+const costopruebacombinadadolar  = document.getElementById('costopruebacombinadadolar');
+
 nuevoevento.addEventListener('click',(e)=>{
     e.preventDefault();
 
@@ -288,14 +292,21 @@ export const BuscarEventos = (()=>{
                 item.archivocondiciones = data[a].archivocondiciones;
                 item.whatsapp           = data[a].whatsapp;
 
-                item.cantidadpruebasbase = data[a].cantidadpruebasbase;
-                item.costopruebabase     = data[a].costopruebabase;
-                item.costopruebaextra    = data[a].costopruebaextra;
-                item.costomenores        = data[a].costomenores;
-                item.edadmaximamenor     = data[a].edadmaximamenor;
-                item.costopruebacombinada= data[a].costopruebacombinada;
+                item.cantidadpruebasbase    = data[a].cantidadpruebasbase;
+                item.costopruebabase        = data[a].costopruebabase;
+                item.costopruebaextra       = data[a].costopruebaextra;
+                item.costomenores           = data[a].costomenores;
+                item.edadmaximamenor        = data[a].edadmaximamenor;
+                item.costopruebacombinada   = data[a].costopruebacombinada;
+
+                item.costopruebabasedolar     = data[a].costopruebabasedolar;
+                item.costopruebaextradolar    = data[a].costopruebaextradolar;
+                item.costopruebacombinadadolar= data[a].costopruebacombinadadolar;
+
+                item.activo= data[a].activo;
 
                 arregloeventos.push(item);
+
             }
 
             LlenarTablaEventos(arregloeventos);
@@ -413,8 +424,11 @@ export const GuardarEvento = (()=>{
         costomenores        : costomenores.value,
         edadmaximamenor     : edadmaximamenor.value,
         costopruebacombinada: costopruebacombinada.value,
-
-                
+        
+        costopruebabasedolar     : costopruebabasedolar.value,
+        costopruebaextradolar    : costopruebaextradolar.value,
+        costopruebacombinadadolar: costopruebacombinadadolar.value,
+        activo: 0,
     }
 
     fetch("./controladores/guardarevento.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
@@ -503,23 +517,29 @@ export const VerCamposEvento = ((arreglo)=>{
     edadmaximamenor.value       = arreglo.edadmaximamenor;
     costopruebacombinada.value  = arreglo.costopruebacombinada;
     
+    costopruebabasedolar.value       = arreglo.costopruebabasedolar;
+    costopruebaextradolar.value      = arreglo.costopruebaextradolar;
+    costopruebacombinadadolar.value  = arreglo.costopruebacombinadadolar;
+
 })
 
 export const NuevoEvento = (()=>{
 
-    ideventoauto.value          = '';
-    fechaeventog.value          = '';
-    horaeventog.value           = '';
-    nombreeventog.value         = '';
-    descripcioneventog.value    = '';
-    whatsappg.value             = '';
-    cantidadpruebasbase.value   = '';
-    costopruebabase.value       = '';
-    costopruebaextra.value      = '';
-    costomenores.value          = '';
-    edadmaximamenor.value       = '';
-    costopruebacombinada.value  = '';
-    
+    ideventoauto.value              = '';
+    fechaeventog.value              = '';
+    horaeventog.value               = '';
+    nombreeventog.value             = '';
+    descripcioneventog.value        = '';
+    whatsappg.value                 = '';
+    cantidadpruebasbase.value       = '';
+    costopruebabase.value           = '';
+    costopruebaextra.value          = '';
+    costomenores.value              = '';
+    edadmaximamenor.value           = '';
+    costopruebacombinada.value      = '';
+    costopruebabasedolar.value      = '';
+    costopruebaextradolar.value     = '';
+    costopruebacombinadadolar.value = '';
 })
 // ------------------------ Listar ----------------------------
 

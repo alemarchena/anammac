@@ -80,89 +80,100 @@ session_destroy();
                      <!-- --------------------- Creacion de eventos  --------------------------- -->
                     <div class="carousel-item active">
                         <div class="row ">
-                            <div class="col-sm-12 col-md-4 offset-md-4">
-                                <a id="nuevoevento" href="!#" class="btn btn-warning">Nuevo evento</a>
-                            </div>
-                            <div class="col-sm-12 col-md-3">
-                                <div class="row justify-content-center">
-                                    <label style="text-align:center;">Id evento (automático)</label>
+                            <div class="col-sm-12 col-md-1">
+                                <div class="d-flex justify-content-center">
+                                    <label for="ideventoauto">Id (auto)</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input id="ideventoauto" type="number" readonly disabled>
                                 </div>
                             </div>
-                        </div>
-
-                        <br>
-                        <div class="row ">
-                            <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
-                                <label for="nombreeventog" class="col-form-label">Nombre del evento (*)</label>
-                                <input type="text" class="form-control" id="nombreeventog" style="text-align: center;" placeholder = "Ej: Competencia Nacional">
+                            <div class="col-sm-12 col-md-3">
+                                <a id="nuevoevento" href="!#" class="btn btn-warning">Nuevo evento</a>
                             </div>
                             <div class="col-sm-12 col-md-3 form-group">
                                 <div class="row justify-content-center">
-                                    <label style="text-align:center;">Fecha del evento (*)</label>
+                                    <label style="text-align:center;" ">Fecha del evento (*)</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input id="fechaeventog" type="date">
                                 </div>
                             </div>
-                            
-                        </div>
-                        <br>
-                       
-                        <div class="row">
-                        
-                            <div class="col-sm-10 col-md-4 offset-md-4">
-                                <label for="descripcioneventog">Descripción del evento (*)</label>
-                                <textarea class="form-control" id="descripcioneventog" rows="3"></textarea>
-                            </div>
-                            <div class="col-sm-10 col-md-2" style="text-align: center;">
+                            <div class="col-sm-10 col-md-1" style="text-align: center;">
                                 <div class="row justify-content-center">
-                                    <label for="horaeventog" class="col-form-label">Hora del evento (*)</label>
+                                    <label for="horaeventog" class="col-form-label">Hora (*)</label>
                                 </div>
                                 <div class="row justify-content-center">
                                     <input type="time" class="form-control" id="horaeventog" style="text-align: center;" placeholder = "Ej: 20:30">
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row justify-content-center">
-                            <div class="col-sm-10 col-md-4" style="text-align: center;">
-                                <label for="whatsappg" class="col-form-label">Whatsapp del referente</label>
+                            <div class="col-sm-10 col-md-3" style="text-align: center;">
+                                <label for="whatsappg" class="col-form-label">Whatsapp contacto</label>
                                 <input type="text" class="form-control" id="whatsappg" style="text-align: center;" placeholder = "Ej: 52 999 xxx xxx">
                             </div>
                         </div>
                         <br>
                         <div class="row justify-content-center">
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-sm-10 col-md-6" style="text-align: center;">
+                                <label for="nombreeventog" class="col-form-label">Nombre del evento (*)</label>
+                                <input type="text" class="form-control" id="nombreeventog" style="text-align: center;" placeholder = "Ej: Competencia Nacional">
+                            </div>
+                        </div>
+                        <br>
+                       
+                        <div class="row justify-content-center">
+                            <div class="col-sm-10 col-md-6">
+                                <label for="descripcioneventog">Descripción del evento (*)</label>
+                                <textarea class="form-control" id="descripcioneventog" rows="3"></textarea>
+                            </div>
+                        </div>
+            
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-3">
                                 <label for="cantidadpruebasbase" class="col-form-label">Cantidad de pruebas base  (*)</label>
                                 <input type="number" class="form-control" id="cantidadpruebasbase" style="text-align: center;" placeholder = "Ej: 3">
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-sm-12 col-md-3">
                                 <label for="costopruebabase" class="col-form-label">Costo total de pruebas base  (*)</label>
                                 <input type="number" class="form-control" id="costopruebabase" style="text-align: center;" placeholder = "Ej: 350">
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-sm-12 col-md-3">
                                 <label for="costopruebaextra" class="col-form-label">Costo de prueba extra</label>
                                 <input type="number" class="form-control" id="costopruebaextra" style="text-align: center;" placeholder = "Ej: 150">
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <label for="costopruebacombinada" class="col-form-label">Costo de prueba combinada</label>
+                                <input type="number" class="form-control" id="costopruebacombinada" style="text-align: center;" placeholder = "Ej: 650">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row ">
+                            <div class="col-sm-12 col-md-3 offset-md-3">
+                                <label for="costopruebabasedolar" class="col-form-label">Costo total U$S pruebas base  (*)</label>
+                                <input type="number" class="form-control" id="costopruebabasedolar" style="text-align: center;" placeholder = "Ej: 350">
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <label for="costopruebaextradolar" class="col-form-label">Costo U$S de prueba extra</label>
+                                <input type="number" class="form-control" id="costopruebaextradolar" style="text-align: center;" placeholder = "Ej: 150">
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <label for="costopruebacombinadadolar" class="col-form-label">Costo U$S de prueba combinada</label>
+                                <input type="number" class="form-control" id="costopruebacombinadadolar" style="text-align: center;" placeholder = "Ej: 650">
                             </div>
                         </div>
                         <br>
                         <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-sm-12 col-md-4">
+                        <div class="row ">
+                            <div class="col-sm-12 col-md-3 offset-md-3">
                                 <label for="costomenores" class="col-form-label">Costo a menores</label>
                                 <input type="number" class="form-control" id="costomenores" style="text-align: center;" placeholder = "Ej: 150">
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-sm-12 col-md-3">
                                 <label for="edadmaximamenor" class="col-form-label">Edad Maxima del menor</label>
                                 <input type="number" class="form-control" id="edadmaximamenor" style="text-align: center;" placeholder = "Ej: 12">
                             </div>
-                            <div class="col-sm-12 col-md-4">
-                                <label for="costopruebacombinada" class="col-form-label">Costo de prueba combinada</label>
-                                <input type="number" class="form-control" id="costopruebacombinada" style="text-align: center;" placeholder = "Ej: 650">
-                            </div>
+                            
                         </div>
                         <br>
                         <div class="row justify-content-center">

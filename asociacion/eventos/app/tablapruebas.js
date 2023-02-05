@@ -1,7 +1,7 @@
 import {ClearSelect} from './select.js?a=14';
 import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=14';
 import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas } from './pruebas.js?a=14';
-import { EBDD } from "./actualizador.js?a=14";
+import { EBDD,ABDD } from "./actualizador.js?a=14";
 import {ShowMessage} from './showmessage.js?a=8'
 
 
@@ -408,9 +408,28 @@ export function LimpiarEventoConPruebas()
             }
             celda6.appendChild(botonmodificarevento); columna6.appendChild(celda6);
     
-            let archivocondiciones = document.createTextNode(arregloeventos[i].archivocondiciones);
-            archivocondiciones.id = "archivocondiciones" + arregloeventos[i].archivocondiciones;
-            celda7.appendChild(archivocondiciones); columna7.appendChild(celda7);
+            //Eliminar una prueba
+            let botonactivacion = document.createElement("button");
+            botonactivacion.id = "ActivacionEvento" + arregloeventos[i].idevento;
+            botonactivacion.classList.add("btn");
+            
+            if(arregloeventos[i].activo == 1){
+              botonactivacion.classList.add("btn-danger");
+              botonactivacion.innerHTML = "Desactivar <span class='material-icons'>remove</span>";
+            }
+            else
+            {
+              botonactivacion.classList.add("btn-success");
+              botonactivacion.innerHTML = "Activar <span class='material-icons'>add</span>";
+            }
+
+
+            botonactivacion.onclick = (e)=>{
+              e.preventDefault();
+              Activacion(e.target.id,arregloeventos);
+            }
+            
+            celda7.appendChild(botonactivacion); columna7.appendChild(celda7);
     
             let whatsapp = document.createTextNode(arregloeventos[i].whatsapp);
             whatsapp.id = "whatsapp" + arregloeventos[i].whatsapp;
@@ -767,6 +786,17 @@ export const ModificarEvento = (async (id,arreglo)=>{
       if(arreglo[i].idevento == idpuro)
       {
         VerCamposEvento(arreglo[i]);
+      }
+  }
+});
+
+export const Activacion = (async (id,arreglo)=>{
+  let idpuro = id.replace('ActivacionEvento','');
+  for (let i = 0; i < arreglo.length; i++) {
+      if(arreglo[i].idevento == idpuro)
+      {
+        arreglo[i].activo == 0 ? ABDD('activo',1,'numero',arreglo[i].idevento,"Activación:"):ABDD('activo',0,'numero',arreglo[i].idevento,"Desactivación:");
+        LimpiarTEventos();
       }
   }
 });

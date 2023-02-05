@@ -13,24 +13,31 @@
     $tabla              = "apt_eventos";
     $json = json_decode(file_get_contents('php://input'),true);
 
-    $nombreevento       =  $json['nombreevento'];
-    $descripcionevento  =  $json['descripcionevento'];
-    $fechaevento        =  $json['fechaevento'];
-    $horaevento         =  $json['horaevento'];
-    $whatsapp           =  $json['whatsapp'];
+    $nombreevento               =  $json['nombreevento'];
+    $descripcionevento          =  $json['descripcionevento'];
+    $fechaevento                =  $json['fechaevento'];
+    $horaevento                 =  $json['horaevento'];
+    $whatsapp                   =  $json['whatsapp'];
 
-    $cantidadpruebasbase =  $json['cantidadpruebasbase'];
-    $costopruebabase     =  $json['costopruebabase'];
-    $costopruebaextra    =  $json['costopruebaextra'];
+    $cantidadpruebasbase        =  $json['cantidadpruebasbase'];
+    $costopruebabase            =  $json['costopruebabase'];
+    $costopruebaextra           =  $json['costopruebaextra'];
 
-    $costomenores        =  $json['costomenores'];
-    $edadmaximamenor     =  $json['edadmaximamenor'];
-    $costopruebacombinada=  $json['costopruebacombinada'];
+    $costomenores               =  $json['costomenores'];
+    $edadmaximamenor            =  $json['edadmaximamenor'];
+    $costopruebacombinada       =  $json['costopruebacombinada'];
+    
+    $costopruebabasedolar       =  $json['costopruebabasedolar'];
+    $costopruebaextradolar      =  $json['costopruebaextradolar'];
+    $costopruebacombinadadolar  =  $json['costopruebacombinadadolar'];
+    $activo                     =  $json['activo'];
 
     $sql = "INSERT INTO " .$tabla. "(nombre,descripcion,fecha,hora,whatsapp,
-    cantidadpruebasbase,costopruebabase,costopruebaextra,costomenores,edadmaximamenor,costopruebacombinada)
+    cantidadpruebasbase,costopruebabase,costopruebaextra,costomenores,edadmaximamenor,
+    costopruebacombinada,costopruebabasedolar,costopruebaextradolar,costopruebacombinadadolar,activo)
     values('$nombreevento','$descripcionevento','$fechaevento','$horaevento','$whatsapp',
-    $cantidadpruebasbase,$costopruebabase,$costopruebaextra,$costomenores,$edadmaximamenor,$costopruebacombinada)";
+    $cantidadpruebasbase,$costopruebabase,$costopruebaextra,$costomenores,$edadmaximamenor,
+    $costopruebacombinada,$costopruebabasedolar,$costopruebaextradolar,$costopruebacombinadadolar,$activo)";
 
     // var_dump($sql);
 

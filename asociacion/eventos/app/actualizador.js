@@ -10,26 +10,29 @@ document.addEventListener('change',function(e){
         let uck = e.target.id;
         valor = this.getElementById(uck).value;
         
-        uck == 'nombreeventog'    ? ABDD('nombre',valor,'texto',idevento.value)     :false;
-        uck == 'descripcioneventog'    ? ABDD('descripcion',valor,'texto',idevento.value)     :false;
-        uck == 'fechaeventog'    ? ABDD('fecha',valor,'texto',idevento.value)     :false;
-        uck == 'horaeventog'    ? ABDD('hora',valor,'texto',idevento.value)     :false;
-        uck == 'archivocondiciones'    ? ABDD('archivocondiciones',valor,'texto',idevento.value)     :false;
-        uck == 'whatsappg'    ? ABDD('whatsapp',valor,'texto',idevento.value)     :false;
+        uck == 'nombreeventog'    ? ABDD('nombre',valor,'texto',idevento.value,"nombre")     :false;
+        uck == 'descripcioneventog'    ? ABDD('descripcion',valor,'texto',idevento.value,"descripcion")     :false;
+        uck == 'fechaeventog'    ? ABDD('fecha',valor,'texto',idevento.value,"fecha")     :false;
+        uck == 'horaeventog'    ? ABDD('hora',valor,'texto',idevento.value,"hora")     :false;
+        uck == 'archivocondiciones'    ? ABDD('archivocondiciones',valor,'texto',idevento.value,"condiciones")     :false;
+        uck == 'whatsappg'    ? ABDD('whatsapp',valor,'texto',idevento.value,"whatsapp")     :false;
         
-        uck == 'cantidadpruebasbase'    ? ABDD('cantidadpruebasbase',valor,'numero',idevento.value)     :false;
-        uck == 'costopruebabase'    ? ABDD('costopruebabase',valor,'numero',idevento.value)     :false;
-        uck == 'costopruebaextra'    ? ABDD('costopruebaextra',valor,'numero',idevento.value)     :false;
-        uck == 'costomenores'    ? ABDD('costomenores',valor,'numero',idevento.value)     :false;
-        uck == 'edadmaximamenor'    ? ABDD('edadmaximamenor',valor,'numero',idevento.value)     :false;
-        uck == 'costopruebacombinada'    ? ABDD('costopruebacombinada',valor,'numero',idevento.value)     :false;
+        uck == 'cantidadpruebasbase'    ? ABDD('cantidadpruebasbase',valor,'numero',idevento.value,"cantidad de pruebas")     :false;
+        uck == 'costopruebabase'    ? ABDD('costopruebabase',valor,'numero',idevento.value,"costo de prueba base")     :false;
+        uck == 'costopruebaextra'    ? ABDD('costopruebaextra',valor,'numero',idevento.value,"costo de prueba extra")     :false;
+        uck == 'costomenores'    ? ABDD('costomenores',valor,'numero',idevento.value,"costo a menores")     :false;
+        uck == 'edadmaximamenor'    ? ABDD('edadmaximamenor',valor,'numero',idevento.value,"edad máxima del menor")     :false;
+        uck == 'costopruebacombinada'    ? ABDD('costopruebacombinada',valor,'numero',idevento.value,"costo de prueba combinada")     :false;
         
+        uck == 'costopruebabasedolar'    ? ABDD('costopruebabasedolar',valor,'numero',idevento.value,"costo de prueba base en dólares")     :false;
+        uck == 'costopruebaextradolar'    ? ABDD('costopruebaextradolar',valor,'numero',idevento.value,"costo de prueba extra en dólares")     :false;
+        uck == 'costopruebacombinadadolar'    ? ABDD('costopruebacombinadadolar',valor,'numero',idevento.value,"costo en dólares de prueba combinada")     :false;
     }
     e.preventDefault();
 });
 
 //Actualiza los datos del atleta en la base de datos
-export const ABDD = ( async (campo,valor,tipodato,idevento)=>{
+export const ABDD = ( async (campo,valor,tipodato,idevento,mensaje)=>{
     let stringvalor = valor.toString();
     valor = stringvalor.replace("'",'`');
     
@@ -39,7 +42,7 @@ export const ABDD = ( async (campo,valor,tipodato,idevento)=>{
         return response.text();
     }).then(data => {
         if(data == 1){
-            ShowMessage(campo+" guardado..","success",2000)
+            ShowMessage(mensaje+" guardado..","success",2000)
         }
     })
     .catch(function (error){ 
