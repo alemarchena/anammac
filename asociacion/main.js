@@ -10,6 +10,6 @@ document.addEventListener("keydown", function(event){
     }
 }, false);
 
-import './app/redireccion.js?a=16'
+import './app/redireccion.js?a=17'
 
 

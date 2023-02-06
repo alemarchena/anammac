@@ -291,7 +291,7 @@ session_destroy();
 
                     </div>
 
-                    <!-- -------------------- email, direccion y whatsapp  ---------------------- -->
+                    <!-- -------------------- descargar afiliados  ---------------------- -->
                     <div class="carousel-item">
                     <!-- <div class="d-flex justify-content-center">
                         

@@ -17,6 +17,17 @@ body
 
 }
 
+td{
+  font-size: 0.8em;
+}
+
+.btn-list{
+  font-size: 0.9em;
+}
+
+span{
+  font-size: 0.85em;
+}
 
 @font-face{
   font-family: 'Baloo-Regular';

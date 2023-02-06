@@ -1,7 +1,11 @@
 import {SelectOption} from './select.js';
-import {Credencial,ConstruyePaquete} from './credencial.js?a=58'
+import {Credencial} from './credencial.js?a=59';
+import {BuscarEventos} from './eventosdisponibles.js?a=59';
 // import {EliminaBotonCredencial} from './archivosimagen.js'
 //--------------------------- Datos -------------------------------
+
+const infopago = document.getElementById("infopago");
+const infoeventos = document.getElementById("infoeventos");
 
 class Datos{
     
@@ -125,20 +129,24 @@ export const LlenarFormulario=((f)=>{
     Fotos.fotopago = f.fotopago;
     f.fotopago!=''      ? fotopago.src      = "./imgpagos/" + f.fotopago      : fotopago.src      = "./imgafiliados/avatarvacio.jpg";
     
-
-    if(f.numeroafiliado && f.aprobado == 1 && f.desactivado == 0)
+    if(f.numeroafiliado !='' && f.aprobado == 1 && f.desactivado == 0)
     {
         estadocredencial.innerHTML = "Credencial aprobada";
         estadocredencial.style.color = 'green';
 
         Credencial(Info);
         DeshabilitaNombreApellido();
+        infopago.style.display = "none";
+        infoeventos.style.display = "visible";
+        BuscarEventos(Info);
     }else
     {
         estadocredencial.innerHTML = "Pendiente de aprobación";
         estadocredencial.style.color = 'red';
         // Limpiarpantallas();
-    
+        infopago.style.display = "visible";
+        infoeventos.style.display = "none";
+
     }
 
 })

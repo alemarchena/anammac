@@ -27,6 +27,7 @@ import './app/verclave.js?a=17'
 import './app/resetpassword.js?a=17'
 import './app/redireccion.js?a=17'
 import './app/credencial.js?a=17'
+import './app/formulario.js?a=17'
 
 onAuthStateChanged(auth,async (user) => {
     logincheck(user);

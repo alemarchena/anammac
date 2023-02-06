@@ -79,8 +79,8 @@ session_destroy();
                   
                      <!-- --------------------- Creacion de eventos  --------------------------- -->
                     <div class="carousel-item active">
-                        <div class="row ">
-                            <div class="col-sm-12 col-md-1">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-2">
                                 <div class="d-flex justify-content-center">
                                     <label for="ideventoauto">Id (auto)</label>
                                 </div>
@@ -91,6 +91,10 @@ session_destroy();
                             <div class="col-sm-12 col-md-3">
                                 <a id="nuevoevento" href="!#" class="btn btn-warning">Nuevo evento</a>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+
                             <div class="col-sm-12 col-md-3 form-group">
                                 <div class="row justify-content-center">
                                     <label style="text-align:center;" ">Fecha del evento (*)</label>
@@ -99,6 +103,11 @@ session_destroy();
                                     <input id="fechaeventog" type="date">
                                 </div>
                             </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="row justify-content-center">
+
                             <div class="col-sm-10 col-md-1" style="text-align: center;">
                                 <div class="row justify-content-center">
                                     <label for="horaeventog" class="col-form-label">Hora (*)</label>
@@ -176,6 +185,7 @@ session_destroy();
                             
                         </div>
                         <br>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-sm-10 col-md-4">
                                 <a id="guardarevento" href="#" class="btn btn-info p-1">Guardar<span class="material-icons">save</span></a>
