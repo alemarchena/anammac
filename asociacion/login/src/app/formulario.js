@@ -1,6 +1,6 @@
 import './actualizador.js';
-import {Credencial,Redirigir,RedirigirEventos} from './credencial.js?a=17'
-import {Delegado,RedirigirDelegado} from './delegado.js?a=17'
+import {Credencial,Redirigir,RedirigirEventos} from './credencial.js?a=18'
+import {Delegado,RedirigirDelegado} from './delegado.js?a=18'
 //--------------------------- Datos -------------------------------
 
 class Datos{

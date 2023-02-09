@@ -5,13 +5,19 @@ import {NewOpcion,ClearSelect} from './select.js?a=8';
 const codigoprueba          = document.getElementById('codigoprueba');
 const codigoevento          = document.getElementById('codigoevento');
 
+const idpruebaauto          = document.getElementById('idpruebaauto');
 const nombreprueba          = document.getElementById('nombreprueba');
 const guardarnombreprueba   = document.getElementById('guardarnombreprueba');
+const ordenprueba           = document.getElementById('ordenprueba');
 const verpruebas            = document.getElementById('verpruebas');
+const nuevaprueba           = document.getElementById('nuevaprueba');
 
+const idpruebaautodetalle   = document.getElementById('idpruebaautodetalle');
 const nombredetalle         = document.getElementById('nombredetalle');
 const guardarnombredetalle  = document.getElementById('guardarnombredetalle');
+const ordenpruebadetalle           = document.getElementById('ordenpruebadetalle');
 const verdetalle            = document.getElementById('verdetalle');
+const nuevapruebadetalle    = document.getElementById('nuevapruebadetalle');
 
 const fechaeventog          = document.getElementById('fechaeventog');
 const horaeventog           = document.getElementById('horaeventog');
@@ -45,7 +51,23 @@ nuevoevento.addEventListener('click',(e)=>{
     ShowMessage("Completa al menos los campos con * ","success",3000);
 })
 
-verpruebas.addEventListener('click',()=>{
+nuevaprueba.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    NuevaPrueba();
+    
+})
+
+nuevapruebadetalle.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    NuevaPruebaDetalle();
+    
+})
+
+verpruebas.addEventListener('click',(e)=>{
+    e.preventDefault();
+
     BuscarPruebas();
 })
 
@@ -58,11 +80,14 @@ verdetalle.addEventListener('click',(e)=>{
         BuscarDetallePrueba();
 })
 
-verpruebasevento.addEventListener('click',()=>{
+verpruebasevento.addEventListener('click',(e)=>{
+    e.preventDefault();
+
     BuscarPruebasEvento();
 })
 
-vereventoconpruebas.addEventListener('click',()=>{
+vereventoconpruebas.addEventListener('click',(e)=>{
+    e.preventDefault();
     
     if(codigoevento.value == 0)
         ShowMessage("Seleccione un evento","error",3000);
@@ -70,11 +95,14 @@ vereventoconpruebas.addEventListener('click',()=>{
         BuscarEventoConPruebas();
 })
 
-vereventos.addEventListener('click',()=>{
+vereventos.addEventListener('click',(e)=>{
+    e.preventDefault();
+
     BuscarEventos();
 })
 
 guardarnombreprueba.addEventListener('click',()=>{
+    
     if(nombreprueba.value == '')
     {
         ShowMessage("Escriba un nombre","error",3000);
@@ -92,8 +120,10 @@ guardarnombredetalle.addEventListener('click',()=>{
         if(nombredetalle.value == '')
         {
             ShowMessage("Ingrese el detalle de la prueba","error",3000);
-        }else
-        GuardarPruebaDetalle();
+        }else if(idpruebaautodetalle.value == '')
+        {
+            GuardarPruebaDetalle();
+        }
     }
 })
 
@@ -167,8 +197,10 @@ export const BuscarPruebas = (()=>{
             for(let a = 0 ;a<cantidad;a++) //llenar la lista
             {
                 let item = new Object();
-                item.codigoprueba = data[a].codigoprueba;
-                item.nombreprueba = data[a].nombreprueba;
+                item.codigoprueba   = data[a].codigoprueba;
+                item.nombreprueba   = data[a].nombreprueba;
+                item.ordenprueba    = data[a].ordenprueba;
+                item.escombinada    = data[a].escombinada;
 
                 arreglo.push(item);
             }
@@ -205,10 +237,11 @@ export const BuscarDetallePrueba = (()=>{
             for(let a = 0 ;a<cantidad;a++) //llenar la lista
             {
                 let item = new Object();
-                item.codigoprueba = data[a].codigoprueba;
-                item.nombreprueba = data[a].nombreprueba;
-                item.codigodetalle = data[a].codigodetalle;
-                item.nombredetalle = data[a].nombredetalle;
+                item.codigoprueba       = data[a].codigoprueba;
+                item.nombreprueba       = data[a].nombreprueba;
+                item.codigodetalle      = data[a].codigodetalle;
+                item.nombredetalle      = data[a].nombredetalle;
+                item.ordenpruebadetalle = data[a].ordenpruebadetalle;
 
                 arreglodetalle.push(item);
             }
@@ -268,6 +301,7 @@ export const BuscarPruebasEvento = (()=>{
 
 export const BuscarEventos = (()=>{
    
+
     let publicacionlistaPruebas = {
         codigoevento : 0,
     }
@@ -365,7 +399,8 @@ export const BuscarEventoConPruebas = (()=>{
 export const GuardarPrueba = (()=>{
 
     let publicacion = {
-        nombreprueba : nombreprueba.value,
+        nombreprueba    : nombreprueba.value,
+        ordenprueba     : ordenprueba.value,
         
     }
 
@@ -392,6 +427,8 @@ export const GuardarPruebaDetalle = (()=>{
     let publicacion = {
         codigoprueba : codigoprueba.value,
         nombredetalle : nombredetalle.value,
+        ordenpruebadetalle : ordenpruebadetalle.value,
+
     }
 
     fetch("./controladores/guardarpruebadetalle.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
@@ -523,6 +560,19 @@ export const VerCamposEvento = ((arreglo)=>{
 
 })
 
+export const VerCamposPrueba = ((arreglo)=>{
+    idpruebaauto.value = arreglo.codigoprueba;
+    nombreprueba.value = arreglo.nombreprueba;
+    ordenprueba.value  = arreglo.ordenprueba;
+})
+
+export const VerCamposPruebaDetalle = ((arreglo)=>{
+
+    idpruebaautodetalle.value = arreglo.codigodetalle;
+    nombredetalle.value = arreglo.nombredetalle;
+    ordenpruebadetalle.value  = arreglo.ordenpruebadetalle;
+})
+
 export const NuevoEvento = (()=>{
 
     ideventoauto.value              = '';
@@ -540,6 +590,22 @@ export const NuevoEvento = (()=>{
     costopruebabasedolar.value      = '';
     costopruebaextradolar.value     = '';
     costopruebacombinadadolar.value = '';
+})
+
+export const NuevaPrueba = (()=>{
+
+    idpruebaauto.value              = '';
+    nombreprueba.value              = '';
+    ordenprueba.value               = '';
+    
+})
+
+export const NuevaPruebaDetalle = (()=>{
+
+    idpruebaautodetalle.value              = '';
+    nombredetalle.value              = '';
+    ordenpruebadetalle.value               = '';
+    
 })
 // ------------------------ Listar ----------------------------
 

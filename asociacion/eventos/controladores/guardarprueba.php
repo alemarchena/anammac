@@ -13,10 +13,11 @@
     $tabla              = "apt_pruebas";
     $json = json_decode(file_get_contents('php://input'),true);
 
-    $nombreprueba        =  $json['nombreprueba'];
-    
-    $sql = "INSERT INTO " .$tabla. "(nombreprueba)
-    values('$nombreprueba')";
+    $nombreprueba   =  $json['nombreprueba'];
+    $ordenprueba    =  $json['ordenprueba'];
+
+    $sql = "INSERT INTO " .$tabla. "(nombreprueba,ordenprueba)
+    values('$nombreprueba',$ordenprueba)";
 
     // var_dump($sql);
 

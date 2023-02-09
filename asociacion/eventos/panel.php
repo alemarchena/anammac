@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=13  ;</script>
+    <script>var version=17  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=14">
-    <link rel="stylesheet" href="./main.css?a=14">
+    <link rel="stylesheet" href="./estilos.css?a=17">
+    <link rel="stylesheet" href="./main.css?a=17">
 
-    <script src="./main.js?a=14" type="module"></script>
-    <script src="./funciones.js?a=14"></script>
+    <script src="./main.js?a=17" type="module"></script>
+    <script src="./funciones.js?a=17"></script>
     
   </head>
   <body>
@@ -244,11 +244,31 @@ session_destroy();
                     </div>
                     <!-- --------------------- Creacion de nombres de pruebas  --------------------------- -->
                     <div class="carousel-item ">
-
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-2">
+                                <div class="d-flex justify-content-center">
+                                    <label for="idpruebaauto">Id prueba (auto)</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input id="idpruebaauto" type="number" readonly disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <a id="nuevaprueba" href="!#" class="btn btn-warning">Nueva prueba</a>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row">
                             <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
                                 <label for="nombreprueba" class="col-form-label">Nombre de la prueba</label>
                                 <input type="text" class="form-control" id="nombreprueba" style="text-align: center;">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
+                                <label for="ordenprueba" class="col-form-label">Nº de orden visual</label>
+                                <input type="number" class="form-control" id="ordenprueba" style="text-align: center;" placeholder = "Ej: 1 se verá primero">
                             </div>
                         </div>
                         <br>
@@ -268,6 +288,20 @@ session_destroy();
                     </div>
                     <!-- -------------------- pruebas  ---------------------- -->
                     <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-2">
+                                <div class="d-flex justify-content-center">
+                                    <label for="idpruebaautodetalle">Id detalle (auto)</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input id="idpruebaautodetalle" type="number" readonly disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <a id="nuevapruebadetalle" href="!#" class="btn btn-warning">Nuevo</a>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row">
                             <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
                                 <select  class="form-select" aria-label="Default select example" id="codigoprueba" name="codigoprueba" ></select>
@@ -279,7 +313,13 @@ session_destroy();
                                 <input type="text" class="form-control" id="nombredetalle" style="text-align: center;" placeholder = "Ej: 100 mtr">
                             </div>
                         </div>
-
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-10 col-md-4 offset-md-4" style="text-align: center;">
+                                <label for="ordenpruebadetalle" class="col-form-label">Nº de orden al visualizar</label>
+                                <input type="number" class="form-control" id="ordenpruebadetalle" style="text-align: center;" placeholder = "Ej: 1 se verá primero">
+                            </div>
+                        </div>
                         <br>
                         <div class="row justify-content-center">
                             <div class="col-sm-10 col-md-4">

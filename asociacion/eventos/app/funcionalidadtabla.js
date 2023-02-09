@@ -1,6 +1,6 @@
-import { ABDD } from "./actualizador.js?a=14";
-import {ShowMessage} from './showmessage.js?a=14'
-import {GetRandomString} from './randomstring.js?a=14'
+import { ABDD } from "./actualizador.js?a=17";
+import {ShowMessage} from './showmessage.js?a=17'
+import {GetRandomString} from './randomstring.js?a=17'
 
 
 

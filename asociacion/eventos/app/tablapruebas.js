@@ -1,7 +1,7 @@
-import {ClearSelect} from './select.js?a=14';
-import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=14';
-import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas } from './pruebas.js?a=14';
-import { EBDD,ABDD } from "./actualizador.js?a=14";
+import {ClearSelect} from './select.js?a=17';
+import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=17';
+import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas,VerCamposPrueba,VerCamposPruebaDetalle } from './pruebas.js?a=17';
+import { EBDD,ABDD,ABDDP } from "./actualizador.js?a=17";
 import {ShowMessage} from './showmessage.js?a=8'
 
 
@@ -71,8 +71,17 @@ export function LimpiarEventoConPruebas()
 
           let columna1 = document.createElement("th");        
           let columna2 = document.createElement("th");
+          let columna3 = document.createElement("th");
+          let columna4 = document.createElement("th");
+          let columna5 = document.createElement("th");
+          let columna6 = document.createElement("th");
+          
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
+          let celda3 = document.createElement("td");
+          let celda4 = document.createElement("td");
+          let celda5 = document.createElement("td");
+          let celda6 = document.createElement("td");
           
 
           let enca1 = document.createTextNode('Código prueba'); 
@@ -83,8 +92,26 @@ export function LimpiarEventoConPruebas()
           celda2.appendChild(enca2); 
           columna2.appendChild(celda2);
         
-          hilera.appendChild(columna1);        hilera.appendChild(columna2);
-          
+          let enca3 = document.createTextNode('Orden visual');
+          celda3.appendChild(enca3); 
+          columna3.appendChild(celda3);
+
+          let enca4 = document.createTextNode('Es prueba combinada');
+          celda4.appendChild(enca4); 
+          columna4.appendChild(celda4);
+
+          let enca5 = document.createTextNode('');
+          celda5.appendChild(enca5); 
+          columna5.appendChild(celda5);
+
+          let enca6 = document.createTextNode('');
+          celda6.appendChild(enca6); 
+          columna6.appendChild(celda6);
+
+          hilera.appendChild(columna1); hilera.appendChild(columna2); 
+          hilera.appendChild(columna3); hilera.appendChild(columna4);
+          hilera.appendChild(columna5); hilera.appendChild(columna6);
+
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
         }else{
@@ -95,10 +122,16 @@ export function LimpiarEventoConPruebas()
           let columna1 = document.createElement("th");        
           let columna2 = document.createElement("th");
           let columna3 = document.createElement("th");
+          let columna4 = document.createElement("th");
+          let columna5 = document.createElement("th");
+          let columna6 = document.createElement("th");
 
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
           let celda3 = document.createElement("td");
+          let celda4 = document.createElement("td");
+          let celda5 = document.createElement("td");
+          let celda6 = document.createElement("td");
         
 
           let codigoprueba = document.createTextNode(arreglo[i].codigoprueba);
@@ -112,10 +145,41 @@ export function LimpiarEventoConPruebas()
           celda2.appendChild(nombreprueba);        
           columna2.appendChild(celda2);
 
+          let ordenprueba = document.createTextNode(arreglo[i].ordenprueba);
+          ordenprueba.id = "nombreprueba" + arreglo[i].ordenprueba;
+          celda3.appendChild(ordenprueba);        
+          columna3.appendChild(celda3);
+
+          let escombinada = document.createElement("input");
+          escombinada.type = "checkbox";
+          escombinada.id = "EsCombinada" + arreglo[i].codigoprueba;
+          if(arreglo[i].escombinada == 1)
+            escombinada.checked = true;
+            
+            
+          escombinada.onclick = (e)=>{
+              ModificaEsCombinada(e.target.id,arreglo);
+          }
+          celda4.appendChild(escombinada);        
+          columna4.appendChild(celda4);
+
+          //Modificar una prueba
+          let botonmodificarprueba = document.createElement("button");
+          botonmodificarprueba.id = "ModificarPrueba" + arreglo[i].codigoprueba;
+          botonmodificarprueba.innerHTML = "Modificar";
+          botonmodificarprueba.classList.add("btn");
+          botonmodificarprueba.classList.add("btn-info");
+          
+          botonmodificarprueba.onclick = (e)=>{
+            e.preventDefault();
+              ModificarPrueba(e.target.id,arreglo);
+          }
+          celda5.appendChild(botonmodificarprueba); columna5.appendChild(celda5);
+
           //Eliminar una prueba
           let botoneliminar = document.createElement("button");
           botoneliminar.id = "Eliminar" + arreglo[i].codigoprueba;
-          botoneliminar.innerHTML = "Eliminar <span class='material-icons'>delete</span>";
+          botoneliminar.innerHTML = "Eliminar";
           botoneliminar.classList.add("btn");
           botoneliminar.classList.add("btn-danger");
           
@@ -128,12 +192,15 @@ export function LimpiarEventoConPruebas()
               LimpiarTPruebas();
             } 
           }
-          celda3.appendChild(botoneliminar);        
-          columna3.appendChild(celda3);
+          celda6.appendChild(botoneliminar);        
+          columna6.appendChild(celda6);
 
           hilera.appendChild(columna1);        
           hilera.appendChild(columna2);
           hilera.appendChild(columna3);       
+          hilera.appendChild(columna4);       
+          hilera.appendChild(columna5);       
+          hilera.appendChild(columna6);       
           
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
@@ -176,12 +243,16 @@ export function LimpiarEventoConPruebas()
           let columna3 = document.createElement("th");        
           let columna4 = document.createElement("th");
           let columna5 = document.createElement("th");
+          let columna6 = document.createElement("th");
+          let columna7 = document.createElement("th");
 
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
           let celda3 = document.createElement("td");
           let celda4 = document.createElement("td");
           let celda5 = document.createElement("td");
+          let celda6 = document.createElement("td");
+          let celda7 = document.createElement("td");
 
           let enca1 = document.createTextNode('Código prueba'); 
           celda1.appendChild(enca1); 
@@ -199,13 +270,23 @@ export function LimpiarEventoConPruebas()
           celda4.appendChild(enca4); 
           columna4.appendChild(celda4);
 
-          let enca5 = document.createTextNode('');
+          let enca5 = document.createTextNode('Orden detalle');
           celda5.appendChild(enca5); 
           columna5.appendChild(celda5);
 
-          hilera.appendChild(columna1);        hilera.appendChild(columna2);
-          hilera.appendChild(columna3);        hilera.appendChild(columna4);
-          hilera.appendChild(columna5);
+          
+          let enca6 = document.createTextNode('');
+          celda6.appendChild(enca6); 
+          columna6.appendChild(celda6);
+          
+          let enca7 = document.createTextNode('');
+          celda7.appendChild(enca7); 
+          columna7.appendChild(celda7);
+
+          hilera.appendChild(columna1);       hilera.appendChild(columna2);
+          hilera.appendChild(columna3);       hilera.appendChild(columna4);
+          hilera.appendChild(columna5);       hilera.appendChild(columna6);
+          hilera.appendChild(columna7);
 
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
@@ -219,12 +300,16 @@ export function LimpiarEventoConPruebas()
           let columna3 = document.createElement("th");
           let columna4 = document.createElement("th");
           let columna5 = document.createElement("th");
+          let columna6 = document.createElement("th");
+          let columna7 = document.createElement("th");
 
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
           let celda3 = document.createElement("td");
           let celda4 = document.createElement("td");
           let celda5 = document.createElement("td");
+          let celda6 = document.createElement("td");
+          let celda7 = document.createElement("td");
 
           let codigoprueba = document.createTextNode(arreglodetalle[i].codigoprueba);
           codigoprueba.id = "idprueba" + arreglodetalle[i].codigoprueba;
@@ -247,10 +332,28 @@ export function LimpiarEventoConPruebas()
           celda4.appendChild(nombredetalle);        
           columna4.appendChild(celda4);
 
+          let ordenpruebadetalle = document.createTextNode(arreglodetalle[i].ordenpruebadetalle);
+          ordenpruebadetalle.id = "nombreprueba" + arreglodetalle[i].ordenpruebadetalle;
+          celda5.appendChild(ordenpruebadetalle);        
+          columna5.appendChild(celda5);
+
+          //Modificar una prueba
+          let botonmodificarpruebadetalle = document.createElement("button");
+          botonmodificarpruebadetalle.id = "ModificarPruebaDetalle" + arreglodetalle[i].codigodetalle;
+          botonmodificarpruebadetalle.innerHTML = "Modificar";
+          botonmodificarpruebadetalle.classList.add("btn");
+          botonmodificarpruebadetalle.classList.add("btn-info");
+          
+          botonmodificarpruebadetalle.onclick = (e)=>{
+            e.preventDefault();
+              ModificarPruebaDetalle(e.target.id,arreglodetalle);
+          }
+          celda6.appendChild(botonmodificarpruebadetalle); columna6.appendChild(celda6);
+
           //Eliminar una prueba
           let botoneliminar = document.createElement("button");
           botoneliminar.id = "EliminarDetalle" + arreglodetalle[i].codigodetalle;
-          botoneliminar.innerHTML = "Eliminar <span class='material-icons'>delete</span>";
+          botoneliminar.innerHTML = "Eliminar";
           botoneliminar.classList.add("btn");
           botoneliminar.classList.add("btn-danger");
           
@@ -263,14 +366,16 @@ export function LimpiarEventoConPruebas()
               LimpiarTPDetalle();
             } 
           }
-          celda5.appendChild(botoneliminar);        
-          columna5.appendChild(celda5);
+          celda7.appendChild(botoneliminar);        
+          columna7.appendChild(celda7);
 
           hilera.appendChild(columna1);        
           hilera.appendChild(columna2);
           hilera.appendChild(columna3);       
           hilera.appendChild(columna4);       
           hilera.appendChild(columna5);       
+          hilera.appendChild(columna6);       
+          hilera.appendChild(columna7);       
           
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
@@ -398,7 +503,7 @@ export function LimpiarEventoConPruebas()
             //Modificar una prueba
             let botonmodificarevento = document.createElement("button");
             botonmodificarevento.id = "ModificarEvento" + arregloeventos[i].idevento;
-            botonmodificarevento.innerHTML = "Modificar <span class='material-icons'>visibility</span>";
+            botonmodificarevento.innerHTML = "Modificar";
             botonmodificarevento.classList.add("btn");
             botonmodificarevento.classList.add("btn-info");
             
@@ -415,12 +520,12 @@ export function LimpiarEventoConPruebas()
             
             if(arregloeventos[i].activo == 1){
               botonactivacion.classList.add("btn-danger");
-              botonactivacion.innerHTML = "Desactivar <span class='material-icons'>remove</span>";
+              botonactivacion.innerHTML = "Desactivar";
             }
             else
             {
               botonactivacion.classList.add("btn-success");
-              botonactivacion.innerHTML = "Activar <span class='material-icons'>add</span>";
+              botonactivacion.innerHTML = "Activar";
             }
 
 
@@ -438,7 +543,7 @@ export function LimpiarEventoConPruebas()
             //Eliminar una prueba
             let botoneliminarevento = document.createElement("button");
             botoneliminarevento.id = "EliminarEvento" + arregloeventos[i].idevento;
-            botoneliminarevento.innerHTML = "Eliminar <span class='material-icons'>delete</span>";
+            botoneliminarevento.innerHTML = "Eliminar";
             botoneliminarevento.classList.add("btn");
             botoneliminarevento.classList.add("btn-danger");
             
@@ -565,9 +670,9 @@ export function LimpiarEventoConPruebas()
           //Agrega una prueba
           let checkprueba = document.createElement("button");
           checkprueba.id = "Check" + arreglopruebaevento[i].codigoprueba + arreglopruebaevento[i].codigodetalle;
-          checkprueba.innerHTML = "Agregar <span class='material-icons'>add</span>";
+          checkprueba.innerHTML = "Agregar";
           checkprueba.classList.add("btn");
-          checkprueba.classList.add("btn-sucess");
+          checkprueba.classList.add("btn-success");
           
           checkprueba.onclick = (e)=>{
             e.preventDefault();
@@ -665,7 +770,7 @@ export function LimpiarEventoConPruebas()
            //Eliminar una prueba
            let botoneliminareventop = document.createElement("button");
            botoneliminareventop.id = "EliminarEventoPrueba" + arregloeventoconpruebas[i].ideventoprueba;
-           botoneliminareventop.innerHTML = "Quitar <span class='material-icons'>delete</span>";
+           botoneliminareventop.innerHTML = "Quitar";
            botoneliminareventop.classList.add("btn");
            botoneliminareventop.classList.add("btn-danger");
            
@@ -789,6 +894,43 @@ export const ModificarEvento = (async (id,arreglo)=>{
       }
   }
 });
+
+export const ModificarPrueba = (async (id,arreglo)=>{
+  let idpuro = id.replace('ModificarPrueba','');
+  for (let i = 0; i < arreglo.length; i++) {
+      if(arreglo[i].codigoprueba == idpuro)
+      {
+        VerCamposPrueba(arreglo[i]);
+      }
+  }
+});
+
+export const ModificarPruebaDetalle = (async (id,arreglo)=>{
+  let idpuro = id.replace('ModificarPruebaDetalle','');
+  for (let i = 0; i < arreglo.length; i++) {
+      if( (arreglo[i].codigodetalle ) == idpuro)
+      {
+        VerCamposPruebaDetalle(arreglo[i]);
+      }
+  }
+});
+
+export const ModificaEsCombinada = (async (id,arreglo)=>{
+  let idpuro = id.replace('EsCombinada','');
+  for (let i = 0; i < arreglo.length; i++) {
+      if( (arreglo[i].codigoprueba ) == idpuro)
+      {
+        const tilde = document.getElementById(id);
+        console.log(tilde.checked);
+        if(tilde.checked){
+          ABDDP('escombinada',1,'numero',idpuro,"Prueba combinada:");
+        }else{
+          ABDDP('escombinada',0,'numero',idpuro,"Prueba combinada desactivada y ");
+        } 
+      }
+  }
+});
+
 
 export const Activacion = (async (id,arreglo)=>{
   let idpuro = id.replace('ActivacionEvento','');

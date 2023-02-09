@@ -27,10 +27,10 @@ date_default_timezone_set('America/Monterrey');
 
     if($codigoevento==0)
     {
-        $sql = $basesql . " order by $tablapru.nombreprueba asc, $tabladet.nombredetalle asc";
+        $sql = $basesql . " order by $tablapru.ordenprueba asc, $tabladet.ordenpruebadetalle asc";
     }
     else{
-        $sql = $basesql . " where $tablaevepru.codigoevento = $codigoevento order by $tablapru.nombreprueba asc, $tabladet.nombredetalle asc";
+        $sql = $basesql . " where $tablaevepru.codigoevento = $codigoevento order by $tablapru.ordenprueba asc, $tabladet.ordenpruebadetalle asc";
     }
 
 
