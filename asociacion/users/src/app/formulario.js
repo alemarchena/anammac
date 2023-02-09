@@ -1,6 +1,6 @@
 import {SelectOption} from './select.js';
-import {Credencial} from './credencial.js?a=59';
-import {BuscarEventos} from './eventosdisponibles.js?a=59';
+import {Credencial} from './credencial.js?a=60';
+import {BuscarEventos} from './eventosdisponibles.js?a=60';
 // import {EliminaBotonCredencial} from './archivosimagen.js'
 //--------------------------- Datos -------------------------------
 

@@ -5,6 +5,9 @@ let reeventos           = document.getElementById('resultadoseventos');
 let reeventoconpruebas  = document.getElementById('resultadoeventoconpruebas');
 let eventosdisponibles  = document.getElementById('eventosdisponibles');
 let misinscripciones    = document.getElementById('misinscripciones');
+let divtotal               = document.getElementById('divtotal');
+let labeltotal             = document.getElementById('labeltotal');
+let labeltotaldolar             = document.getElementById('labeltotaldolar');
 
 misinscripciones.addEventListener('click',(e)=>{
 e.preventDefault();
@@ -58,7 +61,9 @@ export const BuscarEventos = ((info)=>{
                 arregloeventos.push(item);
 
             }
-
+            ActivarTotal(0);
+            
+            LimpiarEventoConPruebas();
             LlenarTablaEventos(arregloeventos,info);
         }else
         {
@@ -240,11 +245,20 @@ export const VerEvento = (async (id,arreglo)=>{
     for (let i = 0; i < arreglo.length; i++) {
         if(arreglo[i].idevento == idpuro)
         {
+            LimpiarLabel();
             BuscarEventoConPruebas(arreglo[i]);
+            ActivarTotal(1);
         }
     }
   });
 
+  const ActivarTotal = ((valor)=>{
+    if(valor==1)
+        divtotal.style.display = "block";
+    else
+        divtotal.style.display = "none";
+
+  })
   export const BuscarEventoConPruebas = ((codigoevento)=>{
    
     let publicacionEventoConPruebas = {
@@ -267,6 +281,24 @@ export const VerEvento = (async (id,arreglo)=>{
                 item.nombre             = data[a].nombre;
                 item.nombreprueba       = data[a].nombreprueba;
                 item.nombredetalle      = data[a].nombredetalle;
+                item.codigodetalle      = data[a].codigodetalle;
+
+                item.cantidadpruebasbase    = data[a].cantidadpruebasbase;
+                item.costopruebabase        = data[a].costopruebabase;
+                item.costopruebabasedolar   = data[a].costopruebabasedolar;
+                
+                item.costopruebaextra        = data[a].costopruebaextra;
+                item.costopruebaextradolar        = data[a].costopruebaextradolar;
+
+                item.costopruebacombinada        = data[a].costopruebacombinada;
+                item.costopruebacombinadadolar        = data[a].costopruebacombinadadolar;
+
+                item.costomenores        = data[a].costomenores;
+                item.edadmaximamenor        = data[a].edadmaximamenor;
+
+                item.escombinada        = data[a].escombinada;
+
+
 
                 arregloeventoconpruebas.push(item);
             }
@@ -304,22 +336,21 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
           // Crea las hileras de la tabla
           let hilera = document.createElement("tr");
 
-          let columna1 = document.createElement("th");        
+          let columna1 = document.createElement("th");   
+          columna1.style = "text-align: -webkit-right;"
+
           let columna2 = document.createElement("th");
-          let columna3 = document.createElement("th");        
 
 
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
-          let celda3 = document.createElement("td");
 
 
-          let enca1 = document.createTextNode('Nombre prueba'); celda1.appendChild(enca1); columna1.appendChild(celda1);
-          let enca2 = document.createTextNode('Nombre Detalle');celda2.appendChild(enca2); columna2.appendChild(celda2);
-          let enca3 = document.createTextNode(''); celda3.appendChild(enca3); columna3.appendChild(celda3);
+          let enca1 = document.createTextNode('Prueba'); celda1.appendChild(enca1); columna1.appendChild(celda1);
+          let enca2 = document.createTextNode('Agregue las pruebas que desea');celda2.appendChild(enca2); columna2.appendChild(celda2);
 
 
-          hilera.appendChild(columna1);        hilera.appendChild(columna2);          hilera.appendChild(columna3);        
+          hilera.appendChild(columna1);        hilera.appendChild(columna2);          
 
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
@@ -328,47 +359,40 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
         // Crea las hileras de la tabla
           let hilera = document.createElement("tr");
 
-          let columna1 = document.createElement("th");        
+          let columna1 = document.createElement("th"); 
+          columna1.style = "text-align: -webkit-right;"
+                 
           let columna2 = document.createElement("th");
-          let columna3 = document.createElement("th");
-
 
           let celda1 = document.createElement("td");
           let celda2 = document.createElement("td");
-          let celda3 = document.createElement("td");
-
 
           let nombreprueba = document.createTextNode(arregloeventoconpruebas[i].nombreprueba);
           nombreprueba.id = "nombreprueba" + arregloeventoconpruebas[i].nombreprueba;
+          if(arregloeventoconpruebas[i].escombinada == 1)
+            celda1.style.color = "red";
+
           celda1.appendChild(nombreprueba);        
           columna1.appendChild(celda1);
 
-          let nombredetalle = document.createTextNode(arregloeventoconpruebas[i].nombredetalle);
-          nombredetalle.id = "nombredetalle" + arregloeventoconpruebas[i].nombredetalle;
-          celda2.appendChild(nombredetalle);        
-          columna2.appendChild(celda2);
-
-           //Eliminar una prueba
+           //Seleccionar/Deseleccionar una prueba
            let botonagregareventop = document.createElement("button");
-           botonagregareventop.id = "AgreagrEventoPrueba" + arregloeventoconpruebas[i].ideventoprueba;
-           botonagregareventop.innerHTML = "Agregar <span class='material-icons'>add</span>";
+           botonagregareventop.id = "SeleccionPrueba" + arregloeventoconpruebas[i].ideventoprueba;
+           botonagregareventop.innerHTML = "Agregar " + arregloeventoconpruebas[i].nombredetalle;
            botonagregareventop.classList.add("btn");
            botonagregareventop.classList.add("btn-success");
            botonagregareventop.classList.add("btn-list");
            
            botonagregareventop.onclick = (e)=>{
              e.preventDefault();
-             
-             
+             SeleccionPrueba(e.target.id,arregloeventoconpruebas);
            }
+          celda2.appendChild(botonagregareventop);        
+          columna2.appendChild(celda2);
 
-      
-          celda3.appendChild(botonagregareventop);        
-          columna3.appendChild(celda3);
 
           hilera.appendChild(columna1);        
           hilera.appendChild(columna2);
-          hilera.appendChild(columna3);       
           
           // agrega la hilera al final de la tabla (al final del elemento tblbody)
           tblBody.appendChild(hilera);
@@ -391,4 +415,105 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
 {
   reeventoconpruebas.classList.add('table-responsive');
     while(reeventoconpruebas.firstChild){reeventoconpruebas.removeChild(reeventoconpruebas.firstChild);} 
+
+    LimpiarLabel();
+    LimpiarArregloCalculadora();
 }
+
+let arreglocalculadora = [];
+
+export const SeleccionPrueba = (async (id,arreglo)=>{
+      let idpuro = id.replace('SeleccionPrueba','');
+
+      for (let i = 0; i < arreglo.length; i++) {
+          if(arreglo[i].ideventoprueba == idpuro)
+          {
+              //   GuardarEventoPrueba( codigoevento.value,arreglo[i].codigoprueba,arreglo[i].codigodetalle );
+            let botonelegido = document.getElementById(id);
+            if(botonelegido.classList.contains("btn-success")){
+                botonelegido.classList.replace("btn-success","btn-warning");
+
+                arreglocalculadora.push(arreglo[i]);
+                Calculadora();
+
+            }
+            else
+            {
+                botonelegido.classList.replace("btn-warning","btn-success");
+                let arreglotemporal = [];
+                for(let b=0;b<arreglocalculadora.length;b++)
+                {
+
+                    if(arreglocalculadora[b].ideventoprueba !=  arreglo[i].ideventoprueba)
+                    {
+                        arreglotemporal.push(arreglocalculadora[b]);
+                    }
+                }
+
+                arreglocalculadora = [...arreglotemporal];
+
+                Calculadora();
+            }
+
+          }
+      }
+  });
+
+export const Calculadora = (()=>{
+    let contadorbase=0;
+    let contadorextra=0;
+    let contadorcombinada=0;
+
+    let totalgeneral =0;
+    let totalbase = 0;
+
+    let totalgeneraldolar =0;
+    let totalbasedolar = 0;
+
+    for(let a=0;a<arreglocalculadora.length;a++)
+    {
+        if(arreglocalculadora[a].escombinada == 0)
+        {
+            contadorbase +=1;
+        }else
+        {
+            contadorcombinada +=1;
+        }
+    }
+
+    if(contadorbase > 0 || contadorcombinada > 0 )
+    {
+        if(contadorbase > arreglocalculadora[0].cantidadpruebasbase)
+        {
+            contadorextra = contadorbase - arreglocalculadora[0].cantidadpruebasbase;
+        }
+
+        if(contadorbase>0){
+
+            totalbase = parseInt(arreglocalculadora[0].costopruebabase);
+            totalbasedolar = parseInt(arreglocalculadora[0].costopruebabasedolar);
+        }
+        
+        totalgeneral = totalbase + 
+        parseInt(contadorextra * arreglocalculadora[0].costopruebaextra) +
+        parseInt(contadorcombinada * arreglocalculadora[0].costopruebacombinada);
+
+        totalgeneraldolar= totalbasedolar + 
+        parseInt(contadorextra * arreglocalculadora[0].costopruebaextradolar) +
+        parseInt(contadorcombinada * arreglocalculadora[0].costopruebacombinadadolar);
+
+        console.log(totalgeneral)
+    }      
+
+    labeltotal.innerHTML = "TOTAL $ " + totalgeneral;
+    labeltotaldolar.innerHTML = "TOTAL U$S " + totalgeneraldolar;
+})
+
+const LimpiarLabel = (()=>{
+    labeltotal.innerHTML = "TOTAL $ 0";
+    labeltotaldolar.innerHTML = "TOTAL U$S 0";
+})
+
+const LimpiarArregloCalculadora = (()=>{
+    arreglocalculadora = [];
+})

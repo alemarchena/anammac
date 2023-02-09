@@ -1,6 +1,6 @@
-import {DesActivarSistema,LoadURL} from './cargarsistema.js?a=59'
-import {Loguear} from './formulario.js?a=59'
-import {LeerDatosUsuarioBDD} from './accesobdd.js?a=59'
+import {DesActivarSistema,LoadURL} from './cargarsistema.js?a=60'
+import {Loguear} from './formulario.js?a=60'
+import {LeerDatosUsuarioBDD} from './accesobdd.js?a=60'
 
 const loggedinlinks = document.querySelectorAll(".logged-in");//boton de logout
 const loggedoutlinks = document.querySelectorAll(".logged-out");//botones login y registro

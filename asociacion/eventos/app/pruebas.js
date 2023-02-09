@@ -173,7 +173,8 @@ guardarevento.addEventListener('click',()=>{
 
     if(!te)
     {
-        GuardarEvento();
+        if(ideventoauto.value == '')
+            GuardarEvento();
     }
 })
 
