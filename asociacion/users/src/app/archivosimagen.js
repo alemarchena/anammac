@@ -1,6 +1,6 @@
 
-import {Fotos, Info} from './formulario.js';
-import {Ingresa,ABDD} from './accesobdd.js'
+import {Fotos} from './formulario.js';
+import {ABDD} from './accesobdd.js'
 import {MostarImagenLogin} from './modal.js'
 
 const input     = document.querySelector("#input-file");

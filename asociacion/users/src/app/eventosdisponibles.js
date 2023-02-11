@@ -1,25 +1,24 @@
 import {ShowMessage} from './showmessage.js'
-import {Info} from './formulario.js'
 import {ConvierteaDMA} from './clases.js'
+
 let reeventos           = document.getElementById('resultadoseventos');
 let reeventoconpruebas  = document.getElementById('resultadoeventoconpruebas');
 let eventosdisponibles  = document.getElementById('eventosdisponibles');
-let misinscripciones    = document.getElementById('misinscripciones');
-let divtotal               = document.getElementById('divtotal');
-let labeltotal             = document.getElementById('labeltotal');
-let labeltotaldolar             = document.getElementById('labeltotaldolar');
 
-misinscripciones.addEventListener('click',(e)=>{
-e.preventDefault();
-alert("Ver mis inscripciones")
-})
+let divtotal            = document.getElementById('divtotal');
+let labeltotal          = document.getElementById('labeltotal');
+let labeltotaldolar     = document.getElementById('labeltotaldolar');
+let descripcionevento   = document.getElementById('descripcionevento');
+let numeroafiliado      = document.getElementById('numeroafiliado');
+
 
 eventosdisponibles.addEventListener('click',(e)=>{
     e.preventDefault();
-    BuscarEventos(Info);
+    BuscarEventos(numeroafiliado.value);
+   
 })
 
-export const BuscarEventos = ((info)=>{
+export const BuscarEventos = ((numeroafiliado)=>{
    
     let publicacionlistaPruebas = {
         codigoevento : 0,
@@ -61,10 +60,11 @@ export const BuscarEventos = ((info)=>{
                 arregloeventos.push(item);
 
             }
+            LimpiarTotal();
             ActivarTotal(0);
-            
+            LimpiarDescripcion();
             LimpiarEventoConPruebas();
-            LlenarTablaEventos(arregloeventos,info);
+            LlenarTablaEventos(arregloeventos,numeroafiliado);
         }else
         {
             LimpiarTEventos();
@@ -77,11 +77,10 @@ export const BuscarEventos = ((info)=>{
 
 })
 
-export const LlenarTablaEventos = ((arregloeventos,info) =>{
+export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
 
     LimpiarTEventos();
 
-    console.log("Número de afiliado:" + info.numeroafiliado);
     // Crea un elemento <table> y un elemento <tbody>
     let tabla   = document.createElement("table");
     tabla.classList.add('table');
@@ -100,12 +99,12 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
             let columna1 = document.createElement("th");let columna2 = document.createElement("th");
             let columna3 = document.createElement("th");let columna4 = document.createElement("th");
             let columna5 = document.createElement("th");let columna6 = document.createElement("th");
-            let columna7 = document.createElement("th");let columna8 = document.createElement("th");
+            let columna7 = document.createElement("th");
 
             let celda1 = document.createElement("td");let celda2 = document.createElement("td");
             let celda3 = document.createElement("td");let celda4 = document.createElement("td");
             let celda5 = document.createElement("td");let celda6 = document.createElement("td");
-            let celda7 = document.createElement("td");let celda8 = document.createElement("td");
+            let celda7 = document.createElement("td");
 
             let enca1 = document.createTextNode('Código evento'); 
             celda1.appendChild(enca1); columna1.appendChild(celda1);
@@ -113,30 +112,26 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
             let enca2 = document.createTextNode('Nombre');
             celda2.appendChild(enca2); columna2.appendChild(celda2);
 
-            let enca3 = document.createTextNode('descripcion');
+            let enca3 = document.createTextNode('fecha');
             celda3.appendChild(enca3); columna3.appendChild(celda3);
             
-            let enca4 = document.createTextNode('fecha');
+            let enca4 = document.createTextNode('hora');
             celda4.appendChild(enca4); columna4.appendChild(celda4);
 
-            let enca5 = document.createTextNode('hora');
+            let enca5 = document.createTextNode('Whatsapp');
             celda5.appendChild(enca5); columna5.appendChild(celda5);
 
-            let enca6 = document.createTextNode('Whatsapp');
+            let enca6 = document.createTextNode('');
             celda6.appendChild(enca6); columna6.appendChild(celda6);
 
             let enca7 = document.createTextNode('');
             celda7.appendChild(enca7); columna7.appendChild(celda7);
 
-            let enca8 = document.createTextNode('');
-            celda8.appendChild(enca8); columna8.appendChild(celda8);
-
-
 
             hilera.appendChild(columna1);        hilera.appendChild(columna2);
             hilera.appendChild(columna3);        hilera.appendChild(columna4);
             hilera.appendChild(columna5);        hilera.appendChild(columna6);
-            hilera.appendChild(columna7);        hilera.appendChild(columna8);
+            hilera.appendChild(columna7);        
 
             // agrega la hilera al final de la tabla (al final del elemento tblbody)
             tblBody.appendChild(hilera);
@@ -148,12 +143,12 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
             let columna1 = document.createElement("th");let columna2 = document.createElement("th");
             let columna3 = document.createElement("th");let columna4 = document.createElement("th");
             let columna5 = document.createElement("th");let columna6 = document.createElement("th");
-            let columna7 = document.createElement("th");let columna8 = document.createElement("th");
+            let columna7 = document.createElement("th"); 
 
             let celda1 = document.createElement("td");let celda2 = document.createElement("td");
             let celda3 = document.createElement("td");let celda4 = document.createElement("td");
             let celda5 = document.createElement("td");let celda6 = document.createElement("td");
-            let celda7 = document.createElement("td");let celda8 = document.createElement("td");
+            let celda7 = document.createElement("td");
             
 
             let idevento = document.createTextNode(arregloeventos[i].idevento);
@@ -166,49 +161,45 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
             nombre.id = "nombre" + arregloeventos[i].nombre;
             celda2.appendChild(nombre); columna2.appendChild(celda2);
 
-            let descripcion = document.createTextNode(arregloeventos[i].descripcion);
-            descripcion.id = "descripcion" + arregloeventos[i].descripcion;
-            celda3.appendChild(descripcion); columna3.appendChild(celda3);
 
             let fecha = document.createTextNode(arregloeventos[i].fecha);
             fecha.id = "fecha" + arregloeventos[i].fecha;
-            celda4.appendChild(fecha); columna4.appendChild(celda4);
+            celda3.appendChild(fecha); columna3.appendChild(celda3);
 
             let hora = document.createTextNode(arregloeventos[i].hora);
             hora.id = "hora" + arregloeventos[i].hora;
-            celda5.appendChild(hora); columna5.appendChild(celda5);
+            celda4.appendChild(hora); columna4.appendChild(celda4);
 
             let whatsapp = document.createTextNode(arregloeventos[i].whatsapp);
             whatsapp.id = "whatsapp" + arregloeventos[i].whatsapp;
-            celda6.appendChild(whatsapp); columna6.appendChild(celda6);
+            celda5.appendChild(whatsapp); columna5.appendChild(celda5);
 
             //Ver pruebas del evento
             let botonverpruebas = document.createElement("button");
             botonverpruebas.id = "VerEvento" + arregloeventos[i].idevento;
-            botonverpruebas.innerHTML = "Ver pruebas <span class='material-icons'>visibility</span>";
+            botonverpruebas.innerHTML = "Ver pruebas";
             botonverpruebas.classList.add("btn");
             botonverpruebas.classList.add("btn-info");
             botonverpruebas.classList.add("btn-list");
             
             botonverpruebas.onclick = (e)=>{
             e.preventDefault();
-                VerEvento(e.target.id,arregloeventos);
+                VerEvento(e.target.id,arregloeventos,numeroafiliado);
             }
-            celda7.appendChild(botonverpruebas); columna7.appendChild(celda7);
+            celda6.appendChild(botonverpruebas); columna6.appendChild(celda6);
 
             //Descargar condiciones
-            let botonactivacion = document.createElement("button");
-            botonactivacion.id = "DescargarCondiciones" + arregloeventos[i].idevento;
-            botonactivacion.classList.add("btn");
-            botonactivacion.classList.add("btn-success");
-            botonactivacion.classList.add("btn-list");
-
-            botonactivacion.innerHTML = "Descargar condiciones <span class='material-icons'>download</span>";
-            botonactivacion.onclick = (e)=>{
+            let botonpagar = document.createElement("button");
+            botonpagar.id = "PagarEvento" + arregloeventos[i].idevento;
+            botonpagar.classList.add("btn");
+            botonpagar.classList.add("btn-success");
+            botonpagar.classList.add("btn-list");
+            botonpagar.innerHTML = "Pagar";
+            botonpagar.onclick = (e)=>{
                 e.preventDefault();
-                Descargar(e.target.id,arregloeventos);
+                PagarEvento(e.target.id,arregloeventos);
             }
-            celda8.appendChild(botonactivacion); columna8.appendChild(celda8);
+            celda7.appendChild(botonpagar); columna7.appendChild(celda7);
 
             hilera.appendChild(columna1);        
             hilera.appendChild(columna2);
@@ -217,7 +208,6 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
             hilera.appendChild(columna5);       
             hilera.appendChild(columna6);       
             hilera.appendChild(columna7);       
-            hilera.appendChild(columna8);       
             
             // agrega la hilera al final de la tabla (al final del elemento tblbody)
             tblBody.appendChild(hilera);
@@ -234,23 +224,47 @@ export const LlenarTablaEventos = ((arregloeventos,info) =>{
   
 });
 
+export const PagarEvento = (async (id,arreglo,numeroafiliado)=>{
+    if(totalgeneral<=0)
+    {
+        ShowMessage("Verifique la cantidad de pruebas seleccionadas","success",2000);
+    }else{
+        let botonPagar = document.getElementById(id);
+        
+        let idpuro = id.replace('PagarEvento','');
+        for (let i = 0; i < arreglo.length; i++) {
+            if(arreglo[i].idevento == idpuro)
+            {
+                alert(totalgeneral);
+                // BuscarEventoConPruebas(arreglo[i],numeroafiliado);
+            }
+        }
+    }
+});
+
 export function LimpiarTEventos()
 {
   reeventos.classList.add('table-responsive');
     while(reeventos.firstChild){reeventos.removeChild(reeventos.firstChild);} 
 }
 
-export const VerEvento = (async (id,arreglo)=>{
+
+export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
     let idpuro = id.replace('VerEvento','');
     for (let i = 0; i < arreglo.length; i++) {
         if(arreglo[i].idevento == idpuro)
         {
+            MostrarDescripcionEvento(arreglo[i].descripcion);
             LimpiarLabel();
-            BuscarEventoConPruebas(arreglo[i]);
+            BuscarEventoConPruebas(arreglo[i],numeroafiliado);
             ActivarTotal(1);
         }
     }
   });
+
+  const MostrarDescripcionEvento = ((descripcion)=>{
+    descripcionevento.innerHTML = descripcion;
+  })
 
   const ActivarTotal = ((valor)=>{
     if(valor==1)
@@ -259,7 +273,7 @@ export const VerEvento = (async (id,arreglo)=>{
         divtotal.style.display = "none";
 
   })
-  export const BuscarEventoConPruebas = ((codigoevento)=>{
+  export const BuscarEventoConPruebas = ((codigoevento,numeroafiliado)=>{
    
     let publicacionEventoConPruebas = {
         codigoevento : codigoevento.idevento,
@@ -282,6 +296,7 @@ export const VerEvento = (async (id,arreglo)=>{
                 item.nombreprueba       = data[a].nombreprueba;
                 item.nombredetalle      = data[a].nombredetalle;
                 item.codigodetalle      = data[a].codigodetalle;
+                item.codigoprueba       = data[a].codigoprueba;
 
                 item.cantidadpruebasbase    = data[a].cantidadpruebasbase;
                 item.costopruebabase        = data[a].costopruebabase;
@@ -303,7 +318,7 @@ export const VerEvento = (async (id,arreglo)=>{
                 arregloeventoconpruebas.push(item);
             }
 
-            LlenarEventoConPruebas(arregloeventoconpruebas);
+            LlenarEventoConPruebas(arregloeventoconpruebas,numeroafiliado);
         }else
         {
             LimpiarEventoConPruebas();
@@ -316,10 +331,10 @@ export const VerEvento = (async (id,arreglo)=>{
 
 })
 
-export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
+export const LlenarEventoConPruebas = ((arregloeventoconpruebas,numeroafiliado) =>{
 
     LimpiarEventoConPruebas();
-
+    let idevento=0;
       // Crea un elemento <table> y un elemento <tbody>
       let tabla   = document.createElement("table");
       tabla.classList.add('table');
@@ -356,48 +371,49 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
           tblBody.appendChild(hilera);
         }else{
 
-        // Crea las hileras de la tabla
-          let hilera = document.createElement("tr");
+            idevento = arregloeventoconpruebas[i].idevento;
 
-          let columna1 = document.createElement("th"); 
-          columna1.style = "text-align: -webkit-right;"
-                 
-          let columna2 = document.createElement("th");
+            // Crea las hileras de la tabla
+            let hilera = document.createElement("tr");
 
-          let celda1 = document.createElement("td");
-          let celda2 = document.createElement("td");
+            let columna1 = document.createElement("th"); 
+            columna1.style = "text-align: -webkit-right;"
+                    
+            let columna2 = document.createElement("th");
 
-          let nombreprueba = document.createTextNode(arregloeventoconpruebas[i].nombreprueba);
-          nombreprueba.id = "nombreprueba" + arregloeventoconpruebas[i].nombreprueba;
-          if(arregloeventoconpruebas[i].escombinada == 1)
-            celda1.style.color = "red";
+            let celda1 = document.createElement("td");
+            let celda2 = document.createElement("td");
 
-          celda1.appendChild(nombreprueba);        
-          columna1.appendChild(celda1);
+            let nombreprueba = document.createTextNode(arregloeventoconpruebas[i].nombreprueba);
+            nombreprueba.id = "nombreprueba" + arregloeventoconpruebas[i].nombreprueba;
+            if(arregloeventoconpruebas[i].escombinada == 1)
+                celda1.style.color = "red";
 
-           //Seleccionar/Deseleccionar una prueba
-           let botonagregareventop = document.createElement("button");
-           botonagregareventop.id = "SeleccionPrueba" + arregloeventoconpruebas[i].ideventoprueba;
-           botonagregareventop.innerHTML = "Agregar " + arregloeventoconpruebas[i].nombredetalle;
-           botonagregareventop.classList.add("btn");
-           botonagregareventop.classList.add("btn-success");
-           botonagregareventop.classList.add("btn-list");
-           
-           botonagregareventop.onclick = (e)=>{
-             e.preventDefault();
-             SeleccionPrueba(e.target.id,arregloeventoconpruebas);
-           }
-          celda2.appendChild(botonagregareventop);        
-          columna2.appendChild(celda2);
+            celda1.appendChild(nombreprueba);        
+            columna1.appendChild(celda1);
+
+            //Seleccionar/Deseleccionar una prueba
+            let botonagregareventop = document.createElement("button");
+            botonagregareventop.id = "SeleccionPrueba" + arregloeventoconpruebas[i].ideventoprueba;
+            botonagregareventop.innerHTML = "Agregar " + arregloeventoconpruebas[i].nombredetalle;
+            botonagregareventop.classList.add("btn");
+            botonagregareventop.classList.add("btn-success");
+            botonagregareventop.classList.add("btn-list");
+            
+            botonagregareventop.onclick = (e)=>{
+                e.preventDefault();
+                SeleccionPrueba(e.target.id,arregloeventoconpruebas,numeroafiliado);
+            }
+            celda2.appendChild(botonagregareventop);        
+            columna2.appendChild(celda2);
 
 
-          hilera.appendChild(columna1);        
-          hilera.appendChild(columna2);
-          
-          // agrega la hilera al final de la tabla (al final del elemento tblbody)
-          tblBody.appendChild(hilera);
+            hilera.appendChild(columna1);        
+            hilera.appendChild(columna2);
+            
+            // agrega la hilera al final de la tabla (al final del elemento tblbody)
+            tblBody.appendChild(hilera);
         }
-        
       }
     
       
@@ -408,6 +424,9 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
       
       // modifica el atributo "border" de la tabla y lo fija a "2";
       tabla.setAttribute("border", "2");
+
+      ConsultarSeleccion(arregloeventoconpruebas,idevento,numeroafiliado);
+
 
   });
 
@@ -422,10 +441,10 @@ export const LlenarEventoConPruebas = ((arregloeventoconpruebas) =>{
 
 let arreglocalculadora = [];
 
-export const SeleccionPrueba = (async (id,arreglo)=>{
-      let idpuro = id.replace('SeleccionPrueba','');
+export const SeleccionPrueba = (async (id,arreglo,numeroafiliado)=>{
+        let idpuro = id.replace('SeleccionPrueba','');
 
-      for (let i = 0; i < arreglo.length; i++) {
+        for (let i = 0; i < arreglo.length; i++) {
           if(arreglo[i].ideventoprueba == idpuro)
           {
               //   GuardarEventoPrueba( codigoevento.value,arreglo[i].codigoprueba,arreglo[i].codigodetalle );
@@ -434,6 +453,7 @@ export const SeleccionPrueba = (async (id,arreglo)=>{
                 botonelegido.classList.replace("btn-success","btn-warning");
 
                 arreglocalculadora.push(arreglo[i]);
+                GuardarSeleccion(arreglo[i],numeroafiliado);
                 Calculadora();
 
             }
@@ -452,19 +472,23 @@ export const SeleccionPrueba = (async (id,arreglo)=>{
 
                 arreglocalculadora = [...arreglotemporal];
 
+                EliminarSeleccion(arreglo[i],numeroafiliado);
+
                 Calculadora();
             }
 
           }
-      }
+        } 
   });
+
+let totalgeneral =0;
 
 export const Calculadora = (()=>{
     let contadorbase=0;
     let contadorextra=0;
     let contadorcombinada=0;
 
-    let totalgeneral =0;
+    totalgeneral =0;
     let totalbase = 0;
 
     let totalgeneraldolar =0;
@@ -502,7 +526,6 @@ export const Calculadora = (()=>{
         parseInt(contadorextra * arreglocalculadora[0].costopruebaextradolar) +
         parseInt(contadorcombinada * arreglocalculadora[0].costopruebacombinadadolar);
 
-        console.log(totalgeneral)
     }      
 
     labeltotal.innerHTML = "TOTAL $ " + totalgeneral;
@@ -516,4 +539,100 @@ const LimpiarLabel = (()=>{
 
 const LimpiarArregloCalculadora = (()=>{
     arreglocalculadora = [];
+})
+
+const LimpiarDescripcion = (()=>{
+    descripcionevento.innerHTML = '';
+})
+
+const LimpiarTotal = (()=>{
+    totalgeneral =0;
+})
+const ConsultarSeleccion = ((arregloeventoconpruebas,idevento,numeroafiliado)=>{
+
+    let publicacion = {
+        idevento : idevento,
+        numeroafiliado : numeroafiliado,
+    }
+    fetch('./controladores/consultarseleccion.php?a=60',{
+        method:'POST',
+        body:JSON.stringify(publicacion),
+        headers:{'Content-Type':'application/Json'}
+    }).then(response=>{
+        if(response.status == 200)
+        {
+            return response.json();
+        }
+    }).then(data=>{
+        if(data.length>0)
+        {
+            data.forEach(element => {
+
+                for (let i = 0; i < arregloeventoconpruebas.length; i++) {
+                    if(arregloeventoconpruebas[i].ideventoprueba == element['ideventoprueba'])
+                    {
+                        let botonelegido = document.getElementById("SeleccionPrueba" + arregloeventoconpruebas[i].ideventoprueba);
+                        botonelegido.classList.replace("btn-success","btn-warning");
+                        arreglocalculadora.push(arregloeventoconpruebas[i]);
+                        Calculadora();
+                    }
+                } 
+            });
+        }
+    })
+})
+
+
+const GuardarSeleccion = ((arreglo,numeroafiliado)=>{
+
+    let publicacion = {
+        ideventoprueba : arreglo.ideventoprueba,
+        codigodetalle : arreglo.codigodetalle,
+        codigoprueba : arreglo.codigoprueba,
+        idevento : arreglo.idevento,
+        numeroafiliado : numeroafiliado,
+    }
+    fetch('./controladores/guardarseleccion.php?a=60',{
+        method:'POST',
+        body:JSON.stringify(publicacion),
+        headers:{'Content-Type':'application/Json'}
+    }).then(response=>{
+        if(response.status == 200)
+        {
+            return response.text();
+        }
+    }).then(data=>{
+        if(data)
+            ShowMessage("Guardado","success",1000);
+        else
+            ShowMessage("Error al guardar","error",1000);
+
+    })
+})
+
+const EliminarSeleccion = ((arreglo,numeroafiliado)=>{
+
+    let publicacion = {
+        ideventoprueba : arreglo.ideventoprueba,
+        codigodetalle : arreglo.codigodetalle,
+        codigoprueba : arreglo.codigoprueba,
+        idevento : arreglo.idevento,
+        numeroafiliado : numeroafiliado,
+    }
+    fetch('./controladores/eliminarseleccion.php?a=60',{
+        method:'POST',
+        body:JSON.stringify(publicacion),
+        headers:{'Content-Type':'application/Json'}
+    }).then(response=>{
+        if(response.status == 200)
+        {
+            return response.text();
+        }
+    }).then(data=>{
+        if(data)
+            ShowMessage("Descartado","success",1000);
+        else
+            ShowMessage("Error al guardar","error",1000);
+
+    })
 })

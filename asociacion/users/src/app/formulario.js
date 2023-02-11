@@ -1,7 +1,6 @@
 import {SelectOption} from './select.js';
 import {Credencial} from './credencial.js?a=60';
 import {BuscarEventos} from './eventosdisponibles.js?a=60';
-// import {EliminaBotonCredencial} from './archivosimagen.js'
 //--------------------------- Datos -------------------------------
 
 const infopago = document.getElementById("infopago");
@@ -138,7 +137,7 @@ export const LlenarFormulario=((f)=>{
         DeshabilitaNombreApellido();
         infopago.style.display = "none";
         infoeventos.style.display = "visible";
-        BuscarEventos(Info);
+        BuscarEventos(Info.numeroafiliado);
     }else
     {
         estadocredencial.innerHTML = "Pendiente de aprobación";

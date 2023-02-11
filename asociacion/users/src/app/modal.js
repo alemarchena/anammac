@@ -1,5 +1,4 @@
 
-import {ShowMessage} from './showmessage.js'
 const imagenlogueado  = document.querySelector("#imagenlogueado");
 
 export const CerrarModal = (()=>{
