@@ -1,4 +1,4 @@
-import {NewOpcion} from './select.js?a=60';
+import {NewOpcion} from './select.js?a=61';
 
 const codigoestado = document.getElementById('codigoestado');
 

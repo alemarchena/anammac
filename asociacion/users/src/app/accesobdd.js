@@ -1,16 +1,16 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=60'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=60'
-import {ShowMessage} from './showmessage.js?a=60'
-import {LoggMenu} from './logincheck.js?a=60'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=60'
-import {ListaEstados} from './estados.js?a=60'
-import {ListaSangres} from './sangres.js?a=60'
-import {ListaEspecialidades} from './especialidades.js?a=60'
-import {ListaTallas} from './tallas.js?a=60'
-import {ConvierteaDMA} from './clases.js?a=60'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=61'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=61'
+import {ShowMessage} from './showmessage.js?a=61'
+import {LoggMenu} from './logincheck.js?a=61'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=61'
+import {ListaEstados} from './estados.js?a=61'
+import {ListaSangres} from './sangres.js?a=61'
+import {ListaEspecialidades} from './especialidades.js?a=61'
+import {ListaTallas} from './tallas.js?a=61'
+import {ConvierteaDMA} from './clases.js?a=61'
 
 let imagenlogueado  = document.querySelector("#imagenlogueado");
-
+let numeroafiliado  = document.querySelector("#numeroafiliado");
 
 export const LeerCodigoUsuarioBDD = ((codigo)=>{
     Ingresa('consultaxusuario','','',codigo)
@@ -29,7 +29,7 @@ export function Ingresa(tipo,id,email,usuario)
     });
 
     let datosconsulta = {tipo:tipo,idafiliacion:id,email:email,usuario:usuario}
-    fetch('./controladores/consultaafiliado.php?a=60',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
+    fetch('./controladores/consultaafiliado.php?a=61',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
     .then(response=>
     {
         if(response.status==200)
@@ -106,7 +106,7 @@ function GuardarDatos(email)
     codigoespecialidad:0,enfermedadcronica:'',codigotalla:0,fotoatleta:'',fotodocumento:'',fotopago:'',
     aprobado:0,desactivado  : 0}
 
-    fetch("./controladores/guardarafiliacion.php?a=60",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarafiliacion.php?a=61",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
     .then(response =>{
         return response.json();
     }).then(data => {
@@ -159,6 +159,25 @@ export const ABDD = ((campo,valor,tipodato)=>{
     crearcredencial.style.display = "none";
 })
 
+export const ABDDPE = ((campo,valor,tipodato)=>{
+
+    if(valor.toString().includes("'")){
+        valor = valor.toString().replace("'",'`');
+    }
+    let datosconsulta = {numeroafiliado  : numeroafiliado.value,campo : campo,valor:valor,tipodato:tipodato}
+    fetch("./controladores/actualizapagoevento.php?a=1",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    .then(response =>{
+        return response.json();
+    }).then(data => {
+        if(data == 1){
+            ShowMessage("Guardado!","success",2000)
+        }
+    })
+    .catch(function (error){ 
+        console.log(error); 
+        ShowMessage("Error al guardar en la base de datos","error",3000);
+    });
+})
 
 
 document.addEventListener('change',function(e){

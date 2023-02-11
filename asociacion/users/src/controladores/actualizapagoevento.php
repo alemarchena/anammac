@@ -5,15 +5,16 @@
 
     //---------------------parametros recibidos en el POST----------------------
     
-    $tabla                  = "apt_afiliaciones";
-    $tablapagosinscripciones= "apt_pagosinscripciones";
-
+    $tabla              = "apt_afiliaciones";
     $datosconsulta      = json_decode(file_get_contents('php://input'),true);
+    
+    $numeroafiliado       = $datosconsulta['numeroafiliado'];
+    $campo      = $datosconsulta['campo'];
+    $valor      = $datosconsulta['valor'];
+    $tipodato   = $datosconsulta['tipodato'];
 
-    $idafiliacion           = $datosconsulta['idafiliacion'];
-    $imagen                 = $datosconsulta['imagen'];
-    $tipo                   = $datosconsulta['tipo'];
-        
+    $fho = new DateTime();
+    $fechahoraoperativa= $fho->format('Y-m-d H:i:sP');
     //-----------------conectando con la base de datos---------------------
     
     $mysqli = new mysqli($host, $user, $password, $dbname, $port, $socket);
@@ -26,15 +27,12 @@
     
     mysqli_set_charset($mysqli,"utf8");
     //--------------------------- Acciones -------------------------
-    if($tipo=='atleta')
-        $sql = "update " .$tabla. " set fotoatleta='$imagen' where idafiliacion =$idafiliacion";
-    else if($tipo=='pago')
-        $sql = "update " .$tabla. " set fotopago='$imagen' where idafiliacion =$idafiliacion";
-    else if($tipo=='documento')
-        $sql = "update " .$tabla. " set fotodocumento='$imagen' where idafiliacion =$idafiliacion";
-    else if($tipo=='pagoevento')
-        $sql = "update " .$tablapagosinscripciones. " set fotopagoevento='$imagen' where numeroafiliado = '$idafiliacion'";
-
+    
+    $basesql = "update " .$tabla;
+    if($tipodato=='texto')
+        $sql = $basesql . " set $campo='$valor' where numeroafiliado = '$numeroafiliado'";
+    else
+        $sql = $basesql . " set $campo= $valor  where numeroafiliado = '$numeroafiliado'";
 
     $resultado  = $mysqli->query($sql);
     echo $resultado;

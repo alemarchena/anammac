@@ -1,20 +1,23 @@
 
-import {Fotos} from './formulario.js';
-import {ABDD} from './accesobdd.js'
-import {MostarImagenLogin} from './modal.js'
+import {Fotos} from './formulario.js?a=61';
+import {ABDD,ABDDPE} from './accesobdd.js?a=61'
+import {MostarImagenLogin} from './modal.js?a=61'
 
 const input     = document.querySelector("#input-file");
 
 const idafiliacion  = document.getElementById('idafiliacion');
+const numeroafiliado  = document.getElementById('numeroafiliado');
 
 
 const botonatleta = document.getElementById('botonatleta');
-const botonpago = document.getElementById('botonpago');
 const botondocumento = document.getElementById('botondocumento');
+const botonpago = document.getElementById('botonpago');
+const botonpagoevento = document.getElementById('botonpagoevento');
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');
 const fotopago          = document.getElementById('fotopago');
+const fotopagoevento    = document.getElementById('fotopagoevento');
 
 let quebotontoco;
 
@@ -43,6 +46,15 @@ botondocumento.addEventListener('click',(e)=>{
     input.click();
 })
 
+botonpagoevento.addEventListener('click',(e)=>{
+
+    e.preventDefault();
+    quebotontoco='pagoevento';
+
+    archivosubida = 'subirimagenpagoevento.php';
+
+    input.click();
+})
 input.addEventListener('change',(e) => {
 
     e.preventDefault();
@@ -67,9 +79,10 @@ function showFile(files){
 
 function processFile(file)
 {
+    
     const tipo=file.type;
     const validExtentions = ['image/jpeg','image/jpg','image/png','image/gif'];
-
+    
     if(validExtentions.includes(tipo) )
     {
         const fileReader = new FileReader();
@@ -127,7 +140,14 @@ const uploadFile = async (file,id)=> {
 
 function ActualizaImagen(tipo,idafiliacion,imagen)    
 {
-    let datosconsulta = {tipo:tipo,idafiliacion  : idafiliacion,imagen : imagen}
+    let identificador;
+    if(tipo=='pagoevento'){
+        identificador = numeroafiliado.value;
+    }else{
+        identificador = idafiliacion;
+    }
+
+    let datosconsulta = {tipo:tipo,idafiliacion  : identificador,imagen : imagen}
 
     fetch("./controladores/actualizarimagenalumno.php?a=33",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
     .then(response =>{
@@ -152,7 +172,6 @@ function ActualizaImagen(tipo,idafiliacion,imagen)
                 fotodocumento.src    = "./imgafiliados/" + imagen;
                 
                 eliminaImagen(eliminarimagendocumento);
-              
             }
 
             if(tipo=='pago'){
@@ -167,6 +186,17 @@ function ActualizaImagen(tipo,idafiliacion,imagen)
                 
                 eliminaImagen(eliminarimagenpago);
                
+            }
+            if(tipo=='pagoevento'){
+                const fechaactual = new Date();
+                ABDDPE('fechapago',fechaactual,'texto');
+
+                let eliminarimagenpagoevento = Fotos.fotopagoevento;
+
+                Fotos.fotopagoevento = imagen;
+                fotopagoevento.src = "./imgpagosevento/" + imagen;
+                
+                eliminaImagen(eliminarimagenpagoevento);
             }
         }
     })
@@ -193,6 +223,8 @@ const eliminaImagen = async (imagen)=>
     let archivo='';
     if(quebotontoco=='pago')
         archivo = "eliminarImagenpago.php";
+    else if(quebotontoco=='pagoevento')
+        archivo = "eliminarImagenpagoevento.php";
     else
         archivo = "eliminarImagen.php";
 

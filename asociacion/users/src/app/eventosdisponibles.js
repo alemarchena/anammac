@@ -10,7 +10,8 @@ let labeltotal          = document.getElementById('labeltotal');
 let labeltotaldolar     = document.getElementById('labeltotaldolar');
 let descripcionevento   = document.getElementById('descripcionevento');
 let numeroafiliado      = document.getElementById('numeroafiliado');
-
+let infoimagendepago    = document.getElementById('infoimagendepago');
+ 
 
 eventosdisponibles.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -65,8 +66,10 @@ export const BuscarEventos = ((numeroafiliado)=>{
             LimpiarDescripcion();
             LimpiarEventoConPruebas();
             LlenarTablaEventos(arregloeventos,numeroafiliado);
+            HabilitarImagenDePago(0);
         }else
         {
+            HabilitarImagenDePago(0);
             LimpiarTEventos();
         }
     })
@@ -75,6 +78,13 @@ export const BuscarEventos = ((numeroafiliado)=>{
         console.log(error);
     });
 
+})
+
+const HabilitarImagenDePago=((valor)=>{
+    if(valor==0)
+        infoimagendepago.style.display = "none";
+    else
+        infoimagendepago.style.display = "block";
 })
 
 export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
@@ -194,7 +204,7 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
             botonpagar.classList.add("btn");
             botonpagar.classList.add("btn-success");
             botonpagar.classList.add("btn-list");
-            botonpagar.innerHTML = "Pagar";
+            botonpagar.innerHTML = "Asignar imagen de pago";
             botonpagar.onclick = (e)=>{
                 e.preventDefault();
                 PagarEvento(e.target.id,arregloeventos);
@@ -224,23 +234,31 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
   
 });
 
-export const PagarEvento = (async (id,arreglo,numeroafiliado)=>{
+export const PagarEvento = (async (id,arreglo)=>{
     if(totalgeneral<=0)
     {
         ShowMessage("Verifique la cantidad de pruebas seleccionadas","success",2000);
     }else{
-        let botonPagar = document.getElementById(id);
         
         let idpuro = id.replace('PagarEvento','');
         for (let i = 0; i < arreglo.length; i++) {
             if(arreglo[i].idevento == idpuro)
             {
-                alert(totalgeneral);
                 // BuscarEventoConPruebas(arreglo[i],numeroafiliado);
+                HabilitarImagenDePago(1);
             }
         }
     }
 });
+
+export const ELiminarImagenPago = ((imagen)=>{
+    let eliminarimagenpagoevento = Fotos.fotoatleta;
+    Fotos.fotoatleta = imagen;
+    fotoatleta.src    = "./imgpagosevento/" + imagen;
+    
+    eliminaImagen(eliminarimagenpagoevento);
+})
+
 
 export function LimpiarTEventos()
 {

@@ -1,6 +1,6 @@
 import {SelectOption} from './select.js';
-import {Credencial} from './credencial.js?a=60';
-import {BuscarEventos} from './eventosdisponibles.js?a=60';
+import {Credencial} from './credencial.js?a=61';
+import {BuscarEventos} from './eventosdisponibles.js?a=61';
 //--------------------------- Datos -------------------------------
 
 const infopago = document.getElementById("infopago");
@@ -62,6 +62,7 @@ export class Fotos
         this.fotoatleta     = fotoatleta;
         this.fotodocumento  = fotodocumento;
         this.fotopago       = fotopago;
+        this.fotopagoevento = '';
     }
 }
 
@@ -87,6 +88,7 @@ export const LlenarFormulario=((f)=>{
     Info.fotoatleta=f.fotoatleta;
     Info.fotodocumento=f.fotodocumento;
     Info.fotopago=f.fotopago;
+    Info.fotopagoevento='';
 
     Info.aprobado=f.aprobado;
     Info.desactivado=f.desactivado;
@@ -127,7 +129,11 @@ export const LlenarFormulario=((f)=>{
     
     Fotos.fotopago = f.fotopago;
     f.fotopago!=''      ? fotopago.src      = "./imgpagos/" + f.fotopago      : fotopago.src      = "./imgafiliados/avatarvacio.jpg";
-    
+
+  
+    fotopagoevento.src      = "./imgafiliados/avatarvacio.jpg";
+
+
     if(f.numeroafiliado !='' && f.aprobado == 1 && f.desactivado == 0)
     {
         estadocredencial.innerHTML = "Credencial aprobada";
@@ -206,6 +212,8 @@ const codigotalla       = document.getElementById('codigotalla');
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');
 const fotopago          = document.getElementById('fotopago');
+const fotopagoevento    = document.getElementById('fotopagoevento');
+
 
 const estadocredencial = document.getElementById('estadocredencial'); 
 document.addEventListener('click',((e)=>{
