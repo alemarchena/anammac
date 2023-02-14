@@ -5,7 +5,7 @@
 
     //---------------------parametros recibidos en el POST----------------------
     
-    $tabla              = "apt_afiliaciones";
+    $tabla              = "apt_pagosinscripciones";
     $datosconsulta      = json_decode(file_get_contents('php://input'),true);
     
     $numeroafiliado       = $datosconsulta['numeroafiliado'];

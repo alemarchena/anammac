@@ -2,12 +2,14 @@
 import {Fotos} from './formulario.js?a=61';
 import {ABDD,ABDDPE} from './accesobdd.js?a=61'
 import {MostarImagenLogin} from './modal.js?a=61'
+import { ShowMessage } from './showmessage.js?a=61'
 
 const input     = document.querySelector("#input-file");
 
-const idafiliacion  = document.getElementById('idafiliacion');
-const numeroafiliado  = document.getElementById('numeroafiliado');
-
+const idafiliacion      = document.getElementById('idafiliacion');
+const numeroafiliado    = document.getElementById('numeroafiliado');
+const ideventoelegido   = document.getElementById('ideventoelegido');
+ 
 
 const botonatleta = document.getElementById('botonatleta');
 const botondocumento = document.getElementById('botondocumento');
@@ -18,6 +20,7 @@ const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');
 const fotopago          = document.getElementById('fotopago');
 const fotopagoevento    = document.getElementById('fotopagoevento');
+
 
 let quebotontoco;
 
@@ -188,15 +191,63 @@ function ActualizaImagen(tipo,idafiliacion,imagen)
                
             }
             if(tipo=='pagoevento'){
-                const fechaactual = new Date();
-                ABDDPE('fechapago',fechaactual,'texto');
 
-                let eliminarimagenpagoevento = Fotos.fotopagoevento;
+                let datosconsulta = {tipo:tipo,idafiliacion  : identificador,imagen : imagen}
 
-                Fotos.fotopagoevento = imagen;
-                fotopagoevento.src = "./imgpagosevento/" + imagen;
-                
-                eliminaImagen(eliminarimagenpagoevento);
+                fetch("./controladores/actualizarimagenalumno.php?a=33",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+                .then(response =>{
+                    return response.text();
+                }).then(data => {
+
+                    let datosconsultado = {numeroafiliado  : numeroafiliado.value,idevento : ideventoelegido.value}
+
+                    fetch("./controladores/consultapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosconsultado ),headers:{'Content-Type':'application/json'}})   
+                    .then(response =>{
+                        return response.text();
+                    }).then(data => {
+
+                        if(data == "[]")
+                        {
+                            //Primer comprobante guardado
+                            const fechaactualinsertada = new Date();
+                            let datosinsertado = {
+                                numeroafiliado  : numeroafiliado.value,
+                                idevento : ideventoelegido.value,
+                                fechapago : fechaactualinsertada,
+                                fotopagoevento : imagen,
+                            }
+
+                            fetch("./controladores/insertapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosinsertado ),headers:{'Content-Type':'application/json'}})   
+                            .then(response =>{
+                                return response.text();
+                            }).then(data => {
+                                ShowMessage("Pago guardado, un operador validará el pago manualmente!","success",4000);
+                            }).catch(function(error){
+                                console.log(error);
+                            });
+
+                        }else{
+
+                            //actualizacion del comprobante
+                            const fechaactual = new Date();
+                            ABDDPE('fechapago',fechaactual,'texto');
+            
+                        }
+
+                        let eliminarimagenpagoevento = Fotos.fotopagoevento;
+        
+                        Fotos.fotopagoevento = imagen;
+                        fotopagoevento.src = "./imgpagosevento/" + imagen;
+                        
+                        eliminaImagen(eliminarimagenpagoevento);
+                        
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                }).catch(function(error){
+                    console.log(error);
+                });
+
             }
         }
     })
@@ -236,3 +287,4 @@ const eliminaImagen = async (imagen)=>
     console.log(error)
     });
 }
+

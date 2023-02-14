@@ -11,7 +11,9 @@ let labeltotaldolar     = document.getElementById('labeltotaldolar');
 let descripcionevento   = document.getElementById('descripcionevento');
 let numeroafiliado      = document.getElementById('numeroafiliado');
 let infoimagendepago    = document.getElementById('infoimagendepago');
- 
+let ideventoelegido         = document.getElementById('ideventoelegido');
+let ideventoelegidotitulo   = document.getElementById('ideventoelegidotitulo');
+let fotopagoevento   = document.getElementById('fotopagoevento');
 
 eventosdisponibles.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -204,7 +206,7 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
             botonpagar.classList.add("btn");
             botonpagar.classList.add("btn-success");
             botonpagar.classList.add("btn-list");
-            botonpagar.innerHTML = "Asignar imagen de pago";
+            botonpagar.innerHTML = "Pagar";
             botonpagar.onclick = (e)=>{
                 e.preventDefault();
                 PagarEvento(e.target.id,arregloeventos);
@@ -244,12 +246,18 @@ export const PagarEvento = (async (id,arreglo)=>{
         for (let i = 0; i < arreglo.length; i++) {
             if(arreglo[i].idevento == idpuro)
             {
-                // BuscarEventoConPruebas(arreglo[i],numeroafiliado);
+                AsignaDatosSeleccionadosEvento(arreglo[i].idevento,arreglo[i].nombre);
                 HabilitarImagenDePago(1);
             }
         }
     }
 });
+
+
+const AsignaDatosSeleccionadosEvento=((idevento,nombre)=>{
+    ideventoelegido.value = idevento;
+    ideventoelegidotitulo.value = nombre;
+})
 
 export const ELiminarImagenPago = ((imagen)=>{
     let eliminarimagenpagoevento = Fotos.fotoatleta;
@@ -276,10 +284,33 @@ export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
             LimpiarLabel();
             BuscarEventoConPruebas(arreglo[i],numeroafiliado);
             ActivarTotal(1);
+            CosultaPagoEvento(numeroafiliado,arreglo[i].idevento,arreglo[i].nombre);
         }
     }
   });
 
+  const CosultaPagoEvento = ((numeroafiliado,idevento,nombre)=>{
+    let datosconsultado = {numeroafiliado  : numeroafiliado,idevento : idevento}
+
+    fetch("./controladores/consultapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosconsultado ),headers:{'Content-Type':'application/json'}})   
+    .then(response =>{
+        return response.text();
+    }).then(data => {
+    console.log(data)
+    
+            if(data != "[]")
+            {
+                let datos = JSON.parse(data);
+                fotopagoevento.src = './imgpagosevento/' + datos[0].fotopagoevento;
+                HabilitarImagenDePago(1);
+                AsignaDatosSeleccionadosEvento(idevento,nombre);
+
+            }
+
+        }).catch(()=>{
+
+        })
+    })
   const MostrarDescripcionEvento = ((descripcion)=>{
     descripcionevento.innerHTML = descripcion;
   })

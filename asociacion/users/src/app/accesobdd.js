@@ -224,7 +224,7 @@ document.addEventListener('change',function(e){
     uck == 'idafiliacion' ? ShowMessage('Se ha intentado cambiar el id del afiliado','error',3000) : false;
     uck == 'numeroafiliado' ? ShowMessage('Se ha intentado cambiar el número de afiliado','error',3000) : false;
 
-    if(uck=='numeroafiliado')
+    if(uck=='numeroafiliado' || uck == 'ideventoelegido')
     {
         setTimeout(() => {
             location.reload();
