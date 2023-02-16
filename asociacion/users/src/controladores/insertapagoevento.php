@@ -11,13 +11,15 @@
     $tabla              = "apt_pagosinscripciones";
     $json = json_decode(file_get_contents('php://input'),true);
 
-    $numeroafiliado = $json['numeroafiliado'];
-    $idevento       = $json['idevento'];
-    $fotopagoevento   = $json['fotopagoevento'];
-    $fechapago  = $json['fechapago'];
+    $numeroafiliado     = $json['numeroafiliado'];
+    $idevento           = $json['idevento'];
+    $fotopagoevento     = $json['fotopagoevento'];
+    $fechapago          = $json['fechapago'];
+    $montopagado        = $json['montopagado'];
+    $montopagadodolar   = $json['montopagadodolar'];
    
-    $sql = "Insert into $tabla (numeroafiliado,idevento,fotopagoevento,fechapago) 
-    values('$numeroafiliado',$idevento,'$fotopagoevento','$fechapago')";
+    $sql = "Insert into $tabla (numeroafiliado,idevento,fotopagoevento,fechapago,montopagado,montopagadodolar) 
+    values('$numeroafiliado',$idevento,'$fotopagoevento','$fechapago',$montopagado,$montopagadodolar)";
     
     $resultado = $mysqli->query($sql);
     if($resultado)

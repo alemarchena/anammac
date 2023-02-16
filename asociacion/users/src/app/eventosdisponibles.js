@@ -18,11 +18,10 @@ let fotopagoevento   = document.getElementById('fotopagoevento');
 eventosdisponibles.addEventListener('click',(e)=>{
     e.preventDefault();
     BuscarEventos(numeroafiliado.value);
-   
+
 })
 
 export const BuscarEventos = ((numeroafiliado)=>{
-   
     let publicacionlistaPruebas = {
         codigoevento : 0,
     }
@@ -195,7 +194,8 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
             botonverpruebas.classList.add("btn-list");
             
             botonverpruebas.onclick = (e)=>{
-            e.preventDefault();
+                e.preventDefault();
+
                 VerEvento(e.target.id,arregloeventos,numeroafiliado);
             }
             celda6.appendChild(botonverpruebas); columna6.appendChild(celda6);
@@ -276,6 +276,7 @@ export function LimpiarTEventos()
 
 
 export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
+
     let idpuro = id.replace('VerEvento','');
     for (let i = 0; i < arreglo.length; i++) {
         if(arreglo[i].idevento == idpuro)
@@ -296,12 +297,17 @@ export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
     .then(response =>{
         return response.text();
     }).then(data => {
-    console.log(data)
-    
             if(data != "[]")
             {
                 let datos = JSON.parse(data);
                 fotopagoevento.src = './imgpagosevento/' + datos[0].fotopagoevento;
+                if(datos[0].aprobado == 0)
+                {
+                    avisopago.innerHTML = "Pago en proceso de validación.";
+                }else
+                {
+                    avisopago.innerHTML ="Pago aprobado";
+                }
                 HabilitarImagenDePago(1);
                 AsignaDatosSeleccionadosEvento(idevento,nombre);
 
@@ -493,44 +499,62 @@ let arreglocalculadora = [];
 export const SeleccionPrueba = (async (id,arreglo,numeroafiliado)=>{
         let idpuro = id.replace('SeleccionPrueba','');
 
-        for (let i = 0; i < arreglo.length; i++) {
-          if(arreglo[i].ideventoprueba == idpuro)
-          {
-              //   GuardarEventoPrueba( codigoevento.value,arreglo[i].codigoprueba,arreglo[i].codigodetalle );
-            let botonelegido = document.getElementById(id);
-            if(botonelegido.classList.contains("btn-success")){
-                botonelegido.classList.replace("btn-success","btn-warning");
-
-                arreglocalculadora.push(arreglo[i]);
-                GuardarSeleccion(arreglo[i],numeroafiliado);
-                Calculadora();
-
-            }
-            else
+        for (let i = 0; i < arreglo.length; i++)
+        {
+            if(arreglo[i].ideventoprueba == idpuro)
             {
-                botonelegido.classList.replace("btn-warning","btn-success");
-                let arreglotemporal = [];
-                for(let b=0;b<arreglocalculadora.length;b++)
-                {
 
-                    if(arreglocalculadora[b].ideventoprueba !=  arreglo[i].ideventoprueba)
+                let datosconsultado = {numeroafiliado  : numeroafiliado,idevento : arreglo[i].idevento}
+                fetch("./controladores/consultapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosconsultado ),headers:{'Content-Type':'application/json'}})   
+                .then(response =>{
+                    return response.text();
+                }).then(data => {
+
+                    if(data == "[]")
                     {
-                        arreglotemporal.push(arreglocalculadora[b]);
+                    
+                        //   GuardarEventoPrueba( codigoevento.value,arreglo[i].codigoprueba,arreglo[i].codigodetalle );
+                        let botonelegido = document.getElementById(id);
+                        if(botonelegido.classList.contains("btn-success")){
+                            botonelegido.classList.replace("btn-success","btn-warning");
+
+                            arreglocalculadora.push(arreglo[i]);
+                            GuardarSeleccion(arreglo[i],numeroafiliado);
+                            Calculadora();
+
+                        }
+                        else
+                        {
+                            botonelegido.classList.replace("btn-warning","btn-success");
+                            let arreglotemporal = [];
+                            for(let b=0;b<arreglocalculadora.length;b++)
+                            {
+
+                                if(arreglocalculadora[b].ideventoprueba !=  arreglo[i].ideventoprueba)
+                                {
+                                    arreglotemporal.push(arreglocalculadora[b]);
+                                }
+                            }
+
+                            arreglocalculadora = [...arreglotemporal];
+
+                            EliminarSeleccion(arreglo[i],numeroafiliado);
+
+                            Calculadora();
+                        }
+                        
+                    }else
+                    {
+                        ShowMessage("Para modificar las pruebas debe solicitar la anulación del pago al administrador","error",5000);
                     }
-                }
+                });
 
-                arreglocalculadora = [...arreglotemporal];
-
-                EliminarSeleccion(arreglo[i],numeroafiliado);
-
-                Calculadora();
             }
-
-          }
         } 
   });
 
 let totalgeneral =0;
+let totalgeneraldolar =0;
 
 export const Calculadora = (()=>{
     let contadorbase=0;
@@ -540,7 +564,7 @@ export const Calculadora = (()=>{
     totalgeneral =0;
     let totalbase = 0;
 
-    let totalgeneraldolar =0;
+    totalgeneraldolar =0;
     let totalbasedolar = 0;
 
     for(let a=0;a<arreglocalculadora.length;a++)
@@ -577,13 +601,13 @@ export const Calculadora = (()=>{
 
     }      
 
-    labeltotal.innerHTML = "TOTAL $ " + totalgeneral;
-    labeltotaldolar.innerHTML = "TOTAL U$S " + totalgeneraldolar;
+    labeltotal.value = totalgeneral;
+    labeltotaldolar.value = totalgeneraldolar;
 })
 
 const LimpiarLabel = (()=>{
-    labeltotal.innerHTML = "TOTAL $ 0";
-    labeltotaldolar.innerHTML = "TOTAL U$S 0";
+    labeltotal.value = 0;
+    labeltotaldolar.innvalueerHTML = 0;
 })
 
 const LimpiarArregloCalculadora = (()=>{
@@ -591,7 +615,7 @@ const LimpiarArregloCalculadora = (()=>{
 })
 
 const LimpiarDescripcion = (()=>{
-    descripcionevento.innerHTML = '';
+    descripcionevento.value = 0;
 })
 
 const LimpiarTotal = (()=>{

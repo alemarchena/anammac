@@ -42,12 +42,12 @@
     <!-- JQuery -->
 
 
-    <script>var version=61  ;</script>
-    <link rel="stylesheet" href="./main.css?a=61">
-    <link rel="stylesheet" href="./mainarchivos.css?a=61">
+    <script>var version=64  ;</script>
+    <link rel="stylesheet" href="./main.css?a=64">
+    <link rel="stylesheet" href="./mainarchivos.css?a=64">
 
-    <script src="./main.js?a=61" type="module"></script>
-    <script src="../../scrollwindow.js?a=61" ></script>
+    <script src="./main.js?a=64" type="module"></script>
+    <script src="../../scrollwindow.js?a=64" ></script>
     
   </head>
   <body>
@@ -87,11 +87,13 @@
   
   <div id="divtotal" style='display: none;' class="btn-flotantetotal">
     <div class="row">
-      <label id="labeltotal" for="">TOTAL $ 0</label>
+      <label for="labeltotal">TOTAL $ (Mex)</label>
+      <input id="labeltotal" type="number" readonly style="background-color: rgb(173, 230, 150);border: none;">
     </div>
     <hr>
     <div class="row">
-      <label id="labeltotaldolar" for="">TOTAL U$S 0</label>
+      <label for="labeltotaldolar">TOTAL U$S (EEUU) </label>
+      <input id="labeltotaldolar" type="number" readonly style="background-color: rgb(173, 230, 150);border: none;">
     </div>
   </div>
 
@@ -117,7 +119,7 @@
                   <div class="row" style="text-align: center;">
 
                     <div class="d-flex justify-content-center">
-                      <a style="font-size:0.9em;" href="https://www.anammac.com/asociacion/users/src/politicasprivacidad.html?a=61" target="_blank">Políticas de Privacidad</a>
+                      <a style="font-size:0.9em;" href="https://www.anammac.com/asociacion/users/src/politicasprivacidad.html?a=64" target="_blank">Políticas de Privacidad</a>
                     </div>
                    <br>
                     <hr>
@@ -339,14 +341,33 @@
                           <a id="eventosdisponibles" href="!#" class="btn btn-success">Eventos disponibles</a>
                         </div>
                       </div>
+                      
+                      <br>
+                      <div class="row justify-content-center">
+                        <div class="col-sm-10 col-md-12">
+                            <div id="resultadoseventos"></div>
+                        </div>
+                      </div>
                       <br>
                       <div id="infoimagendepago">
                           
-                          <div class="row justify-content-center" style="background-color: white;">
-                          <div class="col-sm-10 col-md-4 offset-md-4">
+                        <div class="row justify-content-center" style="background-color: white;">
+                          <div class="col-sm-10 col-md-4 ">
+                            <table style="height: 300px;">
+                              <tbody>
+                                <tr>
+                                  <td class="align-middle">
+                                    <h5 id="avisopago" style="color: rgb(26, 99, 29);padding: 0.5em;"></h5>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="col-sm-10 col-md-4 ">
                             <div class="row justify-content-center">
-                              <img loading='lazy'  class="rounded" id="fotopagoevento" src="./imgafiliados/avatarvacio.jpg" alt="" style="height: 200px; width:auto"> 
-                              <a href="#" class="btn btn-warning" id="botonpagoevento">Cargar comprobante de pago del evento</a> 
+                              <img loading='lazy'  class="rounded" id="fotopagoevento" src="./imgafiliados/avatarvacio.jpg" alt="" style="height: 200px; width:auto;margin:0.5em;"> 
+                              <a href="#" class="btn btn-warning" id="botonpagoevento" style="margin-bottom: 1em;">Cargar comprobante de pago del evento</a> 
+                              
                             </div>
                           </div>
                           <div class="col-sm-10 col-md-4">
@@ -364,21 +385,17 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <br>
-                      <div class="row justify-content-center">
-                        <div class="col-sm-10 col-md-12">
-                            <div id="resultadoseventos"></div>
-                        </div>
+
                       </div>
                       <div class="row justify-content-center">
-                        <p id="descripcionevento" style="background-color: white;color: black;">Aca se ve</p>
+                        <p id="descripcionevento" style="background-color: rgb(235, 235, 235);color: rgb(5, 5, 5);padding:1em;font-size: 0.95em;"></p>
                       </div>
                       <div class="row justify-content-center">
                         <div class="col-sm-10 col-md-12">
                             <div id="resultadoeventoconpruebas"></div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 <!-- -------------------- Datos personales ---------------------- -->
@@ -552,10 +569,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script type="module" src="./app/interfaz.js?a=61"></script>
-    <script type="module" src="./app/clases.js?a=61" ></script>
-    <script type="module"  src="./app/archivosimagen.js?a=61"></script>
-    <script type="text/javascript"  src="./app/teclado.js?a=61"></script>
+    <script type="module" src="./app/interfaz.js?a=64"></script>
+    <script type="module" src="./app/clases.js?a=64" ></script>
+    <script type="module"  src="./app/archivosimagen.js?a=64"></script>
+    <script type="text/javascript"  src="./app/teclado.js?a=64"></script>
 
   </body>
   </html>

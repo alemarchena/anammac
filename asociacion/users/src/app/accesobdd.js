@@ -1,13 +1,13 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=61'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=61'
-import {ShowMessage} from './showmessage.js?a=61'
-import {LoggMenu} from './logincheck.js?a=61'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=61'
-import {ListaEstados} from './estados.js?a=61'
-import {ListaSangres} from './sangres.js?a=61'
-import {ListaEspecialidades} from './especialidades.js?a=61'
-import {ListaTallas} from './tallas.js?a=61'
-import {ConvierteaDMA} from './clases.js?a=61'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=64'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=64'
+import {ShowMessage} from './showmessage.js?a=64'
+import {LoggMenu} from './logincheck.js?a=64'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=64'
+import {ListaEstados} from './estados.js?a=64'
+import {ListaSangres} from './sangres.js?a=64'
+import {ListaEspecialidades} from './especialidades.js?a=64'
+import {ListaTallas} from './tallas.js?a=64'
+import {ConvierteaDMA} from './clases.js?a=64'
 
 let imagenlogueado  = document.querySelector("#imagenlogueado");
 let numeroafiliado  = document.querySelector("#numeroafiliado");
@@ -29,7 +29,7 @@ export function Ingresa(tipo,id,email,usuario)
     });
 
     let datosconsulta = {tipo:tipo,idafiliacion:id,email:email,usuario:usuario}
-    fetch('./controladores/consultaafiliado.php?a=61',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
+    fetch('./controladores/consultaafiliado.php?a=64',{method:'POST',body:JSON.stringify(datosconsulta),headers:{'Content-Type':'application/Json'}})
     .then(response=>
     {
         if(response.status==200)
@@ -46,9 +46,8 @@ export function Ingresa(tipo,id,email,usuario)
                 data[0].email,data[0].codigoestado,data[0].direccion,data[0].whatsapp,
                 data[0].codigosangre,data[0].codigoespecialidad,data[0].enfermedadcronica,
                 data[0].codigotalla,data[0].fotoatleta,data[0].fotodocumento,data[0].fotopago,
-                data[0].aprobado,data[0].desactivado);
+                data[0].aprobado,data[0].desactivado,data[0].estester);
             
-
             LlenarFormulario(formulario);
             if(usuario!='' && email == '') //Entro con usuario
             { 
@@ -106,7 +105,7 @@ function GuardarDatos(email)
     codigoespecialidad:0,enfermedadcronica:'',codigotalla:0,fotoatleta:'',fotodocumento:'',fotopago:'',
     aprobado:0,desactivado  : 0}
 
-    fetch("./controladores/guardarafiliacion.php?a=61",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarafiliacion.php?a=64",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
     .then(response =>{
         return response.json();
     }).then(data => {
@@ -224,7 +223,7 @@ document.addEventListener('change',function(e){
     uck == 'idafiliacion' ? ShowMessage('Se ha intentado cambiar el id del afiliado','error',3000) : false;
     uck == 'numeroafiliado' ? ShowMessage('Se ha intentado cambiar el número de afiliado','error',3000) : false;
 
-    if(uck=='numeroafiliado' || uck == 'ideventoelegido')
+    if(uck=='numeroafiliado' || uck == 'ideventoelegido' || uck == 'labeltotal' || uck == 'labeltotaldolar')
     {
         setTimeout(() => {
             location.reload();

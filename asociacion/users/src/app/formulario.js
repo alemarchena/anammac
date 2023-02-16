@@ -1,6 +1,6 @@
 import {SelectOption} from './select.js';
-import {Credencial} from './credencial.js?a=61';
-import {BuscarEventos} from './eventosdisponibles.js?a=61';
+import {Credencial} from './credencial.js?a=64';
+import {BuscarEventos} from './eventosdisponibles.js?a=64';
 //--------------------------- Datos -------------------------------
 
 const infopago = document.getElementById("infopago");
@@ -27,7 +27,7 @@ export class Info
 {
     constructor(idafiliacion,numeroafiliado,usuario,nombres,apellidos,genero,fechanacimiento,email,
         codigoestado,direccion,whatsapp,codigosangre,codigoespecialidad,enfermedadcronica,
-        codigotalla,fotoatleta,fotodocumento,fotopago,aprobado,desactivado){
+        codigotalla,fotoatleta,fotodocumento,fotopago,aprobado,desactivado,estester){
         
         this.idafiliacion=idafiliacion;
         this.numeroafiliado=numeroafiliado;
@@ -52,6 +52,7 @@ export class Info
 
         this.aprobado=aprobado;
         this.desactivado=desactivado;
+        this.estester=estester;
     }
 
 }
@@ -92,6 +93,7 @@ export const LlenarFormulario=((f)=>{
 
     Info.aprobado=f.aprobado;
     Info.desactivado=f.desactivado;
+    Info.estester=f.estester;
 
     idafiliacion.value = f.idafiliacion;
     numeroafiliado.value = f.numeroafiliado;
@@ -141,9 +143,16 @@ export const LlenarFormulario=((f)=>{
 
         Credencial(Info);
         DeshabilitaNombreApellido();
-        infopago.style.display = "none";
-        infoeventos.style.display = "visible";
-        BuscarEventos(Info.numeroafiliado);
+        if(Info.estester==1)
+        {
+            infopago.style.display = "none";
+            infoeventos.style.display = "visible";
+            BuscarEventos(Info.numeroafiliado);
+        }else{
+            
+            infopago.style.display = "none";
+            infoeventos.style.display = "none";
+        }
     }else
     {
         estadocredencial.innerHTML = "Pendiente de aprobación";

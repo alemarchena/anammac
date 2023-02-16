@@ -21,7 +21,9 @@ const fotodocumento     = document.getElementById('fotodocumento');
 const fotopago          = document.getElementById('fotopago');
 const fotopagoevento    = document.getElementById('fotopagoevento');
 
-
+const labeltotal        = document.getElementById('labeltotal');
+const labeltotaldolar   = document.getElementById('labeltotaldolar');
+const avisopago         = document.getElementById('avisopago');
 let quebotontoco;
 
 botonatleta.addEventListener('click',(e)=>{
@@ -215,13 +217,16 @@ function ActualizaImagen(tipo,idafiliacion,imagen)
                                 idevento : ideventoelegido.value,
                                 fechapago : fechaactualinsertada,
                                 fotopagoevento : imagen,
+                                montopagado : labeltotal.value,
+                                montopagadodolar : labeltotaldolar.value,
                             }
 
                             fetch("./controladores/insertapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosinsertado ),headers:{'Content-Type':'application/json'}})   
                             .then(response =>{
                                 return response.text();
                             }).then(data => {
-                                ShowMessage("Pago guardado, un operador validará el pago manualmente!","success",4000);
+                                avisopago.innerHTML = "Validaremos el pago manualmente y luego aquí tendrá su comprobante!";
+                                ShowMessage("Pago guardado correctamente!","success",4000);
                             }).catch(function(error){
                                 console.log(error);
                             });
