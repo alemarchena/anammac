@@ -76,9 +76,105 @@ session_destroy();
             <div id="carrusel" class="carousel slide" data-bs-ride="carousel">
             
                 <div class="carousel-inner">
-                  
-                     <!-- --------------------- Creacion de eventos  --------------------------- -->
+                    <!-- -------------------------- Consulta de Inscriptos -------------------- -->
                     <div class="carousel-item active">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-sm-12 col-md-4 ">
+                                <input type="text" class="form-control" id="buscado" placeholder="Busca nombre,o apellido,o usuario, o email">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-1 offset-md-6" style="text-align: right;">
+                                <div class="tooltipbutton">
+                                    <a id="buscar" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Buscar atletas">Todos<span class="material-icons md-light md-48">search</span></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" style="text-align: right;">
+                                <div class="tooltipbutton">
+                                    <a id="buscarreciente" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Buscar con pago reciente">Recientes<span class="material-icons md-light md-48">search</span></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2" style="text-align: right;">
+                                <div class="tooltipbutton">
+                                    <a id="buscaraprobados" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Buscar atletas aprobados">Aprobados<span class="material-icons md-light md-48">search</span></a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <hr>
+
+                        <div class="accordion" id="accordionExample">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Datos
+                                </button>
+                                </h2>
+
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                
+                                    <div class="accordion-body">
+
+                                        <div class="d-flex justify-content-center">
+                                            <label for="divdatos" class="col-form-label">Resultados</label>
+                                        </div>
+
+                                        <div id="divdatos" class="row" >
+                                            <div class="col-sm-12 col-md-2">
+                                                <div class="row justify-content-center">
+                                                <label for="fotoatleta">Foto del inscrito</label>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                <img id="fotoatleta" src="./img/avatarvacio.jpg" alt="Atleta" class="zoom img-fluid"> 
+                                                <a href="" id="descargaatleta" download >Descargar</a> 
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-12 col-md-2">
+                                                <div class="row justify-content-center">
+                                                <label for="fotopago">Pago al evento</label>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                <img id="fotopago" src="./img/avatarvacio.jpg" alt="Pago" class="zoom img-fluid"> 
+                                                <a href="" id="descargapago" download>Descargar</a> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6 p-1">
+                        
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="idafiliacion" placeholder='Nº control interno' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="numeroafiliado" placeholder='Falta Nº afiliado' disabled readonly></div>
+                                                
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="nombrecambia" placeholder='Nombres' ></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="apellidocambia" placeholder='Apellidos' ></div>
+                                                <div class="row justify-content-center">
+                                                
+                                                <!-- ----------------------------------------------------------- -->
+                                                </div>
+
+                                                <div class="row justify-content-center"><input type="number" class="form-control" id="montopagado"  placeholder='monto $ Mex' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="number" class="form-control" id="montopagadodolar"  placeholder='monto U$S EEUU' disabled readonly></div>
+                                            </div>
+                                        </div>
+
+                                    </div> 
+
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <p id="totalencontrado"></p>
+                        </div>
+                        <!-- ---------------- Tabla con resultados de la busqueda ---------------------- -->
+                        <div id="resultadobusqueda"></div>
+
+                    </div>
+                     <!-- --------------------- Creacion de eventos  --------------------------- -->
+                    <div class="carousel-item ">
                         <div class="row justify-content-center">
                             <div class="col-sm-12 col-md-2">
                                 <div class="d-flex justify-content-center">

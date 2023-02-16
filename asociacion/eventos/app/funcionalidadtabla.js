@@ -1,35 +1,21 @@
-import { ABDD } from "./actualizador.js?a=17";
-import {ShowMessage} from './showmessage.js?a=17'
-import {GetRandomString} from './randomstring.js?a=17'
-
-
+import { ABDDPI } from "./actualizador.js?a=17";
 
 const fotoatleta        = document.getElementById('fotoatleta');
-const fotodocumento     = document.getElementById('fotodocumento');
 const fotopago          = document.getElementById('fotopago');
 
 const descargaatleta        = document.getElementById('descargaatleta');
-const descargadocumento     = document.getElementById('descargadocumento');
 const descargapago          = document.getElementById('descargapago');
 
 const idafiliacion = document.getElementById('idafiliacion');
 
 const nombrecambia      = document.getElementById('nombrecambia');
 const apellidocambia    = document.getElementById('apellidocambia');
-const calendario        = document.getElementById('calendario');
-const fechanacimientotexto      = document.getElementById('fechanacimientotexto');
-
-const nombreestado      = document.getElementById('nombreestado');
-const direccion         = document.getElementById('direccion');
 const whatsapp          = document.getElementById('whatsapp');
 const numeroafiliado      = document.getElementById('numeroafiliado');
-const nombresangre      = document.getElementById('nombresangre');
-const nombreespecialidad= document.getElementById('nombreespecialidad');
-const nombretalla       = document.getElementById('nombretalla');
 const collapseOne       =  document.getElementById('collapseOne');
 
 const ruta = '../users/src/imgafiliados/';
-const rutapagos = '../users/src/imgpagos/';
+const rutapagos = '../users/src/imgpagosevento/';
 let idpuro = '';
 
 
@@ -50,7 +36,6 @@ export function ConvierteaDMAForm(fecha){
     return fechanueva;
 }
 
-
 export const Ver = ((id,arreglo)=>{
 
     if(!collapseOne.classList.contains('show')){
@@ -60,7 +45,7 @@ export const Ver = ((id,arreglo)=>{
 
     idpuro = id.replace('Ver','');
     for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idafiliacion == idpuro)
+        if(arreglo[i].idinscripcion == idpuro)
         {
             try {
                 if(arreglo[i].fotopago == '')
@@ -120,131 +105,54 @@ export const Ver = ((id,arreglo)=>{
     }
 });
 
-export const CreacionAprobacion= ( async (id,arreglo,estado,estadorepresentado)=>{
-
-    idpuro = id.replace('Aprobar','');
-
-    let accion =true;
-
-    for(let v=0;v<arreglo.length;v++)
-    {
-        if(arreglo[v].idafiliacion == idpuro)
-        {
-            if(arreglo[v].codigoestado == 0)
-            {
-                accion = false;
-            }
-        }
-    }
-    if(accion)
-    {
-        fetch('controladores/cuentaafiliados.php',{method:'POST',headers:{'Content-Type':'application/json'}})
-        .then(response => response.json())
-        .then(data =>{
-            
-            //Creacion del número de afiliado
-            let canafi  = data[0].cantidad.toString().length;
-            let cantidadafiliados= data[0].cantidad.toString();
-
-            if(estadorepresentado.length < 2)
-            estadorepresentado = "0" + estadorepresentado;
-            
-            while(canafi < 6)
-            {
-                cantidadafiliados = "0" + cantidadafiliados.toString();
-                canafi = canafi+1;
-            }
-            
-            let numeroafiliado = "MX" + estadorepresentado + cantidadafiliados;
-        
-            ABDD('numeroafiliado',numeroafiliado,'texto',idpuro);
-            let celda1nu= document.getElementById("celdanu" + idpuro);
-            celda1nu.innerHTML = numeroafiliado;
-            //Aprobación del afiliado
-            Aprobacion(id,arreglo,estado);
-        })
-        .catch(function(error) {
-            ShowMessage('Se produjo un error al contar afiliados','error',3000);
-
-        });
-    }else
-    {
-        ShowMessage('El atleta no tiene completo el estado al cual representa','error',5000);
-    }
-
-});
-
-
 export const Aprobacion = ( async (id,arreglo,estado)=>{
 
-    idpuro = id.replace('Aprobar','');
-    for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idafiliacion == idpuro)
-        {
-            // await ABDD('fechapago','0000-00-00','texto',idpuro);
-                        
-            //Cambia el estado
-            estado == 1 ? estado = 0 : estado = 1;
-            await ABDD('aprobado',estado,'numero',idpuro);
-            arreglo[i].aprobado = estado;
+    let idpuro = id.replace('Aprobar','');
 
-            const boton = document.getElementById("Aprobar"+arreglo[i].idafiliacion);
+    for (let i = 0; i < arreglo.length; i++) {
+        if(arreglo[i].idinscripcion == idpuro)
+        {
+            //Cambia el estado del pago del evento
+            estado == 1 ? estado = 0 : estado = 1;
+            await ABDDPI('aprobado',estado,'numero',arreglo[i].idinscripcion,'Aprobación de pago ');
+            
+
+            const boton = document.getElementById("Aprobar"+arreglo[i].idinscripcion);
             estado == 1 ? boton.innerHTML = "Desaprobar" : boton.innerHTML = "Aprobar" ;
+           
         }
     }
 });
 
-export const Bloqueo = ( async (id,arreglo,estado)=>{
+export const Blanquear = ( async (id,arreglo,estado)=>{
 
     console.log('first')
     idpuro = id.replace('Bloquear','');
 
-    for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idafiliacion == idpuro)
-        {
-            estado == 1 ? estado = 0 : estado = 1;
+    // for (let i = 0; i < arreglo.length; i++) {
+    //     if(arreglo[i].idinscripcion == idpuro)
+    //     {
+    //         estado == 1 ? estado = 0 : estado = 1;
 
-            await ABDD('desactivado',estado,'numero',idpuro);
+    //         await ABDD('desactivado',estado,'numero',idpuro);
             
-            arreglo[i].desactivado = estado;
+    //         arreglo[i].desactivado = estado;
 
-            const boton = document.getElementById("Bloquear"+arreglo[i].idafiliacion);
-            estado == 1 ? boton.innerHTML = "Desbloquear" : boton.innerHTML = "Bloquear" ;
-        }
-    }
+    //         const boton = document.getElementById("Bloquear"+arreglo[i].idinscripcion);
+    //         estado == 1 ? boton.innerHTML = "Desbloquear" : boton.innerHTML = "Bloquear" ;
+    //     }
+    // }
 });
 
 export const Ocultar = ((id,arreglo)=>{
     idpuro = id.replace('Ocultar','');
     for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idafiliacion == idpuro)
+        if(arreglo[i].idinscripcion == idpuro)
         {
-            const boton = document.getElementById("Ocultar"+arreglo[i].idafiliacion);
+            const boton = document.getElementById("Ocultar"+arreglo[i].idinscripcion);
             const filapadre = boton.parentElement.parentElement.parentElement;
             filapadre.remove();
             
         }
     }
 });
-
-export const Generar = ( async (id,arreglo)=>{
-
-    idpuro = id.replace('Generar','');
-    for (let i = 0; i < arreglo.length; i++) {
-        if(arreglo[i].idafiliacion == idpuro)
-        {
-            
-            let nuevaClave =GetRandomString(7);
-            await ABDD('usuario',nuevaClave,'texto',idpuro);
-            await AsignaNuevaClave(nuevaClave,arreglo[i].idafiliacion);
-        }
-    }
-});
-
-
-
-function AsignaNuevaClave(nuevaClave,idafiliacion){
-    let usu = document.getElementById("celda" + idafiliacion);
-    usu.innerHTML = nuevaClave;
-}
-

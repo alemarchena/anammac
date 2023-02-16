@@ -22,6 +22,7 @@ eventosdisponibles.addEventListener('click',(e)=>{
 })
 
 export const BuscarEventos = ((numeroafiliado)=>{
+    let cuentaeventosactivos=0;
     let publicacionlistaPruebas = {
         codigoevento : 0,
     }
@@ -59,6 +60,7 @@ export const BuscarEventos = ((numeroafiliado)=>{
 
                 item.activo= data[a].activo;
 
+                cuentaeventosactivos +=data[a].activo;
                 arregloeventos.push(item);
 
             }
@@ -66,7 +68,9 @@ export const BuscarEventos = ((numeroafiliado)=>{
             ActivarTotal(0);
             LimpiarDescripcion();
             LimpiarEventoConPruebas();
-            LlenarTablaEventos(arregloeventos,numeroafiliado);
+            if(cuentaeventosactivos > 0){
+                LlenarTablaEventos(arregloeventos,numeroafiliado);
+            }
             HabilitarImagenDePago(0);
         }else
         {
@@ -100,7 +104,8 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
     tabla.style.backgroundColor ="white";
       let tblBody = document.createElement("tbody");
   
-      for (let i = -1; i < arregloeventos.length; i++) {
+      for (let i = -1; i < arregloeventos.length; i++) 
+      {
   
         if(i==-1)
         {
@@ -148,81 +153,85 @@ export const LlenarTablaEventos = ((arregloeventos,numeroafiliado) =>{
             tblBody.appendChild(hilera);
         }else{
   
-        // Crea las hileras de la tabla
-            let hilera = document.createElement("tr");
+            if(arregloeventos[i].activo == 1)
+            {
+                // Crea las hileras de la tabla
+                let hilera = document.createElement("tr");
 
-            let columna1 = document.createElement("th");let columna2 = document.createElement("th");
-            let columna3 = document.createElement("th");let columna4 = document.createElement("th");
-            let columna5 = document.createElement("th");let columna6 = document.createElement("th");
-            let columna7 = document.createElement("th"); 
+                let columna1 = document.createElement("th");let columna2 = document.createElement("th");
+                let columna3 = document.createElement("th");let columna4 = document.createElement("th");
+                let columna5 = document.createElement("th");let columna6 = document.createElement("th");
+                let columna7 = document.createElement("th"); 
 
-            let celda1 = document.createElement("td");let celda2 = document.createElement("td");
-            let celda3 = document.createElement("td");let celda4 = document.createElement("td");
-            let celda5 = document.createElement("td");let celda6 = document.createElement("td");
-            let celda7 = document.createElement("td");
-            
+                let celda1 = document.createElement("td");let celda2 = document.createElement("td");
+                let celda3 = document.createElement("td");let celda4 = document.createElement("td");
+                let celda5 = document.createElement("td");let celda6 = document.createElement("td");
+                let celda7 = document.createElement("td");
+                
 
-            let idevento = document.createTextNode(arregloeventos[i].idevento);
-            idevento.id = "idprueba" + arregloeventos[i].idevento;
-            celda1.appendChild(idevento);        
-            celda1.id= "celdanu" + arregloeventos[i].idevento;
-            columna1.appendChild(celda1);
+                let idevento = document.createTextNode(arregloeventos[i].idevento);
+                idevento.id = "idprueba" + arregloeventos[i].idevento;
+                celda1.appendChild(idevento);        
+                celda1.id= "celdanu" + arregloeventos[i].idevento;
+                columna1.appendChild(celda1);
 
-            let nombre = document.createTextNode(arregloeventos[i].nombre);
-            nombre.id = "nombre" + arregloeventos[i].nombre;
-            celda2.appendChild(nombre); columna2.appendChild(celda2);
+                let nombre = document.createTextNode(arregloeventos[i].nombre);
+                nombre.id = "nombre" + arregloeventos[i].nombre;
+                celda2.appendChild(nombre); columna2.appendChild(celda2);
 
 
-            let fecha = document.createTextNode(arregloeventos[i].fecha);
-            fecha.id = "fecha" + arregloeventos[i].fecha;
-            celda3.appendChild(fecha); columna3.appendChild(celda3);
+                let fecha = document.createTextNode(arregloeventos[i].fecha);
+                fecha.id = "fecha" + arregloeventos[i].fecha;
+                celda3.appendChild(fecha); columna3.appendChild(celda3);
 
-            let hora = document.createTextNode(arregloeventos[i].hora);
-            hora.id = "hora" + arregloeventos[i].hora;
-            celda4.appendChild(hora); columna4.appendChild(celda4);
+                let hora = document.createTextNode(arregloeventos[i].hora);
+                hora.id = "hora" + arregloeventos[i].hora;
+                celda4.appendChild(hora); columna4.appendChild(celda4);
 
-            let whatsapp = document.createTextNode(arregloeventos[i].whatsapp);
-            whatsapp.id = "whatsapp" + arregloeventos[i].whatsapp;
-            celda5.appendChild(whatsapp); columna5.appendChild(celda5);
+                let whatsapp = document.createTextNode(arregloeventos[i].whatsapp);
+                whatsapp.id = "whatsapp" + arregloeventos[i].whatsapp;
+                celda5.appendChild(whatsapp); columna5.appendChild(celda5);
 
-            //Ver pruebas del evento
-            let botonverpruebas = document.createElement("button");
-            botonverpruebas.id = "VerEvento" + arregloeventos[i].idevento;
-            botonverpruebas.innerHTML = "Ver pruebas";
-            botonverpruebas.classList.add("btn");
-            botonverpruebas.classList.add("btn-info");
-            botonverpruebas.classList.add("btn-list");
-            
-            botonverpruebas.onclick = (e)=>{
-                e.preventDefault();
+                //Ver pruebas del evento
+                let botonverpruebas = document.createElement("button");
+                botonverpruebas.id = "VerEvento" + arregloeventos[i].idevento;
+                botonverpruebas.innerHTML = "Ver pruebas";
+                botonverpruebas.classList.add("btn");
+                botonverpruebas.classList.add("btn-info");
+                botonverpruebas.classList.add("btn-list");
+                
+                botonverpruebas.onclick = (e)=>{
+                    e.preventDefault();
 
-                VerEvento(e.target.id,arregloeventos,numeroafiliado);
+                    VerEvento(e.target.id,arregloeventos,numeroafiliado);
+                }
+                celda6.appendChild(botonverpruebas); columna6.appendChild(celda6);
+
+                //Descargar condiciones
+                let botonpagar = document.createElement("button");
+                botonpagar.id = "PagarEvento" + arregloeventos[i].idevento;
+                botonpagar.classList.add("btn");
+                botonpagar.classList.add("btn-success");
+                botonpagar.classList.add("btn-list");
+                botonpagar.innerHTML = "Pagar";
+                botonpagar.onclick = (e)=>{
+                    e.preventDefault();
+                    PagarEvento(e.target.id,arregloeventos);
+                }
+                celda7.appendChild(botonpagar); columna7.appendChild(celda7);
+
+                hilera.appendChild(columna1);        
+                hilera.appendChild(columna2);
+                hilera.appendChild(columna3);       
+                hilera.appendChild(columna4);       
+                hilera.appendChild(columna5);       
+                hilera.appendChild(columna6);       
+                hilera.appendChild(columna7);       
+                
+                // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                tblBody.appendChild(hilera);
             }
-            celda6.appendChild(botonverpruebas); columna6.appendChild(celda6);
 
-            //Descargar condiciones
-            let botonpagar = document.createElement("button");
-            botonpagar.id = "PagarEvento" + arregloeventos[i].idevento;
-            botonpagar.classList.add("btn");
-            botonpagar.classList.add("btn-success");
-            botonpagar.classList.add("btn-list");
-            botonpagar.innerHTML = "Pagar";
-            botonpagar.onclick = (e)=>{
-                e.preventDefault();
-                PagarEvento(e.target.id,arregloeventos);
-            }
-            celda7.appendChild(botonpagar); columna7.appendChild(celda7);
-
-            hilera.appendChild(columna1);        
-            hilera.appendChild(columna2);
-            hilera.appendChild(columna3);       
-            hilera.appendChild(columna4);       
-            hilera.appendChild(columna5);       
-            hilera.appendChild(columna6);       
-            hilera.appendChild(columna7);       
-            
-            // agrega la hilera al final de la tabla (al final del elemento tblbody)
-            tblBody.appendChild(hilera);
         }
       }
       

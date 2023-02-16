@@ -6,7 +6,6 @@ const espera            = document.getElementById("espera");
 const buscar            = document.getElementById("buscar");
 const buscarreciente    = document.getElementById("buscarreciente");
 const buscaraprobados   = document.getElementById("buscaraprobados");
-const buscardesaprobados= document.getElementById("buscardesaprobados");
 const totalencontrado= document.getElementById("totalencontrado");
 
 buscar.addEventListener('click',()=>{
@@ -18,12 +17,8 @@ buscaraprobados.addEventListener('click',()=>{
     Listar(1);
 })
 
-buscardesaprobados.addEventListener('click',()=>{
-    Listar(2);
-})
-
 buscarreciente.addEventListener('click',()=>{
-    Listar(3);
+    Listar(2);
 })
 let arreglo= [];
 
@@ -74,7 +69,7 @@ const Listar = ((valor)=>{
         }
         paqueteJsonBuscarprocesadas =JSON.stringify( arreglopalabrasprocesadas );
 
-        fetch("./controladores/buscar.php?a=26",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
+        fetch("./controladores/buscarevento.php?a=26",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
         .then(response => response.json())
         .then(data => 
         {
@@ -88,38 +83,22 @@ const Listar = ((valor)=>{
                     for(let a = 0 ;a<cantidad;a++) //llenar la lista
                     {
                         let toPropuestas = new Object();
+
                         toPropuestas.idafiliacion       = data[a].idafiliacion;
                         toPropuestas.numeroafiliado     = data[a].numeroafiliado;
-                        toPropuestas.usuario            = data[a].usuario;
                         toPropuestas.nombres            = data[a].nombres;
                         toPropuestas.apellidos          = data[a].apellidos;
-                        toPropuestas.genero             = data[a].genero;
-                        toPropuestas.fechanacimiento    = data[a].fechanacimiento;
+                        toPropuestas.whatsapp           = data[a].whatsapp;
                         toPropuestas.email              = data[a].email;
-                        toPropuestas.codigoestado       = data[a].codigoestado;
-                        toPropuestas.nombreestado       = data[a].nombreestado;
-                        toPropuestas.direccion          = data[a].direccion;
+                        toPropuestas.fotoatleta         = data[a].fotoatleta;
 
-                        let linkeadowhatsapp        =data[a].whatsapp;
-                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('+', '');
-                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('-', '');
-                        linkeadowhatsapp=linkeadowhatsapp.trim().replace('(', '');
-                        linkeadowhatsapp=linkeadowhatsapp.trim().replace(')', '');
-                        toPropuestas.whatsapp   = linkeadowhatsapp;
-                        
-                        toPropuestas.nombresangre           = data[a].nombresangre;
-                        toPropuestas.nombreespecialidad     = data[a].nombreespecialidad;
-                        toPropuestas.enfermedadcronica      = data[a].enfermedadcronica;
-                        toPropuestas.nombretalla            = data[a].nombretalla;
-                        toPropuestas.fotoatleta             = data[a].fotoatleta;
-                        toPropuestas.fotodocumento          = data[a].fotodocumento;
-                        toPropuestas.fotopago               = data[a].fotopago;
-                        toPropuestas.fechapago              = data[a].fechapago;
-                        toPropuestas.fechapagoanterior      = data[a].fechapagoanterior;
-                        toPropuestas.fechainscripcion       = data[a].fechainscripcion;
-                        toPropuestas.aprobado               = data[a].aprobado;
-                        toPropuestas.desactivado            = data[a].desactivado;
-                        toPropuestas.estester               = data[a].estester;
+                        toPropuestas.idinscripcion      = data[a].idinscripcion;
+                        toPropuestas.idevento           = data[a].idevento;
+                        toPropuestas.fotopagoevento     = data[a].fotopagoevento;
+                        toPropuestas.fechapagoevento    = data[a].fechapagoevento;
+                        toPropuestas.aprobacionevento   = data[a].aprobacionevento;
+                        toPropuestas.montopagado        = data[a].montopagado;
+                        toPropuestas.montopagadodolar   = data[a].montopagadodolar;
 
                         arreglo.push(toPropuestas);
                     }

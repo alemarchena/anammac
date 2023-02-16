@@ -68,6 +68,27 @@ export const ABDD = ( async (campo,valor,tipodato,idevento,mensaje)=>{
     });
 })
 
+
+//Actualiza los datos del atleta en la base de datos
+export const ABDDPI = ( async (campo,valor,tipodato,idinscripcion,mensaje)=>{
+    let stringvalor = valor.toString();
+    valor = stringvalor.replace("'",'`');
+    
+    let datosconsulta = {campo : campo,valor:valor,tipodato:tipodato,id  : idinscripcion}
+    fetch("./controladores/actualizapagoinscripciones.php?a=1",{method:'POST',body: JSON.stringify( datosconsulta ),headers:{'Content-Type':'application/json'}})   
+    .then(response =>{
+        return response.text();
+    }).then(data => {
+        if(data == 1){
+            ShowMessage(mensaje+" guardado..","success",2000)
+        }
+    })
+    .catch(function (error){ 
+        console.log(error); 
+        ShowMessage("Error al guardar en la base de datos","error",3000);
+    });
+})
+
 //Actualiza los datos del atleta en la base de datos
 export const ABDDP = ( async (campo,valor,tipodato,idevento,mensaje)=>{
     let stringvalor = valor.toString();

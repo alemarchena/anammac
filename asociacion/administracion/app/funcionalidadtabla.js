@@ -188,13 +188,13 @@ export const Aprobacion = ( async (id,arreglo,estado)=>{
 
             const boton = document.getElementById("Aprobar"+arreglo[i].idafiliacion);
             estado == 1 ? boton.innerHTML = "Desaprobar" : boton.innerHTML = "Aprobar" ;
+            
         }
     }
 });
 
 export const Bloqueo = ( async (id,arreglo,estado)=>{
 
-    console.log('first')
     idpuro = id.replace('Bloquear','');
 
     for (let i = 0; i < arreglo.length; i++) {

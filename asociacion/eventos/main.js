@@ -11,6 +11,8 @@ document.addEventListener("keydown", function(event){
 
 import './app/interfaz.js?a=17'
 import './app/redireccion.js?a=17'
+import './app/buscador.js?a=17'
+import './app/tabla.js?a=17'
 import './app/funcionalidadtabla.js?a=17'
 import './app/pruebas.js?a=17'
 import './app/actualizador.js?a=17'

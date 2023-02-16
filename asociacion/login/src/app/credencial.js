@@ -51,8 +51,8 @@ export const Redirigir = ( async (info)=>{
 
 export const RedirigirEventos = ( async (info)=>{
     
-   let direccion = '/asociacion/eventos/panel.php?a=20';
-   // let direccion = '/anammac/asociacion/eventos/panel.php?a=20';
+   // let direccion = '/asociacion/eventos/panel.php?a=20';
+   let direccion = '/anammac/asociacion/eventos/panel.php?a=20';
 
    let item = new Object();
    item.idusuario=info.idusuario;
