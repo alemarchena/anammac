@@ -83,7 +83,7 @@ export const Ver = ((id,arreglo)=>{
             }
 
             try {
-                if(arreglo[i].fotoatleta == '')
+                if(arreglo[i].fotodocumento == '')
                 {
                     fotodocumento.src        = ruta + 'avatarvacio.jpg';
                 }else{

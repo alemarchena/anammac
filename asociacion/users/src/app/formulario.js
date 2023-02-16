@@ -143,16 +143,11 @@ export const LlenarFormulario=((f)=>{
 
         Credencial(Info);
         DeshabilitaNombreApellido();
-        if(Info.estester==1)
-        {
-            infopago.style.display = "none";
-            infoeventos.style.display = "visible";
-            BuscarEventos(Info.numeroafiliado);
-        }else{
-            
-            infopago.style.display = "none";
-            infoeventos.style.display = "none";
-        }
+       
+        infopago.style.display = "none";
+        infoeventos.style.display = "visible";
+        BuscarEventos(Info.numeroafiliado);
+        
     }else
     {
         estadocredencial.innerHTML = "Pendiente de aprobación";

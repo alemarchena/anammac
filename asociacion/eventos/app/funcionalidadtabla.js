@@ -11,6 +11,11 @@ const idafiliacion = document.getElementById('idafiliacion');
 const nombrecambia      = document.getElementById('nombrecambia');
 const apellidocambia    = document.getElementById('apellidocambia');
 const whatsapp          = document.getElementById('whatsapp');
+const whatsappc          = document.getElementById('whatsappc');
+const emailc             = document.getElementById('emailc');
+const montopagado       = document.getElementById('montopagado');
+const montopagadodolar  = document.getElementById('montopagadodolar');
+
 const numeroafiliado      = document.getElementById('numeroafiliado');
 const collapseOne       =  document.getElementById('collapseOne');
 
@@ -48,11 +53,11 @@ export const Ver = ((id,arreglo)=>{
         if(arreglo[i].idinscripcion == idpuro)
         {
             try {
-                if(arreglo[i].fotopago == '')
+                if(arreglo[i].fotopagoevento == '')
                 {
                     fotopago.src        = ruta + 'avatarvacio.jpg';
                 }else{
-                    fotopago.src        = rutapagos + arreglo[i].fotopago;
+                    fotopago.src        = rutapagos + arreglo[i].fotopagoevento;
                 }
             } catch (error) {
                 
@@ -69,38 +74,22 @@ export const Ver = ((id,arreglo)=>{
                     
             }
 
-            try {
-                if(arreglo[i].fotoatleta == '')
-                {
-                    fotodocumento.src        = ruta + 'avatarvacio.jpg';
-                }else{
-                    fotodocumento.src        = ruta + arreglo[i].fotodocumento;
-                }
-            } catch (error) {
-                        
-            }
+           
             descargaatleta.href      = ruta + arreglo[i].fotoatleta;
-            descargadocumento.href   = ruta + arreglo[i].fotodocumento;
-
             descargapago.href        = rutapagos + arreglo[i].fotopago;
 
             descargaatleta.download      = arreglo[i].apellidos;
-            descargadocumento.download   = 'IFE' + arreglo[i].apellidos;
             descargapago.download        = 'Pago' + arreglo[i].apellidos;
 
             nombrecambia.value      = arreglo[i].nombres;
             apellidocambia.value    = arreglo[i].apellidos;
-            calendario.value        = arreglo[i].fechanacimiento;
-            fechanacimientotexto.innerText = ConvierteaDMAForm(arreglo[i].fechanacimiento);
+            idafiliacion.value      = arreglo[i].idafiliacion;
+            numeroafiliado.value    = arreglo[i].numeroafiliado;
 
-            idafiliacion.value = arreglo[i].idafiliacion;
-            numeroafiliado.value= arreglo[i].numeroafiliado;
-            nombreestado.value  = arreglo[i].nombreestado;
-            direccion.value     = arreglo[i].direccion;
-            whatsapp.value      = arreglo[i].whatsapp;
-            nombresangre.value  = arreglo[i].nombresangre;
-            nombreespecialidad.value = arreglo[i].nombreespecialidad;
-            nombretalla.value   = arreglo[i].nombretalla;
+            montopagado.value          = "$ " + arreglo[i].montopagado;
+            montopagadodolar.value     = "U$S " + arreglo[i].montopagadodolar;
+            whatsappc.value          = arreglo[i].whatsapp;
+            emailc.value             = arreglo[i].email;
         }
     }
 });

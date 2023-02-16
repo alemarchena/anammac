@@ -6,19 +6,29 @@ const espera            = document.getElementById("espera");
 const buscar            = document.getElementById("buscar");
 const buscarreciente    = document.getElementById("buscarreciente");
 const buscaraprobados   = document.getElementById("buscaraprobados");
-const totalencontrado= document.getElementById("totalencontrado");
+const totalencontrado   = document.getElementById("totalencontrado");
+const codigoeventopagado= document.getElementById('codigoeventopagado');
 
 buscar.addEventListener('click',()=>{
-    Listar(0);
+    if(codigoeventopagado.value >0)
+        Listar(0);
+    else
+        ShowMessage("Seleccione un evento","error",3000);
 })
 
 
 buscaraprobados.addEventListener('click',()=>{
-    Listar(1);
+    if(codigoeventopagado.value >0)
+        Listar(1);
+    else
+        ShowMessage("Seleccione un evento","error",3000);
 })
 
 buscarreciente.addEventListener('click',()=>{
-    Listar(2);
+    if(codigoeventopagado.value >0)
+        Listar(2);
+    else
+        ShowMessage("Seleccione un evento","error",3000);
 })
 let arreglo= [];
 
@@ -44,6 +54,7 @@ const Listar = ((valor)=>{
             itempalabra = new Object();
             itempalabra.palabra = arreglopalabras[b].trim(),
             itempalabra.donde = valor,
+            itempalabra.idevento = codigoeventopagado.value,
             arreglopalabrasprocesadas.push(itempalabra);
         }
     }
@@ -65,7 +76,10 @@ const Listar = ((valor)=>{
             itempalabra = new Object();
             itempalabra.palabra = '-x*#*x/',
             itempalabra.donde = valor,
+            itempalabra.idevento = codigoeventopagado.value,
+
             arreglopalabrasprocesadas.push(itempalabra);
+
         }
         paqueteJsonBuscarprocesadas =JSON.stringify( arreglopalabrasprocesadas );
 
@@ -94,6 +108,7 @@ const Listar = ((valor)=>{
 
                         toPropuestas.idinscripcion      = data[a].idinscripcion;
                         toPropuestas.idevento           = data[a].idevento;
+                        toPropuestas.nombre             = data[a].nombre;
                         toPropuestas.fotopagoevento     = data[a].fotopagoevento;
                         toPropuestas.fechapagoevento    = data[a].fechapagoevento;
                         toPropuestas.aprobacionevento   = data[a].aprobacionevento;

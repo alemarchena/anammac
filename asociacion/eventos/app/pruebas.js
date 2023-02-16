@@ -4,6 +4,7 @@ import {NewOpcion,ClearSelect} from './select.js?a=8';
     
 const codigoprueba          = document.getElementById('codigoprueba');
 const codigoevento          = document.getElementById('codigoevento');
+const codigoeventopagado          = document.getElementById('codigoeventopagado');
 
 const idpruebaauto          = document.getElementById('idpruebaauto');
 const nombreprueba          = document.getElementById('nombreprueba');
@@ -639,6 +640,7 @@ export function ListaPruebas()
 export function ListaEventos() 
 {
     NewOpcion(codigoevento,'0','Seleccione un evento');
+    NewOpcion(codigoeventopagado,'0','Seleccione un evento');
 
     let publicacionlistaEventos = {
         tabla : "apt_eventos",
@@ -653,6 +655,7 @@ export function ListaEventos()
             for(let a = 0 ;a<cantidad;a++) //llenar la lista
             {
                 NewOpcion(codigoevento,data[a].idevento,data[a].nombre);
+                NewOpcion(codigoeventopagado,data[a].idevento,data[a].nombre);
             }
         }
     })

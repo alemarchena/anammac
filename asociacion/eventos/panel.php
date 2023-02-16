@@ -84,6 +84,12 @@ session_destroy();
                             </div>
                         </div>
                         <br>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-4" style="text-align: center;">
+                                <select  class="form-select" aria-label="Default select example" id="codigoeventopagado" name="codigoeventopagado" ></select>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row">
                             <div class="col-sm-1 offset-md-6" style="text-align: right;">
                                 <div class="tooltipbutton">
@@ -103,7 +109,7 @@ session_destroy();
                             
                         </div>
                         <hr>
-
+                        
                         <div class="accordion" id="accordionExample">
 
                             <div class="accordion-item">
@@ -154,8 +160,10 @@ session_destroy();
                                                 <!-- ----------------------------------------------------------- -->
                                                 </div>
 
-                                                <div class="row justify-content-center"><input type="number" class="form-control" id="montopagado"  placeholder='monto $ Mex' disabled readonly></div>
-                                                <div class="row justify-content-center"><input type="number" class="form-control" id="montopagadodolar"  placeholder='monto U$S EEUU' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="montopagado"  placeholder='monto $ Mex' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="montopagadodolar"  placeholder='monto U$S EEUU' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="whatsappc"  placeholder='Falta el Whatsapp' disabled readonly></div>
+                                                <div class="row justify-content-center"><input type="text" class="form-control" id="emailc"  placeholder='Falta el email' disabled readonly></div>
                                             </div>
                                         </div>
 
@@ -324,7 +332,7 @@ session_destroy();
                                 <div class="row justify-content-center">
                                     <div class="row">
                                         <div class="col-sm-12" style="text-align: center;">
-                                            <select  class="form-select" aria-label="Default select example" id="codigoevento" name="codigoprueba" ></select>
+                                            <select  class="form-select" aria-label="Default select example" id="codigoevento" name="codigoevento" ></select>
                                         </div>
                                     </div>
                                     <br>

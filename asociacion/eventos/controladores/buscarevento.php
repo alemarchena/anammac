@@ -11,18 +11,19 @@
     
     $tablapin               = "apt_pagosinscripciones";
     $tablaafi               = "apt_afiliaciones";
+    $tablaeve               = "apt_eventos";
     
 
     $paqueteJson           = json_decode(file_get_contents('php://input'),true);
 
-   
 
     $basesql = "Select $tablaafi.numeroafiliado,$tablaafi.nombres,$tablaafi.apellidos,$tablaafi.fotoatleta,
         $tablaafi.idafiliacion,$tablaafi.whatsapp,$tablaafi.email,$tablaafi.usuario,$tablapin.aprobado as aprobacionevento,
         $tablapin.fechapago as fechapagoevento,$tablapin.fotopagoevento,$tablapin.idevento,$tablapin.idinscripcion,
-        $tablapin.montopagado,$tablapin.montopagadodolar from ( 
-        $tablapin INNER JOIN $tablaafi ON $tablapin.numeroafiliado =  $tablaafi.numeroafiliado )";
-
+        $tablaeve.nombre,
+        $tablapin.montopagado,$tablapin.montopagadodolar from (( $tablapin INNER JOIN
+        $tablaafi ON $tablapin.numeroafiliado   =  $tablaafi.numeroafiliado ) INNER JOIN
+        $tablaeve ON $tablapin.idevento         =  $tablaeve.idevento )";
 
     $contador = 0;
     $criteriowhere = '';
@@ -33,8 +34,9 @@
     }else{
         foreach ($paqueteJson as $i => $datosconsulta) 
         {
-            $palabra = $datosconsulta['palabra'];
-            $donde = $datosconsulta['donde'];
+            $palabra    = $datosconsulta['palabra'];
+            $donde      = $datosconsulta['donde'];
+            $idevento   = $datosconsulta['idevento'];
 
             $contador = $contador + 1;
 
@@ -42,15 +44,13 @@
             {
                 if($donde == 1)
                 {
-                    $criteriowhere = ' ' .$tablapin.'.aprobado = 1 ';
+                    $criteriowhere = ' ' .$tablapin.'.aprobado = 1 and ' .$tablapin.'.idevento=' . $idevento.' ';
                 }
                 
                 if($donde == 2)
                 {
-                    $criteriowhere = ' ' .$tablapin.'.aprobado = 0 ';
+                    $criteriowhere = ' ' .$tablapin.'.aprobado = 0 and ' .$tablapin.'.idevento=' . $idevento.' ';
                 }
-                
-               
             }else
             {
 
@@ -60,12 +60,12 @@
 
                     if($donde == 1)
                     {
-                        $criteriowhere = $criteriowhere . ' and ' .$tablapin.'.aprobado = 1 ';
+                        $criteriowhere = $criteriowhere . ' and ' .$tablapin.'.aprobado = 1 and ' .$tablapin. '.idevento='.$idevento.' ';
                     }
                     
                     if($donde == 2)
                     {
-                        $criteriowhere = $criteriowhere . ' and ' .$tablapin.'.aprobado = 0 ';
+                        $criteriowhere = $criteriowhere . ' and ' .$tablapin. '.aprobado = 0 and ' .$tablapin. '.idevento='.$idevento.' ';
                     }
                     
                     

@@ -594,12 +594,13 @@ export const Calculadora = (()=>{
             contadorextra = contadorbase - arreglocalculadora[0].cantidadpruebasbase;
         }
 
-        if(contadorbase>0){
+        if(contadorbase>=0){
 
             totalbase = parseInt(arreglocalculadora[0].costopruebabase);
             totalbasedolar = parseInt(arreglocalculadora[0].costopruebabasedolar);
         }
         
+
         totalgeneral = totalbase + 
         parseInt(contadorextra * arreglocalculadora[0].costopruebaextra) +
         parseInt(contadorcombinada * arreglocalculadora[0].costopruebacombinada);

@@ -63,15 +63,18 @@ export class UI{
         switch(contador)
         {
             case 0:
-                contenido = 'Creación de eventos';
+                contenido = 'Consulta de inscritos';
                 break;
             case 1:
-                contenido = 'Asignación de pruebas al evento';
+                contenido = 'Creación de eventos';
                 break;
             case 2:
-                contenido = 'Nombres de Pruebas';
+                contenido = 'Asignación de pruebas al evento';
                 break;
             case 3:
+                contenido = 'Nombres de Pruebas';
+                break;
+            case 4:
                 contenido = 'Detalle de Pruebas';
                 break;
         }
