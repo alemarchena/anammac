@@ -61,7 +61,17 @@ export const BuscarEventos = ((numeroafiliado)=>{
 
                 item.activo= data[a].activo;
 
-                cuentaeventosactivos +=data[a].activo;
+                if(data[a].activo==1){
+                    cuentaeventosactivos +=1;
+                }else
+                {
+                    try {
+                        descripcionevento.style.color = "red";
+                    } catch (error) {
+                        
+                    }
+                }
+
                 arregloeventos.push(item);
 
             }
@@ -71,6 +81,7 @@ export const BuscarEventos = ((numeroafiliado)=>{
             LimpiarEventoConPruebas();
             if(cuentaeventosactivos > 0){
                 LlenarTablaEventos(arregloeventos,numeroafiliado);
+
             }else{
                 eventosdisponibles.style.display = "none";
                 descripcionevento.innerHTML = "No hay eventos disponibles";
@@ -83,6 +94,8 @@ export const BuscarEventos = ((numeroafiliado)=>{
         }
     })
     .catch(function (error){
+        HabilitarImagenDePago(0);
+
         ShowMessage("No tiene conexión a la base de datos.","error",3000);
         console.log(error);
     });

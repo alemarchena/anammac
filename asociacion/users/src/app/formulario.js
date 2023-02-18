@@ -1,6 +1,6 @@
 import {SelectOption} from './select.js';
-import {Credencial} from './credencial.js?a=65';
-import {BuscarEventos} from './eventosdisponibles.js?a=65';
+import {Credencial} from './credencial.js?a=66';
+import {BuscarEventos} from './eventosdisponibles.js?a=66';
 //--------------------------- Datos -------------------------------
 
 const infopago = document.getElementById("infopago");
