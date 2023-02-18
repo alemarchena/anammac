@@ -56,7 +56,7 @@
 
                 if($contador==1)
                 {
-                    $criteriowhere = " ( nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or whatsapp like '%$palabra%' or email like '%$palabra%' or $tablapin.numeroafiliado like '%$palabra%') ";
+                    $criteriowhere = " ( nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or $tablaafi.whatsapp like '%$palabra%' or email like '%$palabra%' or $tablapin.numeroafiliado like '%$palabra%') ";
 
                     if($donde == 1)
                     {
@@ -71,7 +71,7 @@
                     
                 }else
                 {
-                    $criteriowhere = $criteriowhere . " and ( nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or whatsapp like '%$palabra%' or email like '%$palabra%' or $tablapin.numeroafiliado like '%$palabra%') ";
+                    $criteriowhere = $criteriowhere . " and ( nombres like '%$palabra%' or apellidos like '%".$palabra."%' or usuario like '%".$palabra."%' or $tablaafi.whatsapp like '%$palabra%' or email like '%$palabra%' or $tablapin.numeroafiliado like '%$palabra%') ";
                 }
             }
         }
@@ -79,7 +79,7 @@
    
     $sql = $basesql . " where " . $criteriowhere . " order by apellidos asc; ";
 
-    // var_dump($sql);
+    //  var_dump($sql);
 
     $resultado = $mysqli->query($sql);
     $data = array();

@@ -1,7 +1,7 @@
-import {ClearSelect} from './select.js?a=17';
-import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=17';
-import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas,VerCamposPrueba,VerCamposPruebaDetalle } from './pruebas.js?a=17';
-import { EBDD,ABDD,ABDDP } from "./actualizador.js?a=17";
+import {ClearSelect} from './select.js?a=18';
+import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=18';
+import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas,VerCamposPrueba,VerCamposPruebaDetalle } from './pruebas.js?a=18';
+import { EBDD,ABDD,ABDDP } from "./actualizador.js?a=18";
 import {ShowMessage} from './showmessage.js?a=8'
 
 

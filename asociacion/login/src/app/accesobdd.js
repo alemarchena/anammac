@@ -1,10 +1,10 @@
-import {datos,LlenarFormulario, Info} from './formulario.js?a=20'
-import {CerrarModal,MostarImagenLogin} from './modal.js?a=20'
-import {ShowMessage} from './showmessage.js?a=20'
-import {LoggMenu} from './logincheck.js?a=20'
-import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=20'
-import {Salir} from './logout.js?a=20'
-import './actualizador.js?a=20'
+import {datos,LlenarFormulario, Info} from './formulario.js?a=21'
+import {CerrarModal,MostarImagenLogin} from './modal.js?a=21'
+import {ShowMessage} from './showmessage.js?a=21'
+import {LoggMenu} from './logincheck.js?a=21'
+import {DesActivarSistema, ActivarSistema,LoadURL} from './cargarsistema.js?a=21'
+import {Salir} from './logout.js?a=21'
+import './actualizador.js?a=21'
 
 const espera  = document.querySelector("#espera");
 

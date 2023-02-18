@@ -1,4 +1,4 @@
-import { ABDDPI } from "./actualizador.js?a=17";
+import {EBDD, ABDDPI } from "./actualizador.js?a=18";
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotopago          = document.getElementById('fotopago');
@@ -115,22 +115,16 @@ export const Aprobacion = ( async (id,arreglo,estado)=>{
 
 export const Blanquear = ( async (id,arreglo,estado)=>{
 
-    console.log('first')
-    idpuro = id.replace('Bloquear','');
+    idpuro = id.replace('Blanquear','');
 
-    // for (let i = 0; i < arreglo.length; i++) {
-    //     if(arreglo[i].idinscripcion == idpuro)
-    //     {
-    //         estado == 1 ? estado = 0 : estado = 1;
-
-    //         await ABDD('desactivado',estado,'numero',idpuro);
-            
-    //         arreglo[i].desactivado = estado;
-
-    //         const boton = document.getElementById("Bloquear"+arreglo[i].idinscripcion);
-    //         estado == 1 ? boton.innerHTML = "Desbloquear" : boton.innerHTML = "Bloquear" ;
-    //     }
-    // }
+    for (let i = 0; i < arreglo.length; i++) {
+        if(arreglo[i].idinscripcion == idpuro)
+        {
+            EBDD('apt_pagosinscripciones','idinscripcion',idpuro,"numero");
+            const boton = document.getElementById("Ocultar"+idpuro);
+            boton.click();
+        }
+    }
 });
 
 export const Ocultar = ((id,arreglo)=>{

@@ -1,5 +1,6 @@
 import {ShowMessage} from './showmessage.js'
 import {ConvierteaDMA} from './clases.js'
+import {ConstruyePaquete,Construircomprobante} from './comprobanteevento.js'
 
 let reeventos           = document.getElementById('resultadoseventos');
 let reeventoconpruebas  = document.getElementById('resultadoeventoconpruebas');
@@ -13,7 +14,7 @@ let numeroafiliado      = document.getElementById('numeroafiliado');
 let infoimagendepago    = document.getElementById('infoimagendepago');
 let ideventoelegido         = document.getElementById('ideventoelegido');
 let ideventoelegidotitulo   = document.getElementById('ideventoelegidotitulo');
-let fotopagoevento   = document.getElementById('fotopagoevento');
+let fotopagoevento      = document.getElementById('fotopagoevento');
 
 eventosdisponibles.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -70,6 +71,9 @@ export const BuscarEventos = ((numeroafiliado)=>{
             LimpiarEventoConPruebas();
             if(cuentaeventosactivos > 0){
                 LlenarTablaEventos(arregloeventos,numeroafiliado);
+            }else{
+                eventosdisponibles.style.display = "none";
+                descripcionevento.innerHTML = "No hay eventos disponibles";
             }
             HabilitarImagenDePago(0);
         }else
@@ -294,12 +298,13 @@ export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
             LimpiarLabel();
             BuscarEventoConPruebas(arreglo[i],numeroafiliado);
             ActivarTotal(1);
-            CosultaPagoEvento(numeroafiliado,arreglo[i].idevento,arreglo[i].nombre);
+            AsignaDatosSeleccionadosEvento(arreglo[i].idevento,arreglo[i].nombre);
+
         }
     }
   });
 
-  const CosultaPagoEvento = ((numeroafiliado,idevento,nombre)=>{
+  const ConsultaPagoEvento = ((arregloeventoconpruebas,numeroafiliado,idevento)=>{
     let datosconsultado = {numeroafiliado  : numeroafiliado,idevento : idevento}
 
     fetch("./controladores/consultapagoevento.php?a=33",{method:'POST',body: JSON.stringify( datosconsultado ),headers:{'Content-Type':'application/json'}})   
@@ -316,10 +321,30 @@ export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
                 }else
                 {
                     avisopago.innerHTML ="Pago aprobado";
-                }
-                HabilitarImagenDePago(1);
-                AsignaDatosSeleccionadosEvento(idevento,nombre);
+                    try {
+                        ConstruyePaquete(arregloeventoconpruebas);
 
+                        let botoncomprobante = document.createElement("button");
+                        botoncomprobante.innerHTML = "Ver comprobante";
+                        botoncomprobante.classList.add("btn");
+                        botoncomprobante.classList.add("btn-warning");
+                        botoncomprobante.classList.add("btn-list");
+                        
+                        botoncomprobante.onclick = (e)=>{
+                            e.preventDefault();
+
+                            Construircomprobante();
+
+                        }
+                        let contenidocomprobante =document.getElementById('contentcom');
+                        contenidocomprobante.style.display = 'block';
+                        contenidocomprobante.appendChild(botoncomprobante);
+                        
+                        document.getElementById('botonpagoevento').style.display = "none";
+                    } catch (error) {
+                    }
+                    HabilitarImagenDePago(1);
+                }
             }
 
         }).catch(()=>{
@@ -377,11 +402,9 @@ export const VerEvento = (async (id,arreglo,numeroafiliado)=>{
 
                 item.escombinada        = data[a].escombinada;
 
-
-
+                
                 arregloeventoconpruebas.push(item);
             }
-
             LlenarEventoConPruebas(arregloeventoconpruebas,numeroafiliado);
         }else
         {
@@ -649,6 +672,7 @@ const ConsultarSeleccion = ((arregloeventoconpruebas,idevento,numeroafiliado)=>{
     }).then(data=>{
         if(data.length>0)
         {
+            let arreglopruebasseleccionadas = [];
             data.forEach(element => {
 
                 for (let i = 0; i < arregloeventoconpruebas.length; i++) {
@@ -658,9 +682,11 @@ const ConsultarSeleccion = ((arregloeventoconpruebas,idevento,numeroafiliado)=>{
                         botonelegido.classList.replace("btn-success","btn-warning");
                         arreglocalculadora.push(arregloeventoconpruebas[i]);
                         Calculadora();
+                        arreglopruebasseleccionadas.push(arregloeventoconpruebas[i]);
                     }
                 } 
             });
+            ConsultaPagoEvento(arreglopruebasseleccionadas,numeroafiliado,idevento);
         }
     })
 })

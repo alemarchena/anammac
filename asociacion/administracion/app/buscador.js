@@ -1,5 +1,5 @@
-import {LlenarTabla,Limpiar} from './tabla.js?a=26'
-import {ShowMessage} from './showmessage.js?a=26'
+import {LlenarTabla,Limpiar} from './tabla.js?a=27'
+import {ShowMessage} from './showmessage.js?a=27'
 
 const buscado           = document.getElementById('buscado');
 const espera            = document.getElementById("espera");
@@ -74,7 +74,7 @@ const Listar = ((valor)=>{
         }
         paqueteJsonBuscarprocesadas =JSON.stringify( arreglopalabrasprocesadas );
 
-        fetch("./controladores/buscar.php?a=26",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
+        fetch("./controladores/buscar.php?a=27",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
         .then(response => response.json())
         .then(data => 
         {

@@ -9,9 +9,9 @@ document.addEventListener("keydown", function(event){
     }
 }, false);
 
-import './app/interfaz.js?a=26'
-import './app/redireccion.js?a=26'
-import './app/buscador.js?a=26'
-import './app/funcionalidadtabla.js?a=26'
-import './app/usuarios.js?a=26'
+import './app/interfaz.js?a=27'
+import './app/redireccion.js?a=27'
+import './app/buscador.js?a=27'
+import './app/funcionalidadtabla.js?a=27'
+import './app/usuarios.js?a=27'
 

@@ -1,6 +1,6 @@
 import {SelectOption} from './select.js';
-import {Credencial} from './credencial.js?a=64';
-import {BuscarEventos} from './eventosdisponibles.js?a=64';
+import {Credencial} from './credencial.js?a=65';
+import {BuscarEventos} from './eventosdisponibles.js?a=65';
 //--------------------------- Datos -------------------------------
 
 const infopago = document.getElementById("infopago");
@@ -194,6 +194,16 @@ export function ConvierteaDMAForm(fecha){
     return fechanueva;
 }
 
+export const DatosAtleta = (()=>{
+    let datos = [];
+    let informacion = new Object();
+    informacion.nombres = nombres.value;
+    informacion.apellidos = apellidos.value;
+    informacion.fotoatleta = fotoatleta.src;
+    informacion.numeroafiliado = numeroafiliado.value;
+    datos.push(informacion);
+    return datos;
+})
 
 const idafiliacion      = document.getElementById('idafiliacion');
 const numeroafiliado    = document.getElementById('numeroafiliado');
@@ -220,6 +230,7 @@ const fotopagoevento    = document.getElementById('fotopagoevento');
 
 
 const estadocredencial = document.getElementById('estadocredencial'); 
+
 document.addEventListener('click',((e)=>{
 
 }))

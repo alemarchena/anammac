@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=26  ;</script>
+    <script>var version=27  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=26">
-    <link rel="stylesheet" href="./main.css?a=26">
+    <link rel="stylesheet" href="./estilos.css?a=27">
+    <link rel="stylesheet" href="./main.css?a=27">
 
-    <script src="./main.js?a=26" type="module"></script>
-    <script src="./funciones.js?a=26"></script>
+    <script src="./main.js?a=27" type="module"></script>
+    <script src="./funciones.js?a=27"></script>
     
   </head>
   <body>
@@ -300,7 +300,7 @@ session_destroy();
                         </div>
                         <br> -->
                     <div class="d-flex justify-content-center">
-                            <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=26" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
+                            <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=27" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
                     </div>
                     </div>
                 
