@@ -1,8 +1,7 @@
-import {EBDD, ABDDPI } from "./actualizador.js?a=18";
+import {EBDD, ABDDPI } from "./actualizador.js?a=19";
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotopago          = document.getElementById('fotopago');
-
 const descargaatleta        = document.getElementById('descargaatleta');
 const descargapago          = document.getElementById('descargapago');
 
@@ -76,10 +75,10 @@ export const Ver = ((id,arreglo)=>{
 
            
             descargaatleta.href      = ruta + arreglo[i].fotoatleta;
-            descargapago.href        = rutapagos + arreglo[i].fotopago;
+            descargapago.href        = rutapagos + arreglo[i].fotopagoevento;
 
             descargaatleta.download      = arreglo[i].apellidos;
-            descargapago.download        = 'Pago' + arreglo[i].apellidos;
+            descargapago.download        = 'Pago ' + arreglo[i].apellidos;
 
             nombrecambia.value      = arreglo[i].nombres;
             apellidocambia.value    = arreglo[i].apellidos;

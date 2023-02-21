@@ -1,8 +1,10 @@
 
-import {ShowMessage} from './showmessage.js?a=66'
-import {DatosAtleta} from './formulario.js?a=66;'
+import {ShowMessage} from './showmessage.js?a=67'
+import {DatosAtleta} from './formulario.js?a=67;'
 let paquete = [];
 let esperando           = document.getElementById('esperando');
+const labeltotal           = document.getElementById('labeltotal');
+const labeltotaldolar           = document.getElementById('labeltotaldolar');
 
 export const ConstruyePaquete = ((Info)=>{
     paquete = [...Info];
@@ -15,6 +17,8 @@ export const ConstruyePaquete = ((Info)=>{
 
         let ctextopruebas='______________________\n';
         let cnombreevento='';
+        let clabeltotal=labeltotal.value;
+        let clabeltotaldolar=labeltotaldolar.value;
 
         for(let a=0;a<paquete.length;a++)
         {
@@ -55,7 +59,7 @@ export const ConstruyePaquete = ((Info)=>{
             const capellido =  datosAtleta[0]['apellidos'];
 
             cnombre = cnombre + " " + capellido;
-            const dacre = new Datos(cnombreevento,cfolio,cnombre,ctextopruebas,cfotoatleta,canchofotoatleta,caltofotoatleta);
+            const dacre = new Datos(cnombreevento,cfolio,cnombre,ctextopruebas,cfotoatleta,canchofotoatleta,caltofotoatleta,clabeltotal,clabeltotaldolar);
 
             const ticre = await CompletaTitulosCredencial();
             const cocre = await CompletaConfiguracionCredencial();
@@ -112,7 +116,7 @@ export const ConstruyePaquete = ((Info)=>{
    }
    
    class Datos{
-       constructor(cnombreevento,cfolio,cnombre,ctextopruebas,cfotoatleta,canchofotoatleta,caltofotoatleta)
+       constructor(cnombreevento,cfolio,cnombre,ctextopruebas,cfotoatleta,canchofotoatleta,caltofotoatleta,clabeltotal,clabeltotaldolar)
        {
             this.cnombreevento =cnombreevento;
             this.cfolio=cfolio;
@@ -121,6 +125,9 @@ export const ConstruyePaquete = ((Info)=>{
             this.cfotoatleta=cfotoatleta;
             this.canchofotoatleta=canchofotoatleta;
             this.caltofotoatleta=caltofotoatleta;
+            this.clabeltotal=clabeltotal;
+            this.clabeltotaldolar=clabeltotaldolar;
+            
        }
    }
    // ------------------------------------ Funciones de clases ----------------------------------
@@ -221,7 +228,9 @@ export const ConstruyePaquete = ((Info)=>{
                            [ {text: cucre.ccargo, fontSize: cocre.tamafecha,absolutePosition:{x:300,y:cocre.inicioalturatextos+cocre.interlineado*7}}],
    
                            // texto parte posterior
-                           [ {text:'Pruebas'      + dacre.ctextopruebas, fontSize: cocre.tamatextos,absolutePosition:{x:30,y:cocre.inicioalturatextos+cocre.interlineado*10.5}}],
+                           
+                           [ {text:'Valor del pago $'   + dacre.clabeltotal + " / U$S"   + dacre.clabeltotaldolar, fontSize: cocre.tamatextos,absolutePosition:{x:30,y:cocre.inicioalturatextos+cocre.interlineado*10.5}}],
+                           [ {text:'Pruebas'      + dacre.ctextopruebas, fontSize: cocre.tamatextos,absolutePosition:{x:30,y:cocre.inicioalturatextos+cocre.interlineado*11.5}}],
                            [ {text:'COMPROBANTE '+ ticre.anio+' Descargado el '+fechaimpresa,color:'#D8D8D8', fontSize: cocre.tamatextos,absolutePosition:{x:30,y:cocre.inicioalturatextos+cocre.interlineado*18.5}}],
    
                        ]

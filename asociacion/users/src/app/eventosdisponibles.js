@@ -653,7 +653,7 @@ export const Calculadora = (()=>{
 
 const LimpiarLabel = (()=>{
     labeltotal.value = 0;
-    labeltotaldolar.innvalueerHTML = 0;
+    labeltotaldolar.value = 0;
 })
 
 const LimpiarArregloCalculadora = (()=>{
