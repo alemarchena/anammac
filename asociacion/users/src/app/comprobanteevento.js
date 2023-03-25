@@ -1,6 +1,6 @@
 
-import {ShowMessage} from './showmessage.js?a=67'
-import {DatosAtleta} from './formulario.js?a=67;'
+import {ShowMessage} from './showmessage.js?a=70'
+import {DatosAtleta} from './formulario.js?a=70;'
 let paquete = [];
 let esperando           = document.getElementById('esperando');
 const labeltotal           = document.getElementById('labeltotal');

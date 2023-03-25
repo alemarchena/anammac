@@ -1,8 +1,8 @@
 import { signOut } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 import {auth} from './firebase.js'
-import { LoggMenu } from "./logincheck.js?a=67";
-import { ShowMessage } from "./showmessage.js?a=67";
-import {DesActivarSistema} from './cargarsistema.js?a=67'
+import { LoggMenu } from "./logincheck.js?a=70";
+import { ShowMessage } from "./showmessage.js?a=70";
+import {DesActivarSistema} from './cargarsistema.js?a=70'
 
 export const logout = document.querySelector("#logout");
 

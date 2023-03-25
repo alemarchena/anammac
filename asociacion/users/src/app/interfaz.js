@@ -26,28 +26,37 @@ export class UI{
     }
 
     ControlaSiguientePrevio(cuenta){
-        const carrusel =document.querySelectorAll('.carousel-item');
-
+        const carrusel =document.querySelectorAll('.caru');
+        
         //si llego al inicio previo
         if(cuenta<=0){
             previo.classList.remove('text-black');
             previo.classList.add('text-muted');
+            previo.style.visibility = "hidden";
             
         }else
         {
             previo.classList.remove('text-muted');
             previo.classList.add('text-black');
+            previo.style.visibility = "visible";
+
         }
 
+        console.log(cuenta)
+        console.log(carrusel.length)
         //Si llego al final siguiente
         if(cuenta>=carrusel.length-1){
             siguiente.classList.remove('text-black');
             siguiente.classList.add('text-muted');
+            siguiente.style.visibility = "hidden";
+            
             
         }else
         {
             siguiente.classList.remove('text-muted');
             siguiente.classList.add('text-black');
+            siguiente.style.visibility = "visible";
+
         }
     }
 

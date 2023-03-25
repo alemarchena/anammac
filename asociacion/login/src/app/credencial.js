@@ -24,7 +24,7 @@ let paquete = [];
 
 export const Redirigir = ( async (info)=>{
     
-   let direccion = '/asociacion/administracion/panel.php?a=22';
+   let direccion = '/asociacion/administracion/panel.php?a=23';
 
    let item = new Object();
    item.idusuario=info.idusuario;
@@ -36,7 +36,7 @@ export const Redirigir = ( async (info)=>{
 
    paquete.push(item);
 
-   fetch('./controladores/puente.php?a=22',
+   fetch('./controladores/puente.php?a=23',
    {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
    .then((response)=>{
       if(response.status==200){
@@ -51,8 +51,8 @@ export const Redirigir = ( async (info)=>{
 
 export const RedirigirEventos = ( async (info)=>{
     
-   let direccion = '/asociacion/eventos/panel.php?a=22';
-   // let direccion = '/anammac/asociacion/eventos/panel.php?a=22';
+   let direccion = '/asociacion/eventos/panel.php?a=23';
+   // let direccion = '/anammac/asociacion/eventos/panel.php?a=23';
 
    let item = new Object();
    item.idusuario=info.idusuario;
@@ -64,7 +64,7 @@ export const RedirigirEventos = ( async (info)=>{
 
    paquete.push(item);
 
-   fetch('./controladores/puente.php?a=22',
+   fetch('./controladores/puente.php?a=23',
    {method:'POST',body:JSON.stringify({paquete:paquete}),headers:{'Content-Type':'application/json'}})
    .then((response)=>{
       if(response.status==200){
