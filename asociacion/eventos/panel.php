@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=19  ;</script>
+    <script>var version=24  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=19">
-    <link rel="stylesheet" href="./main.css?a=19">
+    <link rel="stylesheet" href="./estilos.css?a=24">
+    <link rel="stylesheet" href="./main.css?a=24">
 
-    <script src="./main.js?a=19" type="module"></script>
-    <script src="./funciones.js?a=19"></script>
+    <script src="./main.js?a=24" type="module"></script>
+    <script src="./funciones.js?a=24"></script>
     
   </head>
   <body>
@@ -181,6 +181,18 @@ session_destroy();
                         <div id="resultadobusqueda"></div>
 
                     </div>
+
+                     <!-- -------------------- descargar afiliados  ---------------------- -->
+                     <div class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                                <a id="descargarinscriptos" href="./controladores/descargainscriptos.php?a=24" class="btn btn-success btn-lg" >Descargar Inscritos</a>
+                        </div>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                                <a id="descargainscriptosppago" href="./controladores/descargainscriptosppago.php?a=24" class="btn btn-warning btn-lg" >Descargar Inscritos sin pago</a>
+                        </div>
+                    </div>
+
                      <!-- --------------------- Creacion de eventos  --------------------------- -->
                     <div class="carousel-item ">
                         <div class="row justify-content-center">

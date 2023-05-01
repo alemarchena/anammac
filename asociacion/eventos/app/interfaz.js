@@ -66,15 +66,18 @@ export class UI{
                 contenido = 'Consulta de inscritos';
                 break;
             case 1:
-                contenido = 'Creación de eventos';
+                contenido = 'Descarga Inscriptos';
                 break;
             case 2:
-                contenido = 'Asignación de pruebas al evento';
+                contenido = 'Creación de eventos';
                 break;
             case 3:
-                contenido = 'Nombres de Pruebas';
+                contenido = 'Asignación de pruebas al evento';
                 break;
             case 4:
+                contenido = 'Nombres de Pruebas';
+                break;
+            case 5:
                 contenido = 'Detalle de Pruebas';
                 break;
         }
