@@ -24,13 +24,14 @@ $fechaestimada = date('Y-m-d', time());
 		$archivo = 'Inscritos.xls';
 
 		// Crear la tabla HTML
-		$html .= "<h5>Inscriptos ANAMM.A.C</h5>";
-		$html .= "<h5>Fecha de cálculo para la categoría</h5>".$fechaestimada;
+		$html .= "<h2>Inscritos ANAMM.A.C</h2>";
+		$html .= "<h3>Ordenado por Nombre de estado y Apellido</h3>";
+		
 		$html .= '<table border="1">';
 		$html .= '<tr>';
 		$html .= '<td><b>Nº afiliado</b></td>';
-		$html .= '<td><b>Nombres</b></td>';
 		$html .= '<td><b>Apellidos</b></td>';
+		$html .= '<td><b>Nombres</b></td>';
 		$html .= '<td><b>Género</b></td>';
 		$html .= '<td><b>Fecha nacimiento</b></td>';
 		$html .= '<td><b>Sangre</b></td>';
@@ -42,6 +43,7 @@ $fechaestimada = date('Y-m-d', time());
 		$html .= '<td><b>Evento</b></td>';
 		$html .= '<td><b>Prueba</b></td>';
 		$html .= '<td><b>Detalle</b></td>';
+		$html .= '<td><b>Fecha pago al evento</b></td>';
 
 		$html .= '<td><b>Edad</b></td>';
 		$html .= '<td><b>Categoría</b></td>';
@@ -94,15 +96,15 @@ $fechaestimada = date('Y-m-d', time());
 		LEFT JOIN " .$tablaest. " ON " 		.$tablaafi. ".codigoestado = " 			.$tablaest. ".idestado  
 		LEFT JOIN " .$tablasan. " ON " 		.$tablaafi. ".codigosangre = " 			.$tablasan. ".idsangre  
 		LEFT JOIN " .$tablaesp. " ON " 		.$tablaafi. ".codigoespecialidad = " 	.$tablaesp. ".codigoespecialidad 
-		LEFT JOIN " .$tablatal. " ON " 		.$tablaafi. ".codigotalla        = " 	.$tablatal. ".codigotalla where ".$tablaafi.".numeroafiliado = ". $tablapai. ".numeroafiliado";
+		LEFT JOIN " .$tablatal. " ON " 		.$tablaafi. ".codigotalla        = " 	.$tablatal. ".codigotalla where ".$tablaafi.".numeroafiliado = ". $tablapai. ".numeroafiliado ORDER BY apt_estados.nombreestado asc, apt_afiliaciones.apellidos asc";
 
 		$resultado = $mysqli->query($sql);
 		
 		while ($resu = mysqli_fetch_assoc($resultado)) {
 			$html .= '<tr>';
 			$html .= '<td>' . $resu["numeroafiliado"] . '</td>';
-			$html .= '<td>' . $resu["nombres"] . '</td>';
 			$html .= '<td>' . $resu["apellidos"] . '</td>';
+			$html .= '<td>' . $resu["nombres"] . '</td>';
 			$html .= '<td>' . $resu["genero"] . '</td>';
 			
 			$data = date('d/m/Y H:i:s', strtotime($resu["fechanacimiento"]));
@@ -120,8 +122,10 @@ $fechaestimada = date('Y-m-d', time());
 			$fecpago = '';
 			if($resu["fechapago"] != "0000-00-00"){
 				$fecpago = $resu["fechapago"];
+			}else{
+				$fechapago = "";
 			}
-			// $html .= '<td>' . $fecpago . '</td>';
+			$html .= '<td>' . $fecpago . '</td>';
 
 			$aprobacion = '';
 			if($resu["aprobado"] == 1)

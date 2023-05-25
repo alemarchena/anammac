@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=24  ;</script>
+    <script>var version=30  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=24">
-    <link rel="stylesheet" href="./main.css?a=24">
+    <link rel="stylesheet" href="./estilos.css?a=30">
+    <link rel="stylesheet" href="./main.css?a=30">
 
-    <script src="./main.js?a=24" type="module"></script>
-    <script src="./funciones.js?a=24"></script>
+    <script src="./main.js?a=30" type="module"></script>
+    <script src="./funciones.js?a=30"></script>
     
   </head>
   <body>
@@ -184,12 +184,16 @@ session_destroy();
 
                      <!-- -------------------- descargar afiliados  ---------------------- -->
                      <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                                <a id="descargarinscriptos" href="./controladores/descargainscriptos.php?a=24" class="btn btn-success btn-lg" >Descargar Inscritos</a>
+                     <div class="d-flex justify-content-center">
+                                <a id="descargarinscriptos" href="./controladores/descargainscriptos.php?a=30" class="btn btn-success btn-lg" >Descargar Inscritos</a>
                         </div>
                         <br>
                         <div class="d-flex justify-content-center">
-                                <a id="descargainscriptosppago" href="./controladores/descargainscriptosppago.php?a=24" class="btn btn-warning btn-lg" >Descargar Inscritos sin pago</a>
+                            <a id="descargainscriptosppago" href="./controladores/descargainscriptosppago.php?a=30" class="btn btn-warning btn-lg" >Descargar Inscritos sin pago</a>
+                        </div>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                                <a id="descargarinscriptos" href="./controladores/descargaafiliadossininscripcion.php?a=30" class="btn btn-info btn-lg" >Descargar Afiliados sin inscribirse</a>
                         </div>
                     </div>
 

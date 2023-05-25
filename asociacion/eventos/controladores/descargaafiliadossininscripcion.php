@@ -21,12 +21,11 @@ $fechaestimada = date('Y-m-d', time());
 	<body>
 		<?php
 		// Definimos el archivo exportado
-		$archivo = 'Inscritos sin pago.xls';
+		$archivo = 'Afiliados sin inscripcion.xls';
 
 		// Crear la tabla HTML
-		$html .= "<h2>Inscriptos sin pago en Eventos</h2>";
+		$html .= "<h2>Afiliados con pago y sin inscribirse al evento</h2>";
 		$html .= "<h3>Ordenado por Nombre de estado y Apellido</h3>";
-
 		$html .= '<table border="1">';
 		$html .= '<tr>';
 		$html .= '<td><b>Nº afiliado</b></td>';
@@ -35,6 +34,7 @@ $fechaestimada = date('Y-m-d', time());
 		$html .= '<td><b>Whatsapp</b></td>';
 		$html .= '<td><b>email</b></td>';
 		$html .= '<td><b>Estado</b></td>';
+		$html .= '<td><b>Fecha Pago como afiliado</b></td>';
 		
 		$html .= '</tr>';
 
@@ -45,10 +45,9 @@ $fechaestimada = date('Y-m-d', time());
 
 		// ------------------ fin categorias -----------------
 
-		$sql ="Select apt_afiliaciones.numeroafiliado,apt_afiliaciones.nombres, apt_afiliaciones.apellidos, apt_afiliaciones.whatsapp, apt_afiliaciones.email,apt_estados.nombreestado FROM apt_afiliaciones 
-		INNER JOIN apt_inscriptos ON apt_afiliaciones.numeroafiliado = apt_inscriptos.numeroafiliado
+		$sql ="Select apt_afiliaciones.numeroafiliado,apt_afiliaciones.nombres, apt_afiliaciones.apellidos, apt_afiliaciones.whatsapp, apt_afiliaciones.email,apt_estados.nombreestado,apt_afiliaciones.fechapago FROM apt_afiliaciones 
         INNER JOIN apt_estados ON apt_afiliaciones.codigoestado = apt_estados.idestado 
-		WHERE apt_inscriptos.numeroafiliado NOT IN (SELECT numeroafiliado FROM apt_pagosinscripciones) GROUP by apt_afiliaciones.numeroafiliado ORDER BY apt_estados.nombreestado asc, apt_afiliaciones.apellidos asc";
+		WHERE apt_afiliaciones.fechapago != '0000-00-00' and apt_afiliaciones.numeroafiliado NOT IN (SELECT numeroafiliado FROM apt_inscriptos) GROUP by apt_afiliaciones.numeroafiliado ORDER BY apt_estados.nombreestado asc, apt_afiliaciones.apellidos asc";
 
 		$resultado = $mysqli->query($sql);
 		
@@ -60,6 +59,7 @@ $fechaestimada = date('Y-m-d', time());
 			$html .= '<td>' . $resu["whatsapp"] . '</td>';
 			$html .= '<td>' . $resu["email"] . '</td>';
 			$html .= '<td>' . $resu["nombreestado"] . '</td>';
+			$html .= '<td>' . $resu["fechapago"] . '</td>';
 			
 			$html .= '</tr>';
 		}
