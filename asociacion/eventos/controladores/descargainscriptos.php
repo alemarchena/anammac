@@ -26,6 +26,7 @@ $fechaestimada = date('Y-m-d', time());
 		// Crear la tabla HTML
 		$html .= "<h2>Inscritos ANAMM.A.C</h2>";
 		$html .= "<h3>Ordenado por Nombre de estado y Apellido</h3>";
+		$html .= "<h3>Incluye al final columna de aprobados y pendientes</h3>";
 		
 		$html .= '<table border="1">';
 		$html .= '<tr>';
@@ -47,6 +48,8 @@ $fechaestimada = date('Y-m-d', time());
 
 		$html .= '<td><b>Edad</b></td>';
 		$html .= '<td><b>Categoría</b></td>';
+		$html .= '<td><b>Aprobado</b></td>';
+
 		$html .= '</tr>';
 
 
@@ -87,6 +90,7 @@ $fechaestimada = date('Y-m-d', time());
 		.$tablapru. ".codigoprueba," 	.$tablapru. ".nombreprueba,"
 		.$tabladet. ".codigodetalle," 	.$tabladet. ".nombredetalle,"
 		.$tablaeve. ".idevento," 		.$tablaeve. ".nombre,"
+		.$tablapai. ".aprobado," 		
 		.$tablatal. ".codigotalla," 		.$tablatal. ".nombretalla from " 		.$tablaafi. " 
 		LEFT JOIN " .$tablapai. " ON " 		.$tablaafi. ".numeroafiliado = " 		.$tablapai. ".numeroafiliado
 		LEFT JOIN " .$tablains. " ON " 		.$tablaafi. ".numeroafiliado = " 		.$tablains. ".numeroafiliado
@@ -97,6 +101,7 @@ $fechaestimada = date('Y-m-d', time());
 		LEFT JOIN " .$tablasan. " ON " 		.$tablaafi. ".codigosangre = " 			.$tablasan. ".idsangre  
 		LEFT JOIN " .$tablaesp. " ON " 		.$tablaafi. ".codigoespecialidad = " 	.$tablaesp. ".codigoespecialidad 
 		LEFT JOIN " .$tablatal. " ON " 		.$tablaafi. ".codigotalla        = " 	.$tablatal. ".codigotalla where ".$tablaafi.".numeroafiliado = ". $tablapai. ".numeroafiliado ORDER BY apt_estados.nombreestado asc, apt_afiliaciones.apellidos asc";
+		// LEFT JOIN " .$tablatal. " ON " 		.$tablaafi. ".codigotalla        = " 	.$tablatal. ".codigotalla where ".$tablapai."aprobado = 1 and  ".$tablaafi.".numeroafiliado = ". $tablapai. ".numeroafiliado ORDER BY apt_estados.nombreestado asc, apt_afiliaciones.apellidos asc";
 
 		$resultado = $mysqli->query($sql);
 		
@@ -127,14 +132,7 @@ $fechaestimada = date('Y-m-d', time());
 			}
 			$html .= '<td>' . $fecpago . '</td>';
 
-			$aprobacion = '';
-			if($resu["aprobado"] == 1)
-			{
-				$aprobacion = "Aprobado";
-			}else{
-				$aprobacion = "Pendiente";
-			}
-			// $html .= '<td>' . $aprobacion . '</td>';
+			
 
 			
 			$datanacimiento = date('Y/m/d', strtotime($resu["fechanacimiento"]));
@@ -151,6 +149,14 @@ $fechaestimada = date('Y-m-d', time());
 					$html .= '<td>' .  $datacategorias[$a]['nombrecategoria'] . '</td>';
 				}
 			}
+			$aprobacion = '';
+			if($resu["aprobado"] == 1)
+			{
+				$aprobacion = "Aprobado";
+			}else{
+				$aprobacion = "Pendiente";
+			}
+			$html .= '<td>' . $aprobacion . '</td>';
 			$html .= '<td>' . $fechaestimada . '</td>';
 
 			$html .= '</tr>';
