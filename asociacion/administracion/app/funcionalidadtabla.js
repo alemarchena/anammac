@@ -1,6 +1,6 @@
-import { ABDD,EBDD } from "./actualizador.js?a=27";
-import {ShowMessage} from './showmessage.js?a=27'
-import {GetRandomString} from './randomstring.js?a=27'
+import { ABDD,EBDD } from "./actualizador.js?a=29";
+import {ShowMessage} from './showmessage.js?a=29'
+import {GetRandomString} from './randomstring.js?a=29'
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotodocumento     = document.getElementById('fotodocumento');

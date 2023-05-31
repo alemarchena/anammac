@@ -27,13 +27,13 @@ session_destroy();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bootstrap.css"> -->
-    <script>var version=27  ;</script>
+    <script>var version=29  ;</script>
 
-    <link rel="stylesheet" href="./estilos.css?a=27">
-    <link rel="stylesheet" href="./main.css?a=27">
+    <link rel="stylesheet" href="./estilos.css?a=29">
+    <link rel="stylesheet" href="./main.css?a=29">
 
-    <script src="./main.js?a=27" type="module"></script>
-    <script src="./funciones.js?a=27"></script>
+    <script src="./main.js?a=29" type="module"></script>
+    <script src="./funciones.js?a=29"></script>
     
   </head>
   <body>
@@ -83,6 +83,22 @@ session_destroy();
                             <div class="col-sm-12 col-md-4 ">
                                 <input type="text" class="form-control" id="buscado" placeholder="Busca nombre,o apellido,o usuario, o email">
                             </div>
+
+                        </div>
+                        <br>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="col-sm-12 col-md-3 ">
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="checkbloqueados" id="checkbloqueados">
+                                    <label class="form-check-label" for="checkbloqueados">
+                                        Ver bloqueados al buscar
+                                    </label>
+                                </div>
+                            
+                            </div>
+
                         </div>
                         <br>
                         <div class="row">
@@ -300,7 +316,7 @@ session_destroy();
                         </div>
                         <br> -->
                     <div class="d-flex justify-content-center">
-                            <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=27" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
+                            <a id="descargarafiliados" href="./controladores/descargaafiliados.php?a=29" class="btn btn-warning btn-lg" >Descargar Afiliados</a>
                     </div>
                     </div>
                 

@@ -1,6 +1,7 @@
 import {Ver,Aprobacion,Bloqueo,Ocultar,CreacionAprobacion,Generar} from './funcionalidadtabla.js?a=23'
 
 let  rebu = document.getElementById('resultadobusqueda');
+let  checkbloqueados = document.getElementById('checkbloqueados');
 
 export function Limpiar(arreglo)
 {
@@ -60,126 +61,253 @@ export const LlenarTabla = ((arreglo) =>{
         // agrega la hilera al final de la tabla (al final del elemento tblbody)
         tblBody.appendChild(hilera);
       }else{
-
-      // Crea las hileras de la tabla
-        let hilera = document.createElement("tr");
-
-        let columna1 = document.createElement("th");        let columna2 = document.createElement("th");
-        let columna3 = document.createElement("th");        let columna4 = document.createElement("th");
-        let columna5 = document.createElement("th");        let columna6 = document.createElement("th");
-        let columna7 = document.createElement("th");        let columna8 = document.createElement("th");
-        let columna9 = document.createElement("th");        let columna10 = document.createElement("th");
-
-        let celda1 = document.createElement("td");        let celda2 = document.createElement("td");
-        let celda3 = document.createElement("td");        let celda4 = document.createElement("td");
-        let celda5 = document.createElement("td");        let celda6 = document.createElement("td");
-        let celda7 = document.createElement("td");        let celda8 = document.createElement("td");
-        let celda9 = document.createElement("td");        let celda10 = document.createElement("td");
-
-        let numeroafiliado = document.createTextNode(arreglo[i].numeroafiliado);
-        numeroafiliado.id = "numeroafiliado" + arreglo[i].idafiliacion;
-        celda1.appendChild(numeroafiliado);        columna1.appendChild(celda1);
-        celda1.id= "celdanu" + arreglo[i].idafiliacion;
-
-        let usuario = document.createTextNode(arreglo[i].usuario);
-        usuario.id = "usuario" + arreglo[i].idafiliacion;
-        celda2.appendChild(usuario);        columna2.appendChild(celda2);
-        celda2.id= "celda" + arreglo[i].idafiliacion;
-
-        let nombres = document.createTextNode(arreglo[i].nombres);
-        nombres.id = "nombres" + arreglo[i].idafiliacion;
-        celda3.appendChild(nombres);        columna3.appendChild(celda3);
-
-        let apellidos = document.createTextNode(arreglo[i].apellidos);
-        apellidos.id = "apellidos" + arreglo[i].idafiliacion;
-        celda4.appendChild(apellidos);        columna4.appendChild(celda4);
-
-        let email = document.createTextNode(arreglo[i].email);
-        email.id = "email" + arreglo[i].idafiliacion;
-        celda5.appendChild(email);        columna5.appendChild(celda5);
-        
-        //Ver los datos en el panel superior
-        let botonver = document.createElement("button");
-        botonver.id = "Ver" + arreglo[i].idafiliacion;
-        botonver.innerHTML = "Ver";
-        botonver.classList.add("btn");
-        botonver.classList.add("btn-info");
-        botonver.onclick = (e)=>{e.preventDefault();Ver(e.target.id,arreglo);}
-        celda6.appendChild(botonver);        columna6.appendChild(celda6);
-        
-          //Ocultar la fila encontrada
-          let botonocultar = document.createElement("button");
-          botonocultar.id = "Ocultar" + arreglo[i].idafiliacion;
-          botonocultar.innerHTML = "Ocultar";
-          botonocultar.classList.add("btn");
-          botonocultar.classList.add("btn-primary");
-          botonocultar.onclick = (e)=>{e.preventDefault();Ocultar(e.target.id,arreglo);}
-          celda7.appendChild(botonocultar);        columna7.appendChild(celda7);
-
-        //Aprobar un afiliado
-        let botonaprobar = document.createElement("button");
-        botonaprobar.id = "Aprobar" + arreglo[i].idafiliacion;
-        arreglo[i].aprobado==1 ? botonaprobar.innerHTML = "Desaprobar" : botonaprobar.innerHTML = "Aprobar";
-        botonaprobar.classList.add("btn");
-        if(arreglo[i].numeroafiliado != '')
+        if(!checkbloqueados.checked)
         {
-          botonaprobar.classList.add("btn-success");
-        }else
-        {
-          botonaprobar.classList.add("btn-warning");
-        }
-
-        botonaprobar.onclick = (e)=>{e.preventDefault();
+          if(arreglo[i].desactivado == 0)
+          {
+            // Crea las hileras de la tabla
+          let hilera = document.createElement("tr");
+  
+          let columna1 = document.createElement("th");        let columna2 = document.createElement("th");
+          let columna3 = document.createElement("th");        let columna4 = document.createElement("th");
+          let columna5 = document.createElement("th");        let columna6 = document.createElement("th");
+          let columna7 = document.createElement("th");        let columna8 = document.createElement("th");
+          let columna9 = document.createElement("th");        let columna10 = document.createElement("th");
+  
+          let celda1 = document.createElement("td");        let celda2 = document.createElement("td");
+          let celda3 = document.createElement("td");        let celda4 = document.createElement("td");
+          let celda5 = document.createElement("td");        let celda6 = document.createElement("td");
+          let celda7 = document.createElement("td");        let celda8 = document.createElement("td");
+          let celda9 = document.createElement("td");        let celda10 = document.createElement("td");
+  
+          let numeroafiliado = document.createTextNode(arreglo[i].numeroafiliado);
+          numeroafiliado.id = "numeroafiliado" + arreglo[i].idafiliacion;
+          celda1.appendChild(numeroafiliado);        columna1.appendChild(celda1);
+          celda1.id= "celdanu" + arreglo[i].idafiliacion;
+  
+          let usuario = document.createTextNode(arreglo[i].usuario);
+          usuario.id = "usuario" + arreglo[i].idafiliacion;
+          celda2.appendChild(usuario);        columna2.appendChild(celda2);
+          celda2.id= "celda" + arreglo[i].idafiliacion;
+  
+          let nombres = document.createTextNode(arreglo[i].nombres);
+          nombres.id = "nombres" + arreglo[i].idafiliacion;
+          celda3.appendChild(nombres);        columna3.appendChild(celda3);
+  
+          let apellidos = document.createTextNode(arreglo[i].apellidos);
+          apellidos.id = "apellidos" + arreglo[i].idafiliacion;
+          celda4.appendChild(apellidos);        columna4.appendChild(celda4);
+  
+          let email = document.createTextNode(arreglo[i].email);
+          email.id = "email" + arreglo[i].idafiliacion;
+          celda5.appendChild(email);        columna5.appendChild(celda5);
           
+          //Ver los datos en el panel superior
+          let botonver = document.createElement("button");
+          botonver.id = "Ver" + arreglo[i].idafiliacion;
+          botonver.innerHTML = "Ver";
+          botonver.classList.add("btn");
+          botonver.classList.add("btn-info");
+          botonver.onclick = (e)=>{e.preventDefault();Ver(e.target.id,arreglo);}
+          celda6.appendChild(botonver);        columna6.appendChild(celda6);
+          
+            //Ocultar la fila encontrada
+            let botonocultar = document.createElement("button");
+            botonocultar.id = "Ocultar" + arreglo[i].idafiliacion;
+            botonocultar.innerHTML = "Ocultar";
+            botonocultar.classList.add("btn");
+            botonocultar.classList.add("btn-primary");
+            botonocultar.onclick = (e)=>{e.preventDefault();Ocultar(e.target.id,arreglo);}
+            celda7.appendChild(botonocultar);        columna7.appendChild(celda7);
+  
+          //Aprobar un afiliado
+          let botonaprobar = document.createElement("button");
+          botonaprobar.id = "Aprobar" + arreglo[i].idafiliacion;
+          arreglo[i].aprobado==1 ? botonaprobar.innerHTML = "Desaprobar" : botonaprobar.innerHTML = "Aprobar";
+          botonaprobar.classList.add("btn");
           if(arreglo[i].numeroafiliado != '')
           {
-            Aprobacion(e.target.id,arreglo,arreglo[i].aprobado);
-          }
-          else
+            botonaprobar.classList.add("btn-success");
+          }else
           {
-            CreacionAprobacion(e.target.id,arreglo,arreglo[i].aprobado,arreglo[i].codigoestado);
+            botonaprobar.classList.add("btn-warning");
           }
-
-        }
-        celda8.appendChild(botonaprobar);        columna8.appendChild(celda8);
-
-        //Bloquear un afiliado
-        let botonbloquear = document.createElement("button");
-        botonbloquear.id = "Bloquear" + arreglo[i].idafiliacion;
-        arreglo[i].desactivado == 1 ? botonbloquear.innerHTML = "Desbloquear" : botonbloquear.innerHTML = "Bloquear";
-        botonbloquear.classList.add("btn");
-        botonbloquear.classList.add("btn-warning");
-        botonbloquear.onclick = (e)=>{e.preventDefault();Bloqueo(e.target.id,arreglo,arreglo[i].desactivado);}
-        celda9.appendChild(botonbloquear);        columna9.appendChild(celda9);
-
-        //Generar clave de un afiliado
-        let botongenerar = document.createElement("button");
-        botongenerar.id = "Generar" + arreglo[i].idafiliacion;
-        botongenerar.innerHTML = "Usuario<span class='material-icons'>key</span>";
-        
-        botongenerar.classList.add("btn");
-        botongenerar.classList.add("btn-info");
-        
-        botongenerar.onclick = (e)=>{
-          e.preventDefault();
+  
+          botonaprobar.onclick = (e)=>{e.preventDefault();
+            
+            if(arreglo[i].numeroafiliado != '')
+            {
+              Aprobacion(e.target.id,arreglo,arreglo[i].aprobado);
+            }
+            else
+            {
+              CreacionAprobacion(e.target.id,arreglo,arreglo[i].aprobado,arreglo[i].codigoestado);
+            }
+  
+          }
+          celda8.appendChild(botonaprobar);        columna8.appendChild(celda8);
+  
+          //Bloquear un afiliado
+          let botonbloquear = document.createElement("button");
+          botonbloquear.id = "Bloquear" + arreglo[i].idafiliacion;
+          arreglo[i].desactivado == 1 ? botonbloquear.innerHTML = "Desbloquear" : botonbloquear.innerHTML = "Bloquear";
+          botonbloquear.classList.add("btn");
+          botonbloquear.classList.add("btn-warning");
+          botonbloquear.onclick = (e)=>{e.preventDefault();Bloqueo(e.target.id,arreglo,arreglo[i].desactivado);}
+          celda9.appendChild(botonbloquear);        columna9.appendChild(celda9);
+  
+          //Generar clave de un afiliado
+          let botongenerar = document.createElement("button");
+          botongenerar.id = "Generar" + arreglo[i].idafiliacion;
+          botongenerar.innerHTML = "Usuario<span class='material-icons'>key</span>";
           
-          let text = "¿Desea generar un usuario aleatorio?";
-          if (confirm(text) == true) {
-            Generar(e.target.id,arreglo);
-          } 
+          botongenerar.classList.add("btn");
+          botongenerar.classList.add("btn-info");
+          
+          botongenerar.onclick = (e)=>{
+            e.preventDefault();
+            
+            let text = "¿Desea generar un usuario aleatorio?";
+            if (confirm(text) == true) {
+              Generar(e.target.id,arreglo);
+            } 
+          }
+          celda10.appendChild(botongenerar);        columna10.appendChild(celda10);
+  
+  
+  
+          hilera.appendChild(columna1);        hilera.appendChild(columna2);
+          hilera.appendChild(columna3);        hilera.appendChild(columna4);
+          hilera.appendChild(columna5);        hilera.appendChild(columna6);
+          hilera.appendChild(columna7);        hilera.appendChild(columna8);
+          hilera.appendChild(columna9);        hilera.appendChild(columna10);
+          
+          // agrega la hilera al final de la tabla (al final del elemento tblbody)
+          tblBody.appendChild(hilera);
+          }
+        }else{
+
+          // Crea las hileras de la tabla
+          let hilera = document.createElement("tr");
+  
+          let columna1 = document.createElement("th");        let columna2 = document.createElement("th");
+          let columna3 = document.createElement("th");        let columna4 = document.createElement("th");
+          let columna5 = document.createElement("th");        let columna6 = document.createElement("th");
+          let columna7 = document.createElement("th");        let columna8 = document.createElement("th");
+          let columna9 = document.createElement("th");        let columna10 = document.createElement("th");
+  
+          let celda1 = document.createElement("td");        let celda2 = document.createElement("td");
+          let celda3 = document.createElement("td");        let celda4 = document.createElement("td");
+          let celda5 = document.createElement("td");        let celda6 = document.createElement("td");
+          let celda7 = document.createElement("td");        let celda8 = document.createElement("td");
+          let celda9 = document.createElement("td");        let celda10 = document.createElement("td");
+  
+          let numeroafiliado = document.createTextNode(arreglo[i].numeroafiliado);
+          numeroafiliado.id = "numeroafiliado" + arreglo[i].idafiliacion;
+          celda1.appendChild(numeroafiliado);        columna1.appendChild(celda1);
+          celda1.id= "celdanu" + arreglo[i].idafiliacion;
+  
+          let usuario = document.createTextNode(arreglo[i].usuario);
+          usuario.id = "usuario" + arreglo[i].idafiliacion;
+          celda2.appendChild(usuario);        columna2.appendChild(celda2);
+          celda2.id= "celda" + arreglo[i].idafiliacion;
+  
+          let nombres = document.createTextNode(arreglo[i].nombres);
+          nombres.id = "nombres" + arreglo[i].idafiliacion;
+          celda3.appendChild(nombres);        columna3.appendChild(celda3);
+  
+          let apellidos = document.createTextNode(arreglo[i].apellidos);
+          apellidos.id = "apellidos" + arreglo[i].idafiliacion;
+          celda4.appendChild(apellidos);        columna4.appendChild(celda4);
+  
+          let email = document.createTextNode(arreglo[i].email);
+          email.id = "email" + arreglo[i].idafiliacion;
+          celda5.appendChild(email);        columna5.appendChild(celda5);
+          
+          //Ver los datos en el panel superior
+          let botonver = document.createElement("button");
+          botonver.id = "Ver" + arreglo[i].idafiliacion;
+          botonver.innerHTML = "Ver";
+          botonver.classList.add("btn");
+          botonver.classList.add("btn-info");
+          botonver.onclick = (e)=>{e.preventDefault();Ver(e.target.id,arreglo);}
+          celda6.appendChild(botonver);        columna6.appendChild(celda6);
+          
+            //Ocultar la fila encontrada
+            let botonocultar = document.createElement("button");
+            botonocultar.id = "Ocultar" + arreglo[i].idafiliacion;
+            botonocultar.innerHTML = "Ocultar";
+            botonocultar.classList.add("btn");
+            botonocultar.classList.add("btn-primary");
+            botonocultar.onclick = (e)=>{e.preventDefault();Ocultar(e.target.id,arreglo);}
+            celda7.appendChild(botonocultar);        columna7.appendChild(celda7);
+  
+          //Aprobar un afiliado
+          let botonaprobar = document.createElement("button");
+          botonaprobar.id = "Aprobar" + arreglo[i].idafiliacion;
+          arreglo[i].aprobado==1 ? botonaprobar.innerHTML = "Desaprobar" : botonaprobar.innerHTML = "Aprobar";
+          botonaprobar.classList.add("btn");
+          if(arreglo[i].numeroafiliado != '')
+          {
+            botonaprobar.classList.add("btn-success");
+          }else
+          {
+            botonaprobar.classList.add("btn-warning");
+          }
+  
+          botonaprobar.onclick = (e)=>{e.preventDefault();
+            
+            if(arreglo[i].numeroafiliado != '')
+            {
+              Aprobacion(e.target.id,arreglo,arreglo[i].aprobado);
+            }
+            else
+            {
+              CreacionAprobacion(e.target.id,arreglo,arreglo[i].aprobado,arreglo[i].codigoestado);
+            }
+  
+          }
+          celda8.appendChild(botonaprobar);        columna8.appendChild(celda8);
+  
+          //Bloquear un afiliado
+          let botonbloquear = document.createElement("button");
+          botonbloquear.id = "Bloquear" + arreglo[i].idafiliacion;
+          arreglo[i].desactivado == 1 ? botonbloquear.innerHTML = "Desbloquear" : botonbloquear.innerHTML = "Bloquear";
+          botonbloquear.classList.add("btn");
+          botonbloquear.classList.add("btn-warning");
+          botonbloquear.onclick = (e)=>{e.preventDefault();Bloqueo(e.target.id,arreglo,arreglo[i].desactivado);}
+          celda9.appendChild(botonbloquear);        columna9.appendChild(celda9);
+  
+          //Generar clave de un afiliado
+          let botongenerar = document.createElement("button");
+          botongenerar.id = "Generar" + arreglo[i].idafiliacion;
+          botongenerar.innerHTML = "Usuario<span class='material-icons'>key</span>";
+          
+          botongenerar.classList.add("btn");
+          botongenerar.classList.add("btn-info");
+          
+          botongenerar.onclick = (e)=>{
+            e.preventDefault();
+            
+            let text = "¿Desea generar un usuario aleatorio?";
+            if (confirm(text) == true) {
+              Generar(e.target.id,arreglo);
+            } 
+          }
+          celda10.appendChild(botongenerar);        columna10.appendChild(celda10);
+  
+  
+  
+          hilera.appendChild(columna1);        hilera.appendChild(columna2);
+          hilera.appendChild(columna3);        hilera.appendChild(columna4);
+          hilera.appendChild(columna5);        hilera.appendChild(columna6);
+          hilera.appendChild(columna7);        hilera.appendChild(columna8);
+          hilera.appendChild(columna9);        hilera.appendChild(columna10);
+          
+          // agrega la hilera al final de la tabla (al final del elemento tblbody)
+          tblBody.appendChild(hilera);
         }
-        celda10.appendChild(botongenerar);        columna10.appendChild(celda10);
-
- 
-
-        hilera.appendChild(columna1);        hilera.appendChild(columna2);
-        hilera.appendChild(columna3);        hilera.appendChild(columna4);
-        hilera.appendChild(columna5);        hilera.appendChild(columna6);
-        hilera.appendChild(columna7);        hilera.appendChild(columna8);
-        hilera.appendChild(columna9);        hilera.appendChild(columna10);
-        
-        // agrega la hilera al final de la tabla (al final del elemento tblbody)
-        tblBody.appendChild(hilera);
+         
       }
       
     }
