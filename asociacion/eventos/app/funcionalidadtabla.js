@@ -1,4 +1,4 @@
-import {EBDD, ABDDPI } from "./actualizador.js?a=19";
+import {EBDD, ABDDPI } from "./actualizador.js?a=27";
 
 const fotoatleta        = document.getElementById('fotoatleta');
 const fotopago          = document.getElementById('fotopago');

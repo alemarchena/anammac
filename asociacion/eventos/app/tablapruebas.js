@@ -1,8 +1,8 @@
-import {ClearSelect} from './select.js?a=19';
-import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=19';
-import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas,VerCamposPrueba,VerCamposPruebaDetalle } from './pruebas.js?a=19';
-import { EBDD,ABDD,ABDDP } from "./actualizador.js?a=19";
-import {ShowMessage} from './showmessage.js?a=8'
+import {ClearSelect} from './select.js?a=35';
+import {ListaPruebas,ListaEventos,VerCamposEvento} from './pruebas.js?a=35';
+import { BuscarEventos,GuardarEventoPrueba,BuscarEventoConPruebas,VerCamposPrueba,VerCamposPruebaDetalle } from './pruebas.js?a=35';
+import { EBDD,ABDD,ABDDP } from "./actualizador.js?a=35";
+import {ShowMessage} from './showmessage.js?a=35'
 
 
 let   rebu = document.getElementById('resultadobusquedapruebas');

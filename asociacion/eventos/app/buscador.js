@@ -1,5 +1,5 @@
-import {LlenarTabla,Limpiar} from './tabla.js?a=26'
-import {ShowMessage} from './showmessage.js?a=26'
+import {LlenarTabla,Limpiar} from './tabla.js?a=35'
+import {ShowMessage} from './showmessage.js?a=35'
 
 const buscado           = document.getElementById('buscado');
 const espera            = document.getElementById("espera");
@@ -83,7 +83,7 @@ const Listar = ((valor)=>{
         }
         paqueteJsonBuscarprocesadas =JSON.stringify( arreglopalabrasprocesadas );
 
-        fetch("./controladores/buscarevento.php?a=26",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
+        fetch("./controladores/buscarevento.php?a=35",{method:'POST',body:paqueteJsonBuscarprocesadas,headers:{'Content-Type':'application/json'}})   
         .then(response => response.json())
         .then(data => 
         {
@@ -114,6 +114,9 @@ const Listar = ((valor)=>{
                         toPropuestas.aprobacionevento   = data[a].aprobacionevento;
                         toPropuestas.montopagado        = data[a].montopagado;
                         toPropuestas.montopagadodolar   = data[a].montopagadodolar;
+
+                        toPropuestas.idestado           = data[a].idestado;
+                        toPropuestas.nombreestado             = data[a].nombreestado;
 
                         arreglo.push(toPropuestas);
                     }

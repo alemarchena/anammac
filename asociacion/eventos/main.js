@@ -9,12 +9,12 @@ document.addEventListener("keydown", function(event){
     }
 }, false);
 
-import './app/interfaz.js?a=25'
-import './app/redireccion.js?a=25'
-import './app/buscador.js?a=25'
-import './app/tabla.js?a=25'
-import './app/funcionalidadtabla.js?a=25'
-// import './app/pruebas.js?a=25'
-import './app/actualizador.js?a=25'
-import './app/tablapruebas.js?a=25'
+import './app/interfaz.js?a=35'
+import './app/redireccion.js?a=35'
+import './app/buscador.js?a=35'
+import './app/tabla.js?a=35'
+import './app/funcionalidadtabla.js?a=35'
+// import './app/pruebas.js?a=35'
+import './app/actualizador.js?a=35'
+import './app/tablapruebas.js?a=35'
 

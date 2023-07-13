@@ -12,6 +12,7 @@
     $tablapin               = "apt_pagosinscripciones";
     $tablaafi               = "apt_afiliaciones";
     $tablaeve               = "apt_eventos";
+    $tablaest               = "apt_estados";
     
 
     $paqueteJson           = json_decode(file_get_contents('php://input'),true);
@@ -21,8 +22,10 @@
         $tablaafi.idafiliacion,$tablaafi.whatsapp,$tablaafi.email,$tablaafi.usuario,$tablapin.aprobado as aprobacionevento,
         $tablapin.fechapago as fechapagoevento,$tablapin.fotopagoevento,$tablapin.idevento,$tablapin.idinscripcion,
         $tablaeve.nombre,
-        $tablapin.montopagado,$tablapin.montopagadodolar from (( $tablapin INNER JOIN
-        $tablaafi ON $tablapin.numeroafiliado   =  $tablaafi.numeroafiliado ) INNER JOIN
+        $tablaest.idestado,$tablaest.nombreestado,
+        $tablapin.montopagado,$tablapin.montopagadodolar from ((( $tablaafi INNER JOIN
+        $tablapin ON $tablapin.numeroafiliado   =  $tablaafi.numeroafiliado ) INNER JOIN
+        $tablaest ON $tablaest.idestado         =  $tablaafi.codigoestado ) INNER JOIN
         $tablaeve ON $tablapin.idevento         =  $tablaeve.idevento )";
 
     $contador = 0;
@@ -79,7 +82,7 @@
    
     $sql = $basesql . " where " . $criteriowhere . " order by apellidos asc; ";
 
-    //  var_dump($sql);
+    //   var_dump($sql);
 
     $resultado = $mysqli->query($sql);
     $data = array();

@@ -190,7 +190,7 @@ export const BuscarPruebas = (()=>{
 
     let arreglo = [];
 
-    fetch("./controladores/leer.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leer.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
 
     .then(response => response.json())
     .then(function(data){
@@ -230,7 +230,7 @@ export const BuscarDetallePrueba = (()=>{
     
     let arreglodetalle = [];
 
-    fetch("./controladores/leerpruebas.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leerpruebas.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
 
     .then(response => response.json())
     .then(function(data){
@@ -271,7 +271,7 @@ export const BuscarPruebasEvento = (()=>{
 
     let arreglopruebaevento = [];
 
-    fetch("./controladores/leerpruebas.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leerpruebas.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
 
     .then(response => response.json())
     .then(function(data){
@@ -310,7 +310,7 @@ export const BuscarEventos = (()=>{
 
     let arregloeventos = [];
 
-    fetch("./controladores/leereventos.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leereventos.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
 
     .then(response => response.json())
     .then(function(data){
@@ -366,7 +366,7 @@ export const BuscarEventoConPruebas = (()=>{
 
     let arregloeventoconpruebas = [];
 
-    fetch("./controladores/leereventoconpruebas.php?a=1",{method:'POST',body: JSON.stringify( publicacionEventoConPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leereventoconpruebas.php?a=35",{method:'POST',body: JSON.stringify( publicacionEventoConPruebas ),headers:{'Content-Type':'application/json'}})   
 
     .then(response => response.json())
     .then(function(data){
@@ -406,7 +406,7 @@ export const GuardarPrueba = (()=>{
         
     }
 
-    fetch("./controladores/guardarprueba.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarprueba.php?a=35",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
     .then(response => response.json())
     .then(function(data){
         if(data>0){
@@ -433,7 +433,7 @@ export const GuardarPruebaDetalle = (()=>{
 
     }
 
-    fetch("./controladores/guardarpruebadetalle.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarpruebadetalle.php?a=35",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
     .then(response => response.json())
     .then(function(data){
         if(data>0){
@@ -470,7 +470,7 @@ export const GuardarEvento = (()=>{
         activo: 0,
     }
 
-    fetch("./controladores/guardarevento.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/guardarevento.php?a=35",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
     .then(response => response.json())
     .then(function(data){
         if(data>0){
@@ -506,13 +506,13 @@ export const GuardarEventoPrueba = ((codigoevento,codigoprueba,codigodetalle)=>{
         codigodetalle:codigodetalle
     }
 
-    fetch("./controladores/buscaeventoprueba.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/buscaeventoprueba.php?a=35",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
     .then(response => response.json())
     .then(function(data){
         
         if(data=="consultavacia"){
             //    ------------------------------
-            fetch("./controladores/guardareventoprueba.php?a=1",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
+            fetch("./controladores/guardareventoprueba.php?a=35",{method:'POST',body: JSON.stringify( publicacion ),headers:{'Content-Type':'application/json'}})   
             .then(response => response.json())
             .then(function(data){
                 if(data>0){
@@ -619,7 +619,7 @@ export function ListaPruebas()
         tabla : "apt_pruebas",
     }
     
-    fetch("./controladores/leer.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leer.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaPruebas ),headers:{'Content-Type':'application/json'}})   
     
     .then(response => response.json())
     .then(function(data){
@@ -646,7 +646,7 @@ export function ListaEventos()
         tabla : "apt_eventos",
     }
     
-    fetch("./controladores/leer.php?a=1",{method:'POST',body: JSON.stringify( publicacionlistaEventos ),headers:{'Content-Type':'application/json'}})   
+    fetch("./controladores/leer.php?a=35",{method:'POST',body: JSON.stringify( publicacionlistaEventos ),headers:{'Content-Type':'application/json'}})   
     
     .then(response => response.json())
     .then(function(data){
